@@ -24,6 +24,8 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "winwheel": "^1.0.1",
+    "tronweb": "^2.6.8",
+    "ngx-logger": "^3.3.13",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

@@ -3,18 +3,19 @@
 <canvas class = "roulette" id="canvas" width="520" height="810"></canvas>
 </div>
 <div class="btn-group mr-2" role="group" aria-label="First group">
-    <button id="b1" type="button" class="btn btn-outline-secondary mr-5">2x Multiplier</button>
-    <button id="b2" type="button" class="btn btn-outline-danger mr-5">3x Multiplier</button>
-    <button id="b3" type="button" class="btn btn-outline-primary mr-5">5x Multiplier</button>
-    <button id="b4" type="button" class="btn btn-outline-warning mr-5">50x Multiplier</button>
+    <button id="b1" type="button" class="btn btn-outline-secondary mr-5" (click)="betTwo(trx)">2x Multiplier</button>
+    <button id="b2" type="button" class="btn btn-outline-danger mr-5" (click)="betThree(trx)">3x Multiplier</button>
+    <button id="b3" type="button" class="btn btn-outline-primary mr-5" (click)="betFive(trx)">5x Multiplier</button>
+    <button id="b4" type="button" class="btn btn-outline-warning mr-5" (click)="betFifty(trx)">50x Multiplier</button>
   </div>
   <div id ="amount" class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="bet-amount">Bet Amount: </label>
       <span class="input-group-text" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
     </div>
-    <input id="bet" type="number" min="10" class="form-control" placeholder="10" aria-label="Username" aria-describedby="basic-addon1">
+    <input id="bet" type="number" min="10" class="form-control" [(ngModel)]="trx" placeholder="Place your bet" aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <button id="b2" type="button" class="btn btn-outline-danger mr-5" (click)="spinOf()">Spin</button>
-
+  <div>
+  <h3 class = "seconds">{{seconds}}</h3>
+  </div>
 <router-outlet></router-outlet>
