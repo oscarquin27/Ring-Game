@@ -4,8 +4,6 @@ pragma solidity ^0.4.23;
 contract RingGame {
     
     uint public time;
-    uint randomNum;
-    uint256 nextRoundInterval = time;
     address owner;
     bool allowed;
     uint two = 2;
@@ -14,6 +12,9 @@ contract RingGame {
     uint fifty = 50;
     uint public random;
     uint public length;
+    string secretKey = "8vQ3X5StoY";
+    bytes32 public hashval;
+    bytes32 public salt;
     struct Bet {
         uint betType;
         address player;
@@ -88,7 +89,12 @@ contract RingGame {
     }
     
     function play() public OnlyOwner returns (uint) {
-        random = uint8(uint256(keccak256(block.timestamp, block.difficulty))%55);
+        uint256 diff = block.difficulty;
+        uint256 timestamp = now;
+       
+        random = uint8(uint256(keccak256(abi.encodePacked(timestamp,diff, secretKey)))%55);
+        salt = keccak256(abi.encodePacked(timestamp,diff, secretKey));
+        hashval = sha256(abi.encodePacked(salt,random));
         emit PlayGame(random);
         return random;
    }
