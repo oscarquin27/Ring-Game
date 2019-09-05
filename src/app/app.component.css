@@ -1,5 +1,8 @@
 
-.prize{
+#prize{
+    background-image : url(../assets/pointerg.png);
+    background-image : url(../assets/pointerblue.png);
+    background-image : url(../assets/pointerp.png);
     background-image : url(../assets/pointery.png);
     background-repeat : no-repeat;
     background-position : center;

@@ -92,7 +92,8 @@ contract RingGame {
         uint256 diff = block.difficulty;
         uint256 timestamp = now;
        
-        random = uint8(uint256(keccak256(abi.encodePacked(timestamp,diff, secretKey)))%55);
+        random = uint8(uint256(keccak256(abi.encodePacked(timestamp,diff, secretKey)))%54);
+        random += 1;
         salt = keccak256(abi.encodePacked(timestamp,diff, secretKey));
         hashval = sha256(abi.encodePacked(salt,random));
         emit PlayGame(random);

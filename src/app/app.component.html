@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class = "prize">
+<div id = "prize">
 <canvas class = "roulette" id="canvas" width="620" height="670"></canvas>
 <h3 class = "seconds">{{seconds}}.{{milis}}</h3>
 </div>
@@ -22,16 +22,24 @@
   <nav class="nav previous">
   <div *ngFor="let prev of (aux | slice : aux.length - 10)">
     <div *ngIf="prev.a == 2">
-      <img class="showprev" src="../assets/greyballs.png">
+      <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+Seed:  {{prev.salt}}
+Random:  {{prev.rand}}" src="../assets/greyballs.png">
     </div>
     <div *ngIf="prev.a == 3">
-        <img class="showprev" src="../assets/blueball.png">
+        <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+Seed:  {{prev.salt}}
+Random:  {{prev.rand}}" src="../assets/blueball.png">
       </div>
       <div *ngIf="prev.a == 5">
-          <img class="showprev" src="../assets/purpleball.png">
+          <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+Seed:  {{prev.salt}}
+Random:  {{prev.rand}}" src="../assets/purpleball.png">
         </div>
         <div *ngIf="prev.a == 50">
-            <img class="showprev" src="../assets/goldball.png">
+            <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+Seed:  {{prev.salt}}
+Random:  {{prev.rand}}" src="../assets/goldball.png">
           </div>
     </div>
   </nav>

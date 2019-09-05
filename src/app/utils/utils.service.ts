@@ -16,8 +16,7 @@ export interface Request {
 })
 export class UtilsService {
   private tronweb : TronWeb | any;
-  contractAddress = "TGmQyZ3vcYWgmtVkNty2MQsBtJcgz8Yavf";
-  privateKey = "d5999de297b839ac83156511c5aa03d328a22c417f3265972288fe2e5e0d6642";
+  contractAddress = "TDQsVTVw8b6NdVFQkXjY2KU3NDdyCdYVvs";
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   balance;
 
@@ -37,7 +36,6 @@ export class UtilsService {
         fullNode = window.tronWeb.currentProviders().fullNode.host;
         solidityNode = window.tronWeb.currentProviders().solidityNode.host;
         eventServer = window.tronWeb.currentProviders().eventServer.host;
-        this.privateKey
 
         this.logger.debug('SUCCESS');
       }
@@ -48,7 +46,6 @@ export class UtilsService {
         fullNode,
         solidityNode,
         eventServer,
-        this.privateKey
       )
       window.tronWeb.on('addressChanged', () => {
         this.logger.info('Address changed to : ' + this.getAddress);
@@ -60,7 +57,6 @@ export class UtilsService {
         'https://api.shasta.trongrid.io',
         'https://api.shasta.trongrid.io',
         'https://api.shasta.trongrid.io',
-        this.privateKey
       );
       return resolve();
     }

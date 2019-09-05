@@ -4,7 +4,7 @@ import { NGXLogger } from 'ngx-logger';
 import TronWeb from 'tronweb';
 import { UtilsService } from './utils/utils.service';
 import { BehaviorSubject } from 'rxjs';
-
+import * as cryptojs from 'crypto-js';
 declare let window : any;
 declare var require: any;
 
@@ -23,7 +23,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TGmQyZ3vcYWgmtVkNty2MQsBtJcgz8Yavf";
+  contractAddress = "TDQsVTVw8b6NdVFQkXjY2KU3NDdyCdYVvs";
   address;
   seconds;
   milis;
@@ -49,6 +49,12 @@ export class AppComponent {
   aux = [];
   trx;
   balance;
+  salt;
+  hash;
+  greyPointer;
+  bluePointer;
+  purplePointer;
+  yellowPointer;
   private tronweb : TronWeb | any;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){}
@@ -58,7 +64,6 @@ export class AppComponent {
       this.loadImages();
       this.initWheel();
       this.onPlatformReady().then(async () => {})
-      
     }
 
     private async onPlatformReady() {
@@ -169,8 +174,6 @@ export class AppComponent {
           //'callbackFinished' : JSON.stringify(this.alertPrize())
         }
       });
-
-      this.wheel.text = 1;
     
     }
 
@@ -219,9 +222,8 @@ export class AppComponent {
           this.inputNumber = parseInt(this.wheel.segments[this.segmentNumber].text);
           console.log(this.segmentNumber, "INPUT : " + this.inputNumber);
           this.previousPlays.push(this.inputNumber);
-          let hash = await contract.hashval().call();
-          let salt = await contract.salt().call();
-          console.log(hash, "VALOR DEL HASH", salt, "Valor de la sal", res.toNumber(), "Aleatorio");
+          this.salt = await contract.salt().call();
+          this.hash = cryptojs.SHA256(this.salt+this.segmentNumber);
           this.spinOf();
         }
       })
@@ -363,9 +365,28 @@ export class AppComponent {
                 (<HTMLInputElement>document.getElementById('b4')).disabled = false;
                 this.loadImages();
                 this.checkBalance();
-                this.aux.push({a:this.inputNumber});
                 this.initWheel();
             });
+            setTimeout(a => {
+              if(this.inputNumber == 2){
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointerg.png)"; 
+              }
+              if(this.inputNumber == 3){
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointerblue.png)"; 
+              }
+              if(this.inputNumber == 5){
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointerp.png)"; 
+              }
+              if(this.inputNumber == 50){
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointery.png)"; 
+              }
+              this.aux.push({
+                a:this.inputNumber,
+                hash: this.hash,
+                salt: this.salt,
+                rand: this.segmentNumber
+              });
+            }, 5000)
           })
     }
 
