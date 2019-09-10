@@ -23,7 +23,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TDQsVTVw8b6NdVFQkXjY2KU3NDdyCdYVvs";
+  contractAddress = "TG1K7gGMaL5i4vfmo2DQAePWRJbzHQrDW9";
   address;
   seconds;
   milis;
@@ -55,12 +55,14 @@ export class AppComponent {
   bluePointer;
   purplePointer;
   yellowPointer;
+  animationState = 0;
+  indication : string;
   private tronweb : TronWeb | any;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){}
 
     async ngOnInit() : Promise<any>{
-      this.stopAt = 180;
+      this.stopAt = 270;
       this.loadImages();
       this.initWheel();
       this.onPlatformReady().then(async () => {})
@@ -102,6 +104,7 @@ export class AppComponent {
         'canvasId'    : 'canvas',
         'numSegments' : 54,
         'rotationAngle' : this.stopAt,
+        'responsive' : true,
         'centerX'     : 258,
         'centerY'     : 320,
         'lineWidth'   : 1,
@@ -110,20 +113,6 @@ export class AppComponent {
         'imageOverlay' : false,
         'segments'    :
         [
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
           {'text' : '5'},
           {'text' : '2'},
           {'text' : '5'},
@@ -165,32 +154,52 @@ export class AppComponent {
           {'text' : '3'},
           {'text' : '2'},
           {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
         ],
         'animation' :
         {
           'type' : 'spinToStop',
-          'duration' : 5,
-          'spins' : 10,
-          //'callbackFinished' : JSON.stringify(this.alertPrize())
+          'duration' : 4,
+          'spins' : 8,
+          'yoyo' : false,
+          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointerg.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerblue.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerp.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/pointery.png)";}',
+
         }
       });
-    
     }
 
+    someFunction(){
+        console.log(this.animationState);
+    }
     async timer(){
+      this.indication = "Place your bets";
       const contract1 = await window.tronWeb.contract().at(this.contractAddress);
       const res1 = await contract1.time().call();
-      var countDown = (res1.toNumber() * 1000) + 35000;
+      var countDown = (res1.toNumber() * 1000) + 26000;
       let x = setInterval(async ()=>{
         let now = new Date().getTime();
         let distance = countDown - now;
         this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        this.milis = Math.floor((distance % (1000)));
+        this.milis = Math.floor((distance % (1000))/10);
         //console.log(this.milis,this.seconds);
         if(distance <= 0) {
           this.milis = 0;
           this.seconds = 0;
           clearInterval(x);
+          this.indication = "Stop placing bets";
           this.address = await window.tronWeb.defaultAddress.base58;
           console.log(this.address);
           //stop all
@@ -217,6 +226,7 @@ export class AppComponent {
       let res = await contract.PlayGame().watch(async (err, result) => {
         if (err) return console.log("ERROR")
         if(result){
+          this.indication = "Finding a winner";
           let res = await contract.random().call();
           this.segmentNumber = res.toNumber();
           this.inputNumber = parseInt(this.wheel.segments[this.segmentNumber].text);
@@ -243,6 +253,10 @@ export class AppComponent {
             this.players3x = 0;
             this.players5x = 0;
             this.players50x = 0;
+            (<HTMLInputElement>document.getElementById('b1')).disabled = false;
+            (<HTMLInputElement>document.getElementById('b2')).disabled = false;
+            (<HTMLInputElement>document.getElementById('b3')).disabled = false;
+            (<HTMLInputElement>document.getElementById('b4')).disabled = false;
         }
       })
     }
@@ -253,12 +267,12 @@ export class AppComponent {
         if(err) return console.log("ERROR")
         if(result){
           result.result.amount = result.result.amount/1000000;
-          result.result.player = await window.tronWeb.address.fromHex(result.result.player);
+          let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
+          let fin = pre.substring(0,10);
+          result.result.player = fin;
           this.showTwo.push(result);
           this.total2x += result.result.amount;
           this.players2x = this.showTwo.length;
-          let str = result.result.player.toString();
-          this.player2xAddress = str.substring(0, 17);
         }
       })
     }
@@ -269,12 +283,12 @@ export class AppComponent {
         if(err) return console.log("ERROR")
         if(result){
           result.result.amount = result.result.amount/1000000;
-          result.result.player = await window.tronWeb.address.fromHex(result.result.player);
+          let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
+          let fin = pre.substring(0,10);
+          result.result.player = fin;
           this.showThree.push(result);
           this.total3x += result.result.amount;
-          this.players3x = this.showTwo.length;
-          let str = result.result.player.toString();
-          this.player3xAddress = str.substring(0, 17);
+          this.players3x = this.showThree.length;
         }
       })
     }
@@ -285,12 +299,12 @@ export class AppComponent {
         if(err) return console.log("ERROR")
         if(result){
           result.result.amount = result.result.amount/1000000;
-          result.result.player = await window.tronWeb.address.fromHex(result.result.player);
+          let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
+          let fin = pre.substring(0,10);
+          result.result.player = fin;
           this.showFive.push(result);
           this.total5x += result.result.amount;
-          this.players5x = this.showTwo.length;
-          let str = result.result.player.toString();
-          this.player5xAddress = str.substring(0, 17);
+          this.players5x = this.showFive.length;
         }
       })
     }
@@ -301,12 +315,12 @@ export class AppComponent {
         if(err) return console.log("ERROR")
         if(result){
           result.result.amount = result.result.amount/1000000;
-          result.result.player = await window.tronWeb.address.fromHex(result.result.player);
+          let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
+          let fin = pre.substring(0,10);
+          result.result.player = fin;
           this.showFifty.push(result);
           this.total50x += result.result.amount;
-          this.players50x = this.showTwo.length;
-          let str = result.result.player.toString();
-          this.player50xAddress = str.substring(0, 17);
+          this.players50x = this.showFifty.length;
         }
       })
     }
@@ -329,7 +343,7 @@ export class AppComponent {
      async spin() : Promise<any>{
       this.stopAngle().then(a => {
       this.wheel.startAnimation();
-      console.log(this.wheel.animation.stopAngle);
+      console.log(this.wheel.animation.propertyName);
       })
     }
 
@@ -359,25 +373,29 @@ export class AppComponent {
                   shouldPollResponse : false
                     })
                   }
-                (<HTMLInputElement>document.getElementById('b1')).disabled = false;
-                (<HTMLInputElement>document.getElementById('b2')).disabled = false;
-                (<HTMLInputElement>document.getElementById('b3')).disabled = false;
-                (<HTMLInputElement>document.getElementById('b4')).disabled = false;
                 this.loadImages();
                 this.checkBalance();
                 this.initWheel();
             });
             setTimeout(a => {
               if(this.inputNumber == 2){
+                document.getElementById("indication").style.color = "#473f3d";
+                document.getElementById("seconds").style.color = "#473f3d";
                 document.getElementById('prize').style.backgroundImage="url(../assets/pointerg.png)"; 
               }
               if(this.inputNumber == 3){
+                document.getElementById("indication").style.color = "#228df0";
+                document.getElementById("seconds").style.color = "#228df0";
                 document.getElementById('prize').style.backgroundImage="url(../assets/pointerblue.png)"; 
               }
               if(this.inputNumber == 5){
+                document.getElementById("indication").style.color = "#5632af";
+                document.getElementById("seconds").style.color = "#5632af";
                 document.getElementById('prize').style.backgroundImage="url(../assets/pointerp.png)"; 
               }
               if(this.inputNumber == 50){
+                document.getElementById("indication").style.color = "#fcc235";
+                document.getElementById("seconds").style.color = "#fcc235";
                 document.getElementById('prize').style.backgroundImage="url(../assets/pointery.png)"; 
               }
               this.aux.push({
@@ -386,11 +404,14 @@ export class AppComponent {
                 salt: this.salt,
                 rand: this.segmentNumber
               });
-            }, 5000)
+            }, 4200)
           })
+          this.wheel.callbackBefore = () => {
+            console.log("Hi");
+          }
     }
-
     async betTwo(trx: number){
+      if(trx == null || trx == undefined)trx = 10;
       if(trx < 10 || (trx > this.balance && this.balance < 10)){
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
@@ -408,6 +429,7 @@ export class AppComponent {
     }
 
     async betThree(trx: number){
+      if(trx == null || trx == undefined)trx = 10;
       if(trx < 10 || (trx > this.balance && this.balance < 10)){
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
@@ -425,6 +447,7 @@ export class AppComponent {
     }
 
     async betFive(trx: number){
+      if(trx == null || trx == undefined)trx = 10;
       if(trx < 10 || (trx > this.balance && this.balance < 10)){
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
@@ -442,6 +465,7 @@ export class AppComponent {
     }
 
     async betFifty(trx: number){
+      if(trx == null || trx == undefined)trx = 10;
       if(trx < 10 || (trx > this.balance && this.balance < 10)){
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
@@ -477,10 +501,16 @@ export class AppComponent {
     }
 
     double(){
+      this.trx = parseInt((<HTMLInputElement>document.getElementById("bet")).value);
+      if(!isNaN(this.trx)){
       let val = Math.floor(this.trx * 2);
       this.trx = val;
       if(val > this.balance) {this.trx = this.balance}
       else ((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;
+      }
+      else{
+        this.trx = 10;
+      }
     }
 
     max(){

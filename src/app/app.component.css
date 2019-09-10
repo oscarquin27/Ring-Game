@@ -6,8 +6,8 @@
     background-image : url(../assets/pointery.png);
     background-repeat : no-repeat;
     background-position : center;
-    height: 615px;
-    width: 519px;
+    height: 610px;
+    width: 495px;
     margin-left: 44%;
     margin-top: 2%;
 }
@@ -31,13 +31,22 @@
     background-color: #131218
 }
 
-.seconds{
+#seconds{
     position: relative;
-    top: -280px;
-    margin-left: 43%;
+    top: -395px;
+    margin-left: 40%;
     color: white;
-    font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#indication{
+    position: relative;
+    top: -360px;
+    margin-left: 30%;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 label{
@@ -71,46 +80,96 @@ button{
 .list2{
     background-color: rgba(0,0,0,0);
     border-color:rgba(0,0,0,0);
-    width: 300px;
-    margin-left: 5%;
+    width: 90%;
+    /*margin-left: 2%;*/
 }
 
 .list3{
     background-color: rgba(0,0,0,0);
     border-color:rgba(0,0,0,0);
-    width: 300px;
-    margin-left: 5%;
+    width: 90%;
+    color: #2DADCF;
+    /*margin-left: 2%;*/
 }
 
 .list5{
     background-color: rgba(0,0,0,0);
     border-color:rgba(0,0,0,0);
-    width: 300px;
-    margin-left: 5%;
+    width: 90%;
+    color: rgb(137, 96, 226);
+    /*margin-left: 2%;*/
 }
 
 .list50{
     background-color: rgba(0,0,0,0);
     border-color:rgba(0,0,0,0);
-    width: 300px;
-    margin-left: 10%;
+    width: 85%;
+    color: #FBB410;
+    /*margin-left: 5%;*/
 }
 
 .nav-down{
-    position: relative;
-    top: -70px;
+    position:fixed;
+    overflow:scroll;
+    top: 70%;
+    width: 100%;
+    height: 50%;
 }
 
-.reduce{
+.reduce1{
     font-size: 12px;
     background-color: #191d2e;
+    width: 90%;
 }
 
-.card{
+.reduce2{
+    font-size: 12px;
+    background-color: #191d2e;
+    width: 90%;
+    color: #2DADCF;
+}
+.reduce3{
+    font-size: 12px;
+    background-color: #191d2e;
+    width: 90%;
+    color: rgb(137, 96, 226);
+}
+.reduce4{
+    font-size: 12px;
+    background-color: #191d2e;
+    width: 90%;
+    color: #FBB410;
+}
+
+.card2{
     margin-left: 1%;
     background-color: #1d2235;
     border-color: rgba(0,0,0,0);
-    width: 23%;
+    width: 24%;
+    /*padding-right: 20px;
+    padding-top: 20px;*/
+}
+.card3{
+    margin-left: 1%;
+    background-color: #1d2235;
+    border-color: rgba(0,0,0,0);
+    width: 24%;
+    /*padding-right: 20px;
+    padding-top: 20px;*/
+}
+.card5{
+    margin-left: 1%;
+    background-color: #1d2235;
+    border-color: rgba(0,0,0,0);
+    width: 24%;
+    /*padding-right: 20px;
+    padding-top: 20px;*/
+}
+.card50{
+    margin-left: 1%;
+    background-color: #1d2235;
+    border-color: rgba(0,0,0,0);
+    width: 24%;
     /*padding-right: 20px;
     padding-top: 20px;*/
 }
@@ -121,7 +180,8 @@ button{
     background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-color: rgba(0,0,0,0);
     margin-left: 10%;
-    width: 200px;
+    margin-top: 3%;
+    width: 90%;
 }
 
 .btn3x{
@@ -129,19 +189,19 @@ button{
     background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-color: rgba(0,0,0,0);
-    margin-left: 10%;
-    width: 200px;
+    margin-left: 8%;
+    width: 90%;
     margin-top: 10%;
 }
 
 .btn5x{
-    margin-left: 10%;
+    margin-left: 8%;
     background: #5632af;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #3c1053, #5632af);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #3c1053, #5632af); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     border-color: rgba(0,0,0,0);
-    width: 200px;
+    width: 90%;
     margin-top: 10%;
 }
 
@@ -151,8 +211,8 @@ button{
     background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     border-color: rgba(0,0,0,0);
-    margin-left: 15%;
-    width: 200px;
+    margin-left: 8%;
+    width: 90%;
     margin-top: 10%;
 }
 
@@ -162,9 +222,10 @@ button{
 
 .showprev{
     position: relative;
-    top: -300px;
-    margin-left: 10%;
+    top: -550px;
+    margin-left: 80%;
     padding-right: 5px;
+    padding-top: 2px;
 }
 
 .bal{
@@ -174,3 +235,102 @@ button{
     color: white;
     font-size: 25px;
 }
+
+::placeholder{
+    color: white;
+}
+::-moz-placeholder{
+    color:white;
+}
+:-ms-input-placeholder{
+    color: white;
+}
+.btnops{
+    color: white;
+    border-color: rgb(229, 241, 243);
+}
+
+html{
+    overflow:scroll;
+}
+@media screen and (max-width: 1200px){
+    .showprev{
+        position: relative;
+        top: -550px;
+        margin-left: 10%;
+        padding-right: 5px;
+        padding-top: 2px;
+    }
+
+    .bal{
+        position: relative;
+        top: -10px;
+        margin-left: 10%;
+        color: white;
+        font-size: 25px;
+    }
+
+    #amount{
+        position: relative;
+        top: -50px;
+        margin-left: 100%;
+        padding-right: 1%;
+        border-radius: 4px;
+    }
+
+    .card2{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .card3{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .card5{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .card50{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .nav-down{
+        top: 40%;
+        width: 100%;
+        margin-top:20%;
+        position:fixed;
+        overflow:scroll;
+        height: 50%;
+    }
+
+    .btn50x{
+        background: #F7971E;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+ / Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-color: rgba(0,0,0,0);
+        margin-left: 14%;
+        width: 90%;
+        margin-top: 10%;
+    }
+}
+

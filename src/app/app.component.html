@@ -1,48 +1,47 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id = "prize">
 <canvas class = "roulette" id="canvas" width="620" height="670"></canvas>
-<h3 class = "seconds">{{seconds}}.{{milis}}</h3>
+<h3 id = "seconds">{{seconds}}.{{milis}}</h3>
+<h2 id= "indication"> {{indication}}</h2>
 </div>
     <div class="bal">
     <img style="padding-right: 1%;" class="bal2" height="35px" src="../assets/tron_logo_trans.png">{{balance}}
-    <button class="btn btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
+    <button class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
     </div>
   <div id ="amount" class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text back" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
     </div>
-    <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1">
+    <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" required>
     <div class="input-group-append" id="button-addon4">
-      <button class="btn btn-outline-secondary" type="button" (click)="min()">min</button>
-      <button class="btn btn-outline-secondary" type="button" (click)="half()">1/2</button>
-      <button class="btn btn-outline-secondary" type="button" (click)="double()">x2</button>
-      <button class="btn btn-outline-secondary" type="button" (click)="max()">max</button>
+      <button class="btn btnops btn-outline-secondary" type="button" (click)="min()">min</button>
+      <button class="btn btnops btn-outline-secondary" type="button" (click)="half()">1/2</button>
+      <button class="btn btnops btn-outline-secondary" type="button" (click)="double()">x2</button>
+      <button class="btn btnops btn-outline-secondary" type="button" (click)="max()">max</button>
     </div>
   </div>
-  <nav class="nav previous">
   <div *ngFor="let prev of (aux | slice : aux.length - 10)">
     <div *ngIf="prev.a == 2">
-      <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+      <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
 Seed:  {{prev.salt}}
 Random:  {{prev.rand}}" src="../assets/greyballs.png">
     </div>
     <div *ngIf="prev.a == 3">
-        <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+        <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
 Seed:  {{prev.salt}}
 Random:  {{prev.rand}}" src="../assets/blueball.png">
       </div>
       <div *ngIf="prev.a == 5">
-          <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+          <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
 Seed:  {{prev.salt}}
 Random:  {{prev.rand}}" src="../assets/purpleball.png">
         </div>
         <div *ngIf="prev.a == 50">
-            <img class="showprev" data-toggle="tooltip" title="Hash: {{prev.hash}}
+            <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
 Seed:  {{prev.salt}}
 Random:  {{prev.rand}}" src="../assets/goldball.png">
           </div>
     </div>
-  </nav>
   <div>
   </div>
   <ul class="nav nav-down">
@@ -53,7 +52,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
       <li class="list-group-item list2 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png">{{total2x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players2x}}</li>
     <div *ngFor = "let bet of showTwo">
         <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
-        <li class="list-group-item reduce"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} <img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{player2xAddress}}... </li>
+        <li class="list-group-item reduce1"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} <img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{bet.result.player}}... </li>
       </div>
     </div>
   </ul>
@@ -66,7 +65,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
     <li class="list-group-item list3 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png"> {{total3x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players3x}}</li>
     <div *ngFor = "let bet of showThree">
       <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
-        <li class="list-group-item reduce"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} <img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{player3xAddress}}...</li>
+        <li class="list-group-item reduce2"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} <img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{bet.result.player}}...</li>
       </div>
     </div>
   </ul>
@@ -78,7 +77,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
     <li class="list-group-item list5 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png"> {{total5x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players5x}}</li>
     <div *ngFor = "let bet of showFive">
       <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
-        <li class="list-group-item reduce"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}}<img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{player5xAddress}}... </li>
+        <li class="list-group-item reduce3"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}}<img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{bet.result.player}}... </li>
       </div>
     </div>
   </ul>
@@ -90,7 +89,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
     <li class="list-group-item list50 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png"> {{total50x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players50x}}</li>
     <div *ngFor = "let bet of showFifty">
       <div *ngIf="bet.result.amount !== undefined || bet.result.player !== undefined">
-        <li class="list-group-item reduce"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} <img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{player50xAddress}}...</li>
+        <li class="list-group-item reduce4"><img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} <img style="padding-left: 35%;" src="https://img.icons8.com/small/16/000000/user.png">{{bet.result.player}}...</li>
       </div>
     </div>
   </ul>
