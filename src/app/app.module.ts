@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { UtilsService } from './utils/utils.service';
 import {HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbPopoverModule,
     LoggerModule.forRoot({
       level:
         NgxLoggerLevel.INFO ||
         NgxLoggerLevel.DEBUG
     }),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [UtilsService],
   bootstrap: [AppComponent]

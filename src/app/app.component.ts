@@ -15,10 +15,6 @@ declare var require: any;
 })
 export class AppComponent {
   title = 'ring';
-  red = "rgba(1,1,1,1)";//"#D33E5C"
-  grey = "rgba(1,1,1,1)";//"#3E4359"
-  blue = "rgba(1,1,1,1)";//"#1DA7C8" //5231af
-  gold = "rgba(1,1,1,1)";//"#ffc107"
   size = 14;
   wheel;
   stopAt;
@@ -57,6 +53,13 @@ export class AppComponent {
   yellowPointer;
   animationState = 0;
   indication : string;
+  audio = new Audio("../assets/tick.wav"); //= <HTMLAudioElement>document.getElementById("tick");
+  muted = false;
+  aux2 : number = 1;
+  dialogOpenGrey : boolean = true;
+  dialogOpenBlue : boolean = true;
+  dialogOpenPurple : boolean = true;
+  dialogOpenYellow : boolean = true;
   private tronweb : TronWeb | any;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){}
@@ -100,11 +103,20 @@ export class AppComponent {
       }
 
       async initWheel() : Promise<any>{
+        let playSound = () => {
+          if(this.muted != true){
+          let audio = new Audio("../assets/tick.wav");
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = 0.2;
+          audio.play();
+          }
+        }
       this.wheel = new Winwheel({
         'canvasId'    : 'canvas',
         'numSegments' : 54,
         'rotationAngle' : this.stopAt,
-        'responsive' : true,
+        'responsive' : false,
         'centerX'     : 258,
         'centerY'     : 320,
         'lineWidth'   : 1,
@@ -173,16 +185,21 @@ export class AppComponent {
         {
           'type' : 'spinToStop',
           'duration' : 4,
-          'spins' : 8,
+          'spins' : 3,
           'yoyo' : false,
+          'easing': 'Power3.easeOut',
           'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointerg.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerblue.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerp.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/pointery.png)";}',
-
+          'callbackSound' : playSound,
         }
       });
     }
 
-    someFunction(){
-        console.log(this.animationState);
+    muteAudio(){
+      this.muted = true;
+    }
+
+    unMute(){
+      this.muted = false;
     }
     async timer(){
       this.indication = "Place your bets";
@@ -201,7 +218,6 @@ export class AppComponent {
           clearInterval(x);
           this.indication = "Stop placing bets";
           this.address = await window.tronWeb.defaultAddress.base58;
-          console.log(this.address);
           //stop all
           (<HTMLInputElement>document.getElementById('b1')).disabled = true;
           (<HTMLInputElement>document.getElementById('b2')).disabled = true;
@@ -226,6 +242,7 @@ export class AppComponent {
       let res = await contract.PlayGame().watch(async (err, result) => {
         if (err) return console.log("ERROR")
         if(result){
+          console.log(result);
           this.indication = "Finding a winner";
           let res = await contract.random().call();
           this.segmentNumber = res.toNumber();
@@ -238,9 +255,10 @@ export class AppComponent {
         }
       })
       let res2 = await contract.StopGame(this.inputNumber).watch(async (err, result) => {
-        if(err) return console.log("ERROR")
+        if(err) {this.timer();}
         if(result){
-            this.timer();
+            console.log(result);
+            this.indication = "Preparing next round"
             this.showTwo = [];
             this.showThree = [];
             this.showFive = [];
@@ -257,6 +275,9 @@ export class AppComponent {
             (<HTMLInputElement>document.getElementById('b2')).disabled = false;
             (<HTMLInputElement>document.getElementById('b3')).disabled = false;
             (<HTMLInputElement>document.getElementById('b4')).disabled = false;
+            setTimeout(() => {
+              this.timer();
+            }, 4000)
         }
       })
     }
@@ -268,7 +289,7 @@ export class AppComponent {
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
-          let fin = pre.substring(0,10);
+          let fin = pre.substring(0,5);
           result.result.player = fin;
           this.showTwo.push(result);
           this.total2x += result.result.amount;
@@ -284,7 +305,7 @@ export class AppComponent {
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
-          let fin = pre.substring(0,10);
+          let fin = pre.substring(0,5);
           result.result.player = fin;
           this.showThree.push(result);
           this.total3x += result.result.amount;
@@ -300,7 +321,7 @@ export class AppComponent {
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
-          let fin = pre.substring(0,10);
+          let fin = pre.substring(0,5);
           result.result.player = fin;
           this.showFive.push(result);
           this.total5x += result.result.amount;
@@ -316,7 +337,7 @@ export class AppComponent {
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
-          let fin = pre.substring(0,10);
+          let fin = pre.substring(0,5);
           result.result.player = fin;
           this.showFifty.push(result);
           this.total50x += result.result.amount;
@@ -343,7 +364,6 @@ export class AppComponent {
      async spin() : Promise<any>{
       this.stopAngle().then(a => {
       this.wheel.startAnimation();
-      console.log(this.wheel.animation.propertyName);
       })
     }
 
@@ -361,7 +381,6 @@ export class AppComponent {
                 for(let i = 0; i < res.toNumber(); i++){
                   let bets = await contract.bets(i).call();
                   if(bets.betType.toNumber() == this.inputNumber){
-                    console.log(bets.betType.toNumber(), bets.player, bets.value.toNumber());
                     let numBet = bets.value.toNumber();
                     trx += numBet;
                   }
@@ -404,11 +423,8 @@ export class AppComponent {
                 salt: this.salt,
                 rand: this.segmentNumber
               });
-            }, 4200)
+            }, 4025)
           })
-          this.wheel.callbackBefore = () => {
-            console.log("Hi");
-          }
     }
     async betTwo(trx: number){
       if(trx == null || trx == undefined)trx = 10;
@@ -515,5 +531,61 @@ export class AppComponent {
 
     max(){
       this.trx = this.balance;
+    }
+
+    openPreviousGrey(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-grey"));
+      x.showModal();
+      this.dialogOpenGrey = true;
+      console.log("open");
+    }
+
+    closePreviousGrey(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-grey"));
+      x.close(); 
+      this.dialogOpenGrey = false;
+      console.log("close");
+    }
+
+    openPreviousBlue(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-blue"));
+      x.showModal();
+      this.dialogOpenBlue = true;
+      console.log("open");
+    }
+
+    closePreviousBlue(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-blue"));
+      x.close(); 
+      this.dialogOpenBlue = false;
+      console.log("close");
+    }
+
+    openPreviousPurple(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-purple"));
+      x.showModal();
+      this.dialogOpenPurple = true;
+      console.log("open");
+    }
+
+    closePreviousPurple(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-purple"));
+      x.close(); 
+      this.dialogOpenPurple = false;
+      console.log("close");
+    }
+
+    openPreviousYellow(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-yellow"));
+      x.showModal();
+      this.dialogOpenYellow = true;
+      console.log("open");
+    }
+
+    closePreviousYellow(){
+      let x = (<HTMLDialogElement>document.getElementById("previous-yellow"));
+      x.close(); 
+      this.dialogOpenYellow = false;
+      console.log("close");
     }
 }

@@ -1,3 +1,6 @@
+@viewport{
+    width: device-width;
+}
 
 #prize{
     background-image : url(../assets/pointerg.png);
@@ -10,17 +13,20 @@
     width: 495px;
     margin-left: 44%;
     margin-top: 2%;
+    display: block;
 }
 
 #amount{
     position: relative;
-    top: -350px;
+    top: -380px;
     margin-left: 5%;
-    padding-right: 75%;
-    border-radius: 4px;
+    padding-right: 80%;
+    border-radius: 5px;
+    z-index: -1;
 }
-.input-group-append{
-    margin-left:1%;
+.input-group{
+    margin-left: 0%;
+    padding-top: 5%;
 }
 #bet{
     background-color: #131218;
@@ -37,7 +43,7 @@
     margin-left: 40%;
     color: white;
     font-size: 3rem;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
 }
 
 #indication{
@@ -81,6 +87,7 @@ button{
     background-color: rgba(0,0,0,0);
     border-color:rgba(0,0,0,0);
     width: 90%;
+    font-size: 20px;
     /*margin-left: 2%;*/
 }
 
@@ -89,6 +96,7 @@ button{
     border-color:rgba(0,0,0,0);
     width: 90%;
     color: #2DADCF;
+    font-size: 20px;
     /*margin-left: 2%;*/
 }
 
@@ -97,6 +105,7 @@ button{
     border-color:rgba(0,0,0,0);
     width: 90%;
     color: rgb(137, 96, 226);
+    font-size: 20px;
     /*margin-left: 2%;*/
 }
 
@@ -105,37 +114,79 @@ button{
     border-color:rgba(0,0,0,0);
     width: 85%;
     color: #FBB410;
+    font-size: 20px;
     /*margin-left: 5%;*/
 }
 
 .nav-down{
     position:fixed;
-    overflow:scroll;
-    top: 70%;
+    top: 72%;
     width: 100%;
-    height: 50%;
+    height: 27%;
+    overflow-y: scroll;
 }
 
+.mute{
+    margin-left: 56%;
+    position: relative;
+    top: -118px;
+}
+
+.button-trans-grey{
+    display: block;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    border: 3px solid rgb(105, 98, 97);
+}
+
+.button-trans-blue{
+    display: block;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    border: 3px solid #228DF0;
+}
+
+.button-trans-purple{
+    display: block;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    border: 3px solid #5632AF;
+}
+
+.button-trans-yellow{
+    display: block;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    border: 3px solid #FCC235;
+}
 .reduce1{
-    font-size: 12px;
+    font-size: 20px;
     background-color: #191d2e;
     width: 90%;
 }
 
 .reduce2{
-    font-size: 12px;
+    font-size: 20px;
     background-color: #191d2e;
     width: 90%;
     color: #2DADCF;
 }
 .reduce3{
-    font-size: 12px;
+    font-size: 20px;
     background-color: #191d2e;
     width: 90%;
     color: rgb(137, 96, 226);
 }
 .reduce4{
-    font-size: 12px;
+    font-size: 20px;
     background-color: #191d2e;
     width: 90%;
     color: #FBB410;
@@ -181,7 +232,10 @@ button{
     border-color: rgba(0,0,0,0);
     margin-left: 10%;
     margin-top: 3%;
+    font-size: 26px;
     width: 90%;
+    height: 30%;
+    border-radius: 7px;
 }
 
 .btn3x{
@@ -192,6 +246,9 @@ button{
     margin-left: 8%;
     width: 90%;
     margin-top: 10%;
+    font-size: 26px;
+    height: 30%;
+    border-radius: 7px;
 }
 
 .btn5x{
@@ -203,6 +260,9 @@ button{
     border-color: rgba(0,0,0,0);
     width: 90%;
     margin-top: 10%;
+    font-size: 26px;
+    height: 30%;
+    border-radius: 7px;
 }
 
 .btn50x{
@@ -214,6 +274,9 @@ button{
     margin-left: 8%;
     width: 90%;
     margin-top: 10%;
+    font-size: 26px;
+    height: 30%;
+    border-radius: 7px;
 }
 
 .previous{
@@ -222,18 +285,40 @@ button{
 
 .showprev{
     position: relative;
-    top: -550px;
+    top: -650px;
     margin-left: 80%;
     padding-right: 5px;
-    padding-top: 2px;
+    /*padding-top: 2px;*/
+    margin-top: 0.3%;
+}
+
+.grey-dialog{
+    color: #313435;
+}
+
+.blue-dialog{
+    color: #228DF0;
+}
+
+.purple-dialog{
+    color: #5632AF;
+}
+
+.yellow-dialog{
+    color: #FDCA05;
+}
+
+.popover-body{
+    background-color: #161616d5;
 }
 
 .bal{
     position: relative;
     top: -420px;
-    margin-left: 10%;
+    margin-left: 8%;
     color: white;
     font-size: 25px;
+    z-index: -1;
 }
 
 ::placeholder{
@@ -248,34 +333,108 @@ button{
 .btnops{
     color: white;
     border-color: rgb(229, 241, 243);
+    margin-left: 10px;
+    border-radius: 12px;
 }
 
-html{
-    overflow:scroll;
-}
-@media screen and (max-width: 1200px){
+
+@media all and (max-width: 1000px){
+
+    #prize{
+        background-image : url(../assets/pointerg.png);
+        background-image : url(../assets/pointerblue.png);
+        background-image : url(../assets/pointerp.png);
+        background-image : url(../assets/pointery.png);
+        background-repeat : no-repeat;
+        background-position : center;
+        background-size: 300px;
+        height: 317px;
+        width: 255px;
+        margin-left: 30%;
+        margin-top: 2%;
+        display: block;
+    }
+
+    #canvas{
+        height: 350px;
+        width: 310px;
+    }
+
+    #seconds{
+        position: relative;
+        top: -210px;
+        margin-left: 38%;
+        color: white;
+        font-size: 2rem;
+        font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
+    }
+    
+    #indication{
+        position: relative;
+        top: -200px;
+        margin-left: 28%;
+        color: white;
+        font-size: 1rem;
+        font-family: 'Orbitron', sans-serif;
+    }
+
     .showprev{
         position: relative;
-        top: -550px;
-        margin-left: 10%;
+        top: -450px;
+        margin-left: 110%;
         padding-right: 5px;
-        padding-top: 2px;
+        /*padding-top: 2px;*/
+        margin-top: 0.3%;
+    }
+
+    .reduce1{
+        font-size: 20px;
+        background-color: #191d2e;
+        width: 90%;
+    }
+    
+    .reduce2{
+        font-size: 16px;
+        background-color: #191d2e;
+        width: 90%;
+        color: #2DADCF;
+    }
+    .reduce3{
+        font-size: 16px;
+        background-color: #191d2e;
+        width: 90%;
+        color: rgb(137, 96, 226);
+    }
+    .reduce4{
+        font-size: 16px;
+        background-color: #191d2e;
+        width: 90%;
+        color: #FBB410;
     }
 
     .bal{
         position: relative;
-        top: -10px;
+        top: -50px;
         margin-left: 10%;
         color: white;
-        font-size: 25px;
+        font-size: 16px;
+    }
+
+    .bal2{
+        height: 20px;
+        width: 26px;
     }
 
     #amount{
         position: relative;
         top: -50px;
-        margin-left: 100%;
-        padding-right: 1%;
+        margin-left: 50%;
+        padding-right: 20%;
         border-radius: 4px;
+    }
+
+    #check{
+        /*visibility:hidden;*/
     }
 
     .card2{
@@ -314,12 +473,17 @@ html{
         padding-top: 20px;*/
     }
 
+    .mute{
+       margin-left: 53%;
+       top: -100px; 
+    }
+
     .nav-down{
-        top: 40%;
+        top: 42%;
         width: 100%;
-        margin-top:20%;
+        margin-top:25%;
         position:fixed;
-        overflow:scroll;
+        overflow-y:auto;
         height: 50%;
     }
 
@@ -334,3 +498,154 @@ html{
     }
 }
 
+
+@media all and (max-height: 875px){
+
+    #prize{
+        background-image : url(../assets/pointerg.png);
+        background-image : url(../assets/pointerblue.png);
+        background-image : url(../assets/pointerp.png);
+        background-image : url(../assets/pointery.png);
+        background-repeat : no-repeat;
+        background-position : center;
+        background-size: 300px;
+        height: 317px;
+        width: 255px;
+        margin-left: 30%;
+        margin-top: 2%;
+        display: block;
+    }
+
+    #canvas{
+        height: 350px;
+        width: 310px;
+    }
+
+    #seconds{
+        position: relative;
+        top: -210px;
+        margin-left: 38%;
+        color: white;
+        font-size: 2rem;
+        font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
+    }
+    
+    #indication{
+        position: relative;
+        top: -200px;
+        margin-left: 28%;
+        color: white;
+        font-size: 1rem;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .reduce1{
+        font-size: 20px;
+        background-color: #191d2e;
+        width: 90%;
+    }
+    
+    .reduce2{
+        font-size: 16px;
+        background-color: #191d2e;
+        width: 90%;
+        color: #2DADCF;
+    }
+    .reduce3{
+        font-size: 16px;
+        background-color: #191d2e;
+        width: 90%;
+        color: rgb(137, 96, 226);
+    }
+    .reduce4{
+        font-size: 16px;
+        background-color: #191d2e;
+        width: 90%;
+        color: #FBB410;
+    }
+
+    .bal{
+        position: relative;
+        top: -50px;
+        margin-left: 10%;
+        color: white;
+        font-size: 16px;
+    }
+
+    .bal2{
+        height: 20px;
+        width: 26px;
+    }
+
+    #amount{
+        position: relative;
+        top: -50px;
+        margin-left: 50%;
+        padding-right: 20%;
+        border-radius: 4px;
+    }
+
+    #check{
+        /*visibility:hidden;*/
+    }
+
+    .card2{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .card3{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .card5{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .card50{
+        margin-left: 1%;
+        background-color: #1d2235;
+        border-color: rgba(0,0,0,0);
+        width: 100%;
+        /*padding-right: 20px;
+        padding-top: 20px;*/
+    }
+
+    .mute{
+       margin-left: 62%;
+       top: -100px; 
+    }
+
+    .nav-down{
+        top: 42%;
+        width: 100%;
+        margin-top:25%;
+        position:fixed;
+        overflow-y:auto;
+        height: 50%;
+    }
+
+    .btn50x{
+        background: #F7971E;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+ / Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-color: rgba(0,0,0,0);
+        margin-left: 14%;
+        width: 90%;
+        margin-top: 10%;
+    }
+}

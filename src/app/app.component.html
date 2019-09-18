@@ -4,16 +4,23 @@
 <h3 id = "seconds">{{seconds}}.{{milis}}</h3>
 <h2 id= "indication"> {{indication}}</h2>
 </div>
+    <div *ngIf="muted == false; then sound else nosound"></div>
+    <ng-template #sound>
+    <img class="mute" src="https://img.icons8.com/nolan/50/000000/medium-volume.png" (click)="muteAudio()">
+    </ng-template>
+    <ng-template #nosound>
+      <img class="mute" src="https://img.icons8.com/nolan/50/000000/mute.png" (click)="unMute()">
+    </ng-template>
     <div class="bal">
     <img style="padding-right: 1%;" class="bal2" height="35px" src="../assets/tron_logo_trans.png">{{balance}}
-    <button class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
+    <button id="check" class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
     </div>
   <div id ="amount" class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text back" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
     </div>
     <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" required>
-    <div class="input-group-append" id="button-addon4">
+    <div class="input-group" id="button-addon4">
       <button class="btn btnops btn-outline-secondary" type="button" (click)="min()">min</button>
       <button class="btn btnops btn-outline-secondary" type="button" (click)="half()">1/2</button>
       <button class="btn btnops btn-outline-secondary" type="button" (click)="double()">x2</button>
@@ -22,25 +29,21 @@
   </div>
   <div *ngFor="let prev of (aux | slice : aux.length - 10)">
     <div *ngIf="prev.a == 2">
-      <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
-Seed:  {{prev.salt}}
-Random:  {{prev.rand}}" src="../assets/greyballs.png">
+      <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
+      <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
     </div>
     <div *ngIf="prev.a == 3">
-        <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
-Seed:  {{prev.salt}}
-Random:  {{prev.rand}}" src="../assets/blueball.png">
-      </div>
+        <ng-template #content class="blue-info"><p class="blue-dialog">Hash: </p> {{prev.hash}} <br><p class="blue-dialog">Seed:</p> {{prev.salt}}<br><p class="blue-dialog">Random:</p>{{prev.rand}}</ng-template>
+      <button type="button" class="button-trans-blue showprev" placement="left" [ngbPopover]="content"></button>
+      </div>  
       <div *ngIf="prev.a == 5">
-          <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
-Seed:  {{prev.salt}}
-Random:  {{prev.rand}}" src="../assets/purpleball.png">
+        <ng-template #content class="purple-info"><p class="purple-dialog">Hash: </p> {{prev.hash}} <br><p class="purple-dialog">Seed:</p> {{prev.salt}}<br><p class="purple-dialog">Random:</p>{{prev.rand}}</ng-template>
+        <button type="button" class="button-trans-purple showprev" placement="left" [ngbPopover]="content"></button>  
         </div>
         <div *ngIf="prev.a == 50">
-            <img class="showprev" data-toggle="popover" title="Hash: {{prev.hash}}
-Seed:  {{prev.salt}}
-Random:  {{prev.rand}}" src="../assets/goldball.png">
-          </div>
+        <ng-template #content class="yellow-info"><p class="yellow-dialog">Hash: </p> {{prev.hash}} <br><p class="yellow-dialog">Seed:</p> {{prev.salt}}<br><p class="yellow-dialog">Random:</p>{{prev.rand}}</ng-template>
+      <button type="button" class="button-trans-yellow showprev" placement="left" [ngbPopover]="content"></button> 
+        </div>
     </div>
   <div>
   </div>
@@ -48,7 +51,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
   <div class ="card card2">
     <div class="card-body">
       <ul class="list-group listTwo">
-      <li class="list-group-item list2 card-title"><button id="b1" class="btn btn-secondary btn2x" (click)="betTwo(trx)">2X Multiplier</button></li>
+      <li class="list-group-item list2 card-title"><button id="b1" class="btn btn-secondary btn2x" (click)="betTwo(trx)">2X</button></li>
       <li class="list-group-item list2 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png">{{total2x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players2x}}</li>
     <div *ngFor = "let bet of showTwo">
         <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
@@ -61,7 +64,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
 
   <div class="card card3">
   <ul class="list group listThree">
-    <li class="list-group-item list3 card-title"><button id="b2" class="btn btn-secondary btn3x" (click)="betThree(trx)">3X Multiplier</button></li>
+    <li class="list-group-item list3 card-title"><button id="b2" class="btn btn-secondary btn3x" (click)="betThree(trx)">3X</button></li>
     <li class="list-group-item list3 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png"> {{total3x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players3x}}</li>
     <div *ngFor = "let bet of showThree">
       <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
@@ -73,7 +76,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
 
 <div class="card card5">
   <ul class= "listFive">
-    <li class="list-group-item list5 card-title"><button id="b3" class="btn btn-secondary btn5x" (click)="betFive(trx)">5X Multiplier</button></li>
+    <li class="list-group-item list5 card-title"><button id="b3" class="btn btn-secondary btn5x" (click)="betFive(trx)">5X</button></li>
     <li class="list-group-item list5 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png"> {{total5x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players5x}}</li>
     <div *ngFor = "let bet of showFive">
       <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
@@ -85,7 +88,7 @@ Random:  {{prev.rand}}" src="../assets/goldball.png">
 
 <div class="card card50">
   <ul class="list-group listFifty">
-    <li class="list-group-item list50 card-title"><button id="b4" class="btn btn-secondary btn50x" (click)="betFifty(trx)">50X Multiplier</button></li>
+    <li class="list-group-item list50 card-title"><button id="b4" class="btn btn-secondary btn50x" (click)="betFifty(trx)">50X</button></li>
     <li class="list-group-item list50 card-text reduce"><img style="padding-right: 3%;" height="18px" src="../assets/tron_logo_trans.png"> {{total50x}}<img style="padding-left: 60%; padding-right: 3%;" src="https://img.icons8.com/small/16/000000/user.png">{{players50x}}</li>
     <div *ngFor = "let bet of showFifty">
       <div *ngIf="bet.result.amount !== undefined || bet.result.player !== undefined">
