@@ -44,17 +44,17 @@
       </div>
 
       <div id ="amount" class="input-group mb-3">
-        <div class="input-group mb-3 input-margin">
-          <div class="input-group-prepend">
-            <span class="input-group-text back" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
-          </div>
-          <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" required>
-        </div>
         <div class="input-group" id="button-addon4">
           <button class="btn btnops btn-outline-secondary" type="button" (click)="min()">min</button>
           <button class="btn btnops btn-outline-secondary" type="button" (click)="half()">1/2</button>
           <button class="btn btnops btn-outline-secondary" type="button" (click)="double()">x2</button>
           <button class="btn btnops btn-outline-secondary" type="button" (click)="max()">max</button>
+        </div>
+        <div class="input-group mb-3 input-margin">
+          <div class="input-group-prepend">
+            <span class="input-group-text back" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
+          </div>
+          <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" required>
         </div>
       </div>
     </div>

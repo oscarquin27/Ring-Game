@@ -20,7 +20,7 @@
     background-position-x : left;
     background-position-y: center;
     width: 335px;
-    height: 340px;
+    height: 325px;
     text-align: center;
     margin: auto
 }
@@ -246,7 +246,7 @@ button{
     }
     #prize {
         width: 400px;
-        height: 415px;
+        height: 400px;
     }
     #seconds {
         top: -255px;
@@ -287,7 +287,7 @@ button{
     }
     #prize {
         width: 460px;
-        height: 490px;
+        height: 470px;
     }
     #seconds {
         top: -300px;
