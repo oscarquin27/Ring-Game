@@ -91,17 +91,17 @@
       </div>
       <div class="card-text reduce">
         <div class="tron">
-          <img height="18px" src="../assets/tron_logo_trans.png"> {{total3x}} total
+          <img height="18px" src="../assets/tron_logo_trans.png"> {{total3x}}
         </div>
         <div class="player">
-          <img src="https://img.icons8.com/small/16/000000/user.png">{{players3x}} player
+          <img src="https://img.icons8.com/small/16/000000/user.png">{{players3x}}
         </div>
       </div>
       <div *ngFor = "let bet of showThree">
         <div *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
           <div class="reduce2">
-            <img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}} resultado
-            <img src="https://img.icons8.com/small/16/000000/user.png">{{bet.result.player}}... 42883
+            <img height="18px" src="../assets/tron_logo_trans.png"> {{bet.result.amount}}
+            <img src="https://img.icons8.com/small/16/000000/user.png">{{bet.result.player}}
           </div>
         </div>
       </div>
