@@ -3,6 +3,7 @@
 }
 .first-div {
     display: grid;
+    padding-top: 5px
 }
 /* Ruleta y posiciones */
 #canvas{
@@ -266,7 +267,7 @@ button{
         font-size: 1.25rem
     }
     .historial {
-        margin-top: -380px
+        margin-top: -365px
     }
 }
 
@@ -307,7 +308,7 @@ button{
         font-size: 1.5rem
     }
     .historial {
-        margin-top: -440px
+        margin-top: -420px
     }
     .card {
         padding: 1rem
