@@ -152,7 +152,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr
 }
-.centro {
+.tron {
+    color: #941022;
+    margin: auto
+}
+.tron img {
+    margin-right: 2px;
+}
+.player {
+    color: black;
     margin: auto
 }
 
