@@ -29,7 +29,7 @@
     color: white;
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
-    top: -200px;
+    top: -210px;
     left: -25px;
 }
 #indication{
@@ -37,7 +37,7 @@
     color: white;
     font-size: 1rem;
     font-family: 'Orbitron', sans-serif;
-    top: -200px;
+    top: -210px;
     left: -25px;
 }
 
@@ -249,14 +249,14 @@ button{
         height: 415px;
     }
     #seconds {
-        top: -270px;
+        top: -255px;
         left: -40px;
-        font-size: 3rem
+        font-size: 2.5rem
     }
     #indication {
-        top: -270px;
+        top: -260px;
         left: -32px;
-        font-size: 1.5rem
+        font-size: 1.25rem
     }
     .historial {
         margin-top: -380px
@@ -290,9 +290,9 @@ button{
         height: 490px;
     }
     #seconds {
-        top: -310px;
+        top: -300px;
         left: -40px;
-        font-size: 4rem
+        font-size: 3rem
     }
     #indication {
         top: -310px;

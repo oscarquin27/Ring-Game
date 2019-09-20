@@ -188,7 +188,7 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power3.easeOut',
-          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointerg.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerblue.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerp.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/pointery.png)";}',
+          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/pointery.png)";}',
           'callbackSound' : playSound,
         }
       });
@@ -397,20 +397,20 @@ export class AppComponent {
                 this.initWheel();
             });
             setTimeout(a => {
-              if(this.inputNumber == 2){
+              if(this.inputNumber == 2) {
                 document.getElementById("indication").style.color = "#473f3d";
                 document.getElementById("seconds").style.color = "#473f3d";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerg.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
               }
               if(this.inputNumber == 3){
                 document.getElementById("indication").style.color = "#228df0";
                 document.getElementById("seconds").style.color = "#228df0";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerblue.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
               }
               if(this.inputNumber == 5){
                 document.getElementById("indication").style.color = "#5632af";
                 document.getElementById("seconds").style.color = "#5632af";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerp.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)"; 
               }
               if(this.inputNumber == 50){
                 document.getElementById("indication").style.color = "#fcc235";
