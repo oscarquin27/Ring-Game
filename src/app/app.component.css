@@ -150,18 +150,17 @@
 
 .reduce {
     display: grid;
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr;
+    text-align: center
 }
 .tron {
     color: #941022;
-    margin: auto
 }
 .tron img {
     margin-right: 2px;
 }
 .player {
     color: black;
-    margin: auto
 }
 
 #bet{
