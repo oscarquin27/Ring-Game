@@ -16,7 +16,7 @@
     background-image : url(../assets/pointergris.png);
     background-image : url(../assets/pointerb.png);
     background-image : url(../assets/pointerm.png);
-    background-image : url(../assets/pointery.png);
+    background-image : url(../assets/pointeryellow.png);
     background-repeat : no-repeat;
     background-position-x : left;
     background-position-y: center;
@@ -69,6 +69,26 @@
     border: 3px solid #FCC235;
 }
 
+.btn-secondary{
+    background-color: #2f3132;
+    border-color:#2f3132;
+}
+
+.btn-primary{
+    background-color: #228DF0;
+    border-color: #228DF0;
+}
+
+.btn-success{
+    background-color: #451C73;
+    border-color: #451C73;
+}
+
+.btn-warning{
+    background-color: #F8A01B;
+    border-color: #F8A01B;
+}
+
 /* Balance y boton de sonido */
 .balance {
     display: grid;
@@ -87,10 +107,17 @@
     text-align: end
 }
 
-/* Input y btnops */
+/* Input y btnops y btnops2*/
 .input-group .btnops {
     color: white;
     border-color: rgb(229, 241, 243);
+    border-radius: 12px;
+    margin: 5px;
+}
+
+.btnops2{
+    color: white;
+    border-color: #131218;
     border-radius: 12px;
     margin: 5px;
 }
@@ -248,7 +275,7 @@ button{
         grid-template-rows: 1fr 1fr
     }
     #canvas {
-        height: 429px;
+        height: 440px;
         width: 380px;
         margin: auto
     }
@@ -291,7 +318,7 @@ button{
     }
     #canvas {
         width: 450px;
-        height: 508px;
+        height: 510px;
     }
     #prize {
         width: 460px;

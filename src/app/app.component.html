@@ -5,13 +5,13 @@
 
     <div class="a"> 
       <div id = "prize">
-        <canvas class="roulette" id="canvas" width="620px" height="670px"></canvas>
+        <canvas class="roulette" id="canvas" width="620px" height="680px"></canvas>
         <!-- <img src="../assets/pointery.png" (click)="muteAudio()"> -->
         <h3 id = "seconds">{{seconds}}.{{milis}}</h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial">
-        <!-- <div #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</div> -->
+        <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
@@ -74,14 +74,22 @@
             <span class="input-group-text back" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
           </div>
           <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" required>
+          <div class="input-group" id="button-addon4">
+            <button class="btn btnops2 btn-secondary" type="button" (click)="betTwo(trx)">2x</button>
+            <button class="btn btnops2 btn-primary" type="button" (click)="betThree(trx)">3x</button>
+            <button class="btn btnops2 btn-success" type="button" (click)="betFive(trx)">5x</button>
+            <button class="btn btnops2 btn-warning" type="button" (click)="betFifty(trx)">50x</button>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 
+  <ngb-tabset type="pills">
+    <ngb-tab title="Stats">
+    <ng-template ngbTabContent>
   <div class="cartas">
-
     <div class="card card-body">
       <div class="card-title">
         <button id="b1" class="btn btn-secondary btn2x" (click)="betTwo(trx)">2X</button>
@@ -169,8 +177,17 @@
         </div>
       </div>
     </div>
-
   </div>
+  </ng-template>
+</ngb-tab>
+  <ngb-tab title="My Bets">
+    <ng-template ngbTabContent>
+      <p>Bet history</p>
+      <p>Bet history</p>
+      <p>Bet history</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
 
   <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)">
     <div *ngIf="prev.a == 2">

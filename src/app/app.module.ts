@@ -8,6 +8,7 @@ import {HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     FormsModule,
     NgbPopoverModule,
+    NgbTabsetModule,
     LoggerModule.forRoot({
       level:
         NgxLoggerLevel.INFO ||
