@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbPopoverModule,
     NgbTabsetModule,
+    NgbPaginationModule,
     LoggerModule.forRoot({
       level:
         NgxLoggerLevel.INFO ||

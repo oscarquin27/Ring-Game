@@ -182,9 +182,13 @@
 </ngb-tab>
   <ngb-tab title="My Bets">
     <ng-template ngbTabContent>
-      <p>Bet history</p>
-      <p>Bet history</p>
-      <p>Bet history</p>
+      <div *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+      <p>Amount: {{history.value}}      Multiplier: {{history.betType}}</p>
+    </div>
+    <ngb-pagination
+    [(page)]="page"
+    [pageSize] ="pageSize"
+    [collectionSize]="myBetHistory.length"></ngb-pagination>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

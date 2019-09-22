@@ -16,10 +16,12 @@ declare var require: any;
 export class AppComponent {
   title = 'ring';
   size = 14;
+  page = 1;
+  pageSize = 10;
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TG1K7gGMaL5i4vfmo2DQAePWRJbzHQrDW9";
+  contractAddress = "TCRCnPMQdw1RM7BD6aetNYkSr5CGKVyT5m";
   address;
   seconds;
   milis;
@@ -60,6 +62,7 @@ export class AppComponent {
   dialogOpenBlue : boolean = true;
   dialogOpenPurple : boolean = true;
   dialogOpenYellow : boolean = true;
+  myBetHistory = [];
   private tronweb : TronWeb | any;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){}
@@ -68,14 +71,15 @@ export class AppComponent {
       this.stopAt = 270;
       this.loadImages();
       this.initWheel();
-      this.onPlatformReady().then(async () => {})
+      this.onPlatformReady().then(async () => {
+      })
     }
 
     private async onPlatformReady() {
-      this.registerTronWeb();
+      this.registerTronWeb(); 
     }
   
-    protected registerTronWeb(): void {
+    protected async registerTronWeb() {
       window.addEventListener('load', () => {
           this.tronWebService.initTronWeb()
               .then(async () => {
@@ -87,12 +91,14 @@ export class AppComponent {
                   this.eventListenerFive();
                   this.eventListenerFifty();
                   this.checkBalance();
+                  this.address = await window.tronWeb.defaultAddress.base58;
+                  this.myBets();
                     })
                     .catch(() => {
                     this.logger.error('Could not initialize the app');
                 });
         });
-  }
+  }   
       loadImages(){
       let wheelImg = new Image();
       wheelImg.onload = () => {
@@ -587,5 +593,22 @@ export class AppComponent {
       x.close(); 
       this.dialogOpenYellow = false;
       console.log("close");
+    }
+
+    async myBets() : Promise<any>{
+      try{
+      let address = await window.tronWeb.defaultAddress.base58; 
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res = await contract.getLength(address).call();
+      let res2 = res.toNumber();
+
+      for(let i=(res2-1); i >= 0; i--){
+        this.address.toString();
+        let res3 = await contract.myBets(address, i).call();
+        res3.value = res3.value.toNumber() / 1000000;
+        this.myBetHistory.push(res3);
+      }
+    }catch(e){}
+      console.log(this.myBetHistory);
     }
 }

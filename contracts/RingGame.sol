@@ -15,10 +15,23 @@ contract RingGame {
     string secretKey = "8vQ3X5StoY";
     bytes32 public hashval;
     bytes32 public salt;
+    mapping(address => MyBets[]) public myBets;
+    mapping(uint256 => PreviousGames) public previous;
+    uint256 previousCount = 0;
+
     struct Bet {
         uint betType;
         address player;
         uint value;
+    }
+    struct MyBets {
+        uint betType;
+        uint value;
+    }
+    
+    struct PreviousGames{
+        uint random;
+        bytes32 salt;
     }
     
     Bet[] public bets;
@@ -49,6 +62,10 @@ contract RingGame {
         }));
         owner.transfer(msg.value);
         emit NewBetTwo(msg.sender, msg.value);
+        myBets[msg.sender].push(MyBets({
+            betType: 2,
+            value: msg.value
+        }));
     }
     
      function betThree() public payable {
@@ -60,6 +77,10 @@ contract RingGame {
         }));
         owner.transfer(msg.value);
         emit NewBetThree(msg.sender, msg.value);
+        myBets[msg.sender].push(MyBets({
+            betType: 3,
+            value: msg.value
+        }));
         
     }
     
@@ -72,6 +93,10 @@ contract RingGame {
         }));
         owner.transfer(msg.value);
         emit NewBetFive(msg.sender, msg.value);
+        myBets[msg.sender].push(MyBets({
+            betType: 5,
+            value: msg.value
+        }));
         
     }
     
@@ -85,6 +110,10 @@ contract RingGame {
         owner.transfer(msg.value);
         
         emit NewBetFifty(msg.sender, msg.value);
+        myBets[msg.sender].push(MyBets({
+            betType: 50,
+            value: msg.value
+        }));
         
     }
     
@@ -96,7 +125,9 @@ contract RingGame {
         random += 1;
         salt = keccak256(abi.encodePacked(timestamp,diff, secretKey));
         hashval = sha256(abi.encodePacked(salt,random));
+        previousCount += 1;
         emit PlayGame(random);
+        previous[previousCount] = PreviousGames(random, salt);
         return random;
    }
 
@@ -116,5 +147,10 @@ contract RingGame {
         time = now;
         emit StopGame(time);
     }
+
+    function getLength(address user) public view returns(uint256){
+        return myBets[user].length;
+    }
+    
     
 }
