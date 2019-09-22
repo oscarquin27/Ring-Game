@@ -272,6 +272,77 @@ button{
     background-color: #161616d5;
 }
 
+.table-numeral{
+    color:white;
+    background-color: rgb(13, 14, 20);
+    border-color: rgb(13, 14, 20);
+}
+
+.table-amount{
+    color:white;
+    border-color: rgb(13, 14, 20);
+    background-color: rgb(13, 14, 20);
+}
+
+.table-multiplier{
+    color:white;
+    border-color: rgb(13, 14, 20);
+    background-color: rgb(13, 14, 20);
+}
+
+.table{
+    background-color: #11131F;
+}
+
+.table-numeral-grey{
+    color: #4e5152;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+.table-numeral-blue{
+    color: #228DF0;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+.table-numeral-purple{
+    color: #5632AF;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+
+.table-numeral-yellow{
+    color: #FAAC17;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+.table-value-grey{
+    color: #4e5152;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+.table-value-blue{
+    color: #228DF0;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+.table-value-purple{
+    color: #5632AF;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
+.table-value-yellow{
+    color: #FAAC17;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
 ::placeholder{
     color: white;
 }

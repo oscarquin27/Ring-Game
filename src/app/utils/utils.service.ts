@@ -16,7 +16,7 @@ export interface Request {
 })
 export class UtilsService {
   private tronweb : TronWeb | any;
-  contractAddress = "TCRCnPMQdw1RM7BD6aetNYkSr5CGKVyT5m";
+  contractAddress = "TGA8nyWpuDcuDchcBBjZcVDC545g1nZg4w";
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   balance;
 

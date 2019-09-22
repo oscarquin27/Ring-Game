@@ -21,7 +21,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TCRCnPMQdw1RM7BD6aetNYkSr5CGKVyT5m";
+  contractAddress = "TGA8nyWpuDcuDchcBBjZcVDC545g1nZg4w";
   address;
   seconds;
   milis;
@@ -63,6 +63,8 @@ export class AppComponent {
   dialogOpenPurple : boolean = true;
   dialogOpenYellow : boolean = true;
   myBetHistory = [];
+  address2;
+  address3;
   private tronweb : TronWeb | any;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){}
@@ -71,12 +73,11 @@ export class AppComponent {
       this.stopAt = 270;
       this.loadImages();
       this.initWheel();
-      this.onPlatformReady().then(async () => {
-      })
+      this.onPlatformReady();
     }
 
     private async onPlatformReady() {
-      this.registerTronWeb(); 
+      this.registerTronWeb().then(a => {}); 
     }
   
     protected async registerTronWeb() {
@@ -92,6 +93,7 @@ export class AppComponent {
                   this.eventListenerFifty();
                   this.checkBalance();
                   this.address = await window.tronWeb.defaultAddress.base58;
+                  this.addressShort();
                   this.myBets();
                     })
                     .catch(() => {
@@ -596,19 +598,32 @@ export class AppComponent {
     }
 
     async myBets() : Promise<any>{
+      this.myBetHistory = [];
       try{
       let address = await window.tronWeb.defaultAddress.base58; 
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.getLength(address).call();
       let res2 = res.toNumber();
-
+      console.log(res2);
       for(let i=(res2-1); i >= 0; i--){
         this.address.toString();
         let res3 = await contract.myBets(address, i).call();
+        let res4 = await contract.previous(res3.round.toNumber()).call();
         res3.value = res3.value.toNumber() / 1000000;
-        this.myBetHistory.push(res3);
+        let winner = this.wheel.segments[res4.random ].text;
+        this.myBetHistory.push({
+          value: res3.value,
+          betType: res3.betType,
+          timestamp: res3.timestamp,
+          winner: winner
+        });
+        console.log(this.myBetHistory);
       }
     }catch(e){}
-      console.log(this.myBetHistory);
+    }
+
+    addressShort(){
+      this.address2 = this.address.substring(0,4);
+      this.address3 = this.address.substring(this.address.length - 4,this.address.length);
     }
 }

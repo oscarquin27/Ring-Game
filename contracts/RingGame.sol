@@ -27,11 +27,14 @@ contract RingGame {
     struct MyBets {
         uint betType;
         uint value;
+        uint256 timestamp;
+        uint256 round;
     }
     
     struct PreviousGames{
         uint random;
         bytes32 salt;
+        uint256 round;
     }
     
     Bet[] public bets;
@@ -64,7 +67,9 @@ contract RingGame {
         emit NewBetTwo(msg.sender, msg.value);
         myBets[msg.sender].push(MyBets({
             betType: 2,
-            value: msg.value
+            value: msg.value,
+            timestamp: now,
+            round: previousCount
         }));
     }
     
@@ -79,7 +84,9 @@ contract RingGame {
         emit NewBetThree(msg.sender, msg.value);
         myBets[msg.sender].push(MyBets({
             betType: 3,
-            value: msg.value
+            value: msg.value,
+            timestamp: now,
+            round: previousCount
         }));
         
     }
@@ -95,7 +102,9 @@ contract RingGame {
         emit NewBetFive(msg.sender, msg.value);
         myBets[msg.sender].push(MyBets({
             betType: 5,
-            value: msg.value
+            value: msg.value,
+            timestamp: now,
+            round: previousCount
         }));
         
     }
@@ -112,7 +121,9 @@ contract RingGame {
         emit NewBetFifty(msg.sender, msg.value);
         myBets[msg.sender].push(MyBets({
             betType: 50,
-            value: msg.value
+            value: msg.value,
+            timestamp: now,
+            round: previousCount
         }));
         
     }
@@ -127,7 +138,7 @@ contract RingGame {
         hashval = sha256(abi.encodePacked(salt,random));
         previousCount += 1;
         emit PlayGame(random);
-        previous[previousCount] = PreviousGames(random, salt);
+        previous[previousCount] = PreviousGames(random, salt, previousCount);
         return random;
    }
 
