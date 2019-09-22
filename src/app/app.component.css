@@ -6,13 +6,13 @@
     padding-top: 5px
 }
 /* Ruleta y posiciones */
-#canvas{
+#canvas {
     height: 350px;
     width: 310px;
     margin: auto
     /* 1,12903225806451612903225806451 */
 }
-#prize{
+#prize {
     background-image : url(../assets/pointergris.png);
     background-image : url(../assets/pointerb.png);
     background-image : url(../assets/pointerm.png);
@@ -25,7 +25,7 @@
     text-align: center;
     margin: auto
 }
-#seconds{
+#seconds {
     position: relative;
     color: white;
     font-size: 2rem;
@@ -33,7 +33,7 @@
     top: -210px;
     left: -25px;
 }
-#indication{
+#indication {
     position: relative;
     color: white;
     font-size: 1rem;
@@ -56,16 +56,16 @@
     width: 25px;
     margin: 5px
 }
-.button-trans-grey{
+.button-trans-grey {
     border: 3px solid rgb(105, 98, 97);
 }
-.button-trans-blue{
+.button-trans-blue {
     border: 3px solid #228DF0;
 }
-.button-trans-purple{
+.button-trans-purple {
     border: 3px solid #5632AF;
 }
-.button-trans-yellow{
+.button-trans-yellow {
     border: 3px solid #FCC235;
 }
 
@@ -154,14 +154,23 @@
     grid-template-columns: 1fr 1fr;
     text-align: center
 }
-.tron {
-    color: #941022;
-}
 .tron img {
     margin-right: 2px;
 }
-.player {
-    color: black;
+.color1 {
+    color: white
+}
+.color2 {
+    /* color: #24C6DC;  */
+    color: #4da8b5;
+}
+.color3 {
+    /* color: #5632af; */
+    color: #8f6de2;
+}
+.color4 {
+    /* color: #F7971E; */
+    color: #f1ac55;
 }
 
 #bet{
