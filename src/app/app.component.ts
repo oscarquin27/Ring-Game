@@ -194,7 +194,7 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power3.easeOut',
-          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/pointeryell.png)";}',
+          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
           'callbackSound' : playSound,
         }
       });
@@ -421,7 +421,7 @@ export class AppComponent {
               if(this.inputNumber == 50){
                 document.getElementById("indication").style.color = "#fcc235";
                 document.getElementById("seconds").style.color = "#fcc235";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointeryell.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
               }
               this.aux.push({
                 a:this.inputNumber,

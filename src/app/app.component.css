@@ -13,16 +13,18 @@
     /* 1,12903225806451612903225806451 */
 }
 #prize {
-    background-image : url(../assets/pointerg.png);
-    background-image : url(../assets/pointerblue.png);
-    background-image : url(../assets/pointerp.png);
-    background-image : url(../assets/pointeryell.png);
+    background-image : url(../assets/pointergris.png);
+    background-image : url(../assets/pointerb.png);
+    background-image : url(../assets/pointerm.png);
+    background-image : url(../assets/punteroam.png);
     /* background-image : url(../assets/pointeryellow.png); */
     background-repeat : no-repeat;
     background-position-x : left;
     background-position-y: center;
-    width: 471px;
-    height: 318px;
+    /* width: 471px;
+    height: 318px; */
+    width: 340px;
+    height: 322px;
     text-align: center;
     margin: auto
 }
@@ -291,8 +293,10 @@ button{
         margin: auto
     }
     #prize {
-        width: 545px;
-        height: 399px;
+        /* width: 545px;
+        height: 399px; */
+        width: 415px;
+        height: 402px;
     }
     #seconds {
         top: -255px;
@@ -332,8 +336,10 @@ button{
         height: 510px;
     }
     #prize {
-        width: 600px;
-        height: 463px;
+        /* width: 600px;
+        height: 463px; */
+        width: 470px;
+        height: 465px;
     }
     #seconds {
         top: -300px;
