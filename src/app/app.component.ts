@@ -24,6 +24,7 @@ export class AppComponent {
   contractAddress = "TGA8nyWpuDcuDchcBBjZcVDC545g1nZg4w";
   address;
   seconds;
+  decenas;
   milis;
   milis2;
   inputNumber : number;
@@ -112,15 +113,15 @@ export class AppComponent {
       }
 
       async initWheel() : Promise<any>{
-        let playSound = () => {
+        let playSound = setTimeout(() => {
           if(this.muted != true){
           let audio = new Audio("../assets/spin.mp3");
           audio.pause();
           audio.currentTime = 0;
           audio.volume = 0.2;
           audio.play();
-          }
-        }
+            }
+        }, 2);
       this.wheel = new Winwheel({
         'canvasId'    : 'canvas',
         'numSegments' : 54,
@@ -218,7 +219,10 @@ export class AppComponent {
       let x = setInterval(async ()=>{
         let now = new Date().getTime();
         let distance = countDown - now;
-        this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        let dec1 = Math.floor((distance % (1000 * 60)) / 1000);
+        let dec = (""+dec1).split("");
+        this.seconds = dec[1];
+        this.decenas = dec[0];
         //this.milis = ((distance % (10000)));
         this.milis2 = Math.floor((distance % (1000))/100);//decisegundo
         let n = Math.floor((distance % (1000))/10);//centisegundo
@@ -227,6 +231,7 @@ export class AppComponent {
         if(distance <= 0) {
           this.milis = "";
           this.milis2 = 0;
+          this.decenas = "";
           this.seconds = 0;
           clearInterval(x);
           this.indication = "Stop placing bets";

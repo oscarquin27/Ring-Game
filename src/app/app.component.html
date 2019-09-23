@@ -7,7 +7,7 @@
       <div id = "prize">
         <canvas class="roulette" id="canvas" width="620px" height="680px"></canvas>
         <!-- <img src="../assets/pointery.png" (click)="muteAudio()"> -->
-        <h3 id = "seconds"><div>{{seconds}}</div>.<div>{{milis2}}</div><div>{{milis}}</div></h3>
+        <h3 id = "seconds"><div>{{decenas}}{{seconds}}</div>.<div>{{milis2}}</div><div>{{milis}}</div></h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial" *ngFor="let prev of (aux | slice : aux.length - 10)">
