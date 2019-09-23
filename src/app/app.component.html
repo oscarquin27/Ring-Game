@@ -7,12 +7,12 @@
       <div id = "prize">
         <canvas class="roulette" id="canvas" width="620px" height="680px"></canvas>
         <!-- <img src="../assets/pointery.png" (click)="muteAudio()"> -->
-        <h3 id = "seconds">{{seconds}}.{{milis}}</h3>
+        <h3 id = "seconds"><div>{{seconds}}0</div>.<div>{{milis}}0</div></h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
-      <div class="historial">
-        <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
+      <div class="historial" *ngFor="let prev of (aux | slice : aux.length - 10)">
+          <!--  -->
+        <!-- <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
@@ -22,26 +22,27 @@
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
         <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>
+        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button> -->
         
-        <!--<div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO
-            <div *ngIf="prev.a == 2">
-              <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
-              <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-            </div>
-            <div *ngIf="prev.a == 3">
-              <ng-template #content class="blue-info"><p class="blue-dialog">Hash: </p> {{prev.hash}} <br><p class="blue-dialog">Seed:</p> {{prev.salt}}<br><p class="blue-dialog">Random:</p>{{prev.rand}}</ng-template>
-              <button type="button" class="button-trans-blue showprev" placement="left" [ngbPopover]="content"></button>
-            </div>  
-            <div *ngIf="prev.a == 5">
-              <ng-template #content class="purple-info"><p class="purple-dialog">Hash: </p> {{prev.hash}} <br><p class="purple-dialog">Seed:</p> {{prev.salt}}<br><p class="purple-dialog">Random:</p>{{prev.rand}}</ng-template>
-              <button type="button" class="button-trans-purple showprev" placement="left" [ngbPopover]="content"></button>  
-            </div>
-            <div *ngIf="prev.a == 50">
-              <ng-template #content class="yellow-info"><p class="yellow-dialog">Hash: </p> {{prev.hash}} <br><p class="yellow-dialog">Seed:</p> {{prev.salt}}<br><p class="yellow-dialog">Random:</p>{{prev.rand}}</ng-template>
-              <button type="button" class="button-trans-yellow showprev" placement="left" [ngbPopover]="content"></button> 
-            </div>
-          </div>-->
+        <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
+            <!-- *ngIf="prev.a == 2" -->
+          <div *ngIf="prev.a == 2" class="hist"> 
+            <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
+          </div>
+          <div *ngIf="prev.a == 3" class="hist">
+            <ng-template #content class="blue-info"><p class="blue-dialog">Hash: </p> {{prev.hash}} <br><p class="blue-dialog">Seed:</p> {{prev.salt}}<br><p class="blue-dialog">Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-blue showprev" placement="left" [ngbPopover]="content"></button>
+          </div>  
+          <div *ngIf="prev.a == 5" class="hist">
+            <ng-template #content class="purple-info"><p class="purple-dialog">Hash: </p> {{prev.hash}} <br><p class="purple-dialog">Seed:</p> {{prev.salt}}<br><p class="purple-dialog">Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-purple showprev" placement="left" [ngbPopover]="content"></button>  
+          </div>
+          <div *ngIf="prev.a == 50" class="hist">
+            <ng-template #content class="yellow-info"><p class="yellow-dialog">Hash: </p> {{prev.hash}} <br><p class="yellow-dialog">Seed:</p> {{prev.salt}}<br><p class="yellow-dialog">Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-yellow showprev" placement="left" [ngbPopover]="content"></button> 
+          </div>
+        <!-- </div> -->
       </div>
     </div>
 
