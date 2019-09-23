@@ -34,7 +34,7 @@
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
     top: -210px;
-    left: 111px;
+    left: 80px;
 }
 h3 {
     display: flex
@@ -45,6 +45,10 @@ h3 div {
 }
 h3 div:first-child {
     text-align: left;
+    width: 60px
+}
+h3 div:nth-child(2) {
+    text-align: end;
 }
 h3 div:last-child {
     text-align: end;
@@ -173,6 +177,10 @@ h3 div:last-child {
     flex: 1 1 auto;
     padding: 1.25rem;
 }
+
+.inner-btn{
+    margin-left:30%;
+}
 .btn2x {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
@@ -223,6 +231,13 @@ h3 div:last-child {
 .color4 {
     /* color: #F7971E; */
     color: #f1ac55;
+}
+
+.max{
+    font-size: 12px;
+    position:relative;
+    top: 10px;
+    left: 10%;
 }
 
 #bet{
@@ -364,6 +379,12 @@ button{
     border-color:rgb(18, 20, 29);
 }
 
+.table-value-white{
+    color: #ffffff;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
 ::placeholder{
     color: white;
 }
@@ -392,12 +413,15 @@ button{
     }
     #seconds {
         top: -255px;
-        left: 125px;
+        left: 95px;
         font-size: 2.5rem
     }
     h3 div {
         height: 60px;
         width: 40px;
+    }
+    h3 div:first-child {
+        width: 76px;
     }
     h3 div:last-child {
         text-align: end;
@@ -443,12 +467,15 @@ button{
     }
     #seconds {
         top: -300px;
-        left: 150px;
+        left: 120px;
         font-size: 3rem
     }
     h3 div {
         height: 60px;
         width: 45px;
+    }
+    h3 div:first-child {
+        width: 90px;
     }
     #indication {
         top: -310px;

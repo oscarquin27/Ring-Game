@@ -25,6 +25,7 @@ export class AppComponent {
   address;
   seconds;
   milis;
+  milis2;
   inputNumber : number;
   showTwo = [];
   showThree = [];
@@ -218,19 +219,23 @@ export class AppComponent {
         let now = new Date().getTime();
         let distance = countDown - now;
         this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        this.milis = Math.floor((distance % (1000))/10);
-        //console.log(this.milis,this.seconds);
+        //this.milis = ((distance % (10000)));
+        this.milis2 = Math.floor((distance % (1000))/100);//decisegundo
+        let n = Math.floor((distance % (1000))/10);//centisegundo
+        let n2 = (""+n).split("");
+        this.milis = n2[1];
         if(distance <= 0) {
-          this.milis = 0;
+          this.milis = "";
+          this.milis2 = 0;
           this.seconds = 0;
           clearInterval(x);
           this.indication = "Stop placing bets";
           this.address = await window.tronWeb.defaultAddress.base58;
           //stop all
-          (<HTMLInputElement>document.getElementById('b1')).disabled = true;
-          (<HTMLInputElement>document.getElementById('b2')).disabled = true;
-          (<HTMLInputElement>document.getElementById('b3')).disabled = true;
-          (<HTMLInputElement>document.getElementById('b4')).disabled = true;
+          (<HTMLButtonElement>document.getElementById('b1')).disabled = true;
+          (<HTMLButtonElement>document.getElementById('b2')).disabled = true;
+          (<HTMLButtonElement>document.getElementById('b3')).disabled = true;
+          (<HTMLButtonElement>document.getElementById('b4')).disabled = true;
           try{
             if (this.address == "TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB"){
             const contract = await window.tronWeb.contract().at(this.contractAddress);
@@ -279,10 +284,10 @@ export class AppComponent {
             this.players3x = 0;
             this.players5x = 0;
             this.players50x = 0;
-            (<HTMLInputElement>document.getElementById('b1')).disabled = false;
-            (<HTMLInputElement>document.getElementById('b2')).disabled = false;
-            (<HTMLInputElement>document.getElementById('b3')).disabled = false;
-            (<HTMLInputElement>document.getElementById('b4')).disabled = false;
+            (<HTMLButtonElement>document.getElementById('b1')).disabled = false;
+            (<HTMLButtonElement>document.getElementById('b2')).disabled = false;
+            (<HTMLButtonElement>document.getElementById('b3')).disabled = false;
+            (<HTMLButtonElement>document.getElementById('b4')).disabled = false;
             setTimeout(() => {
               this.timer();
             }, 4000)
