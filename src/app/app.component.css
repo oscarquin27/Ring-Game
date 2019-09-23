@@ -152,6 +152,10 @@
     flex: 1 1 auto;
     padding: 1.25rem;
 }
+
+.inner-btn{
+    margin-left:30%;
+}
 .btn2x {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
@@ -202,6 +206,13 @@
 .color4 {
     /* color: #F7971E; */
     color: #f1ac55;
+}
+
+.max{
+    font-size: 12px;
+    position:relative;
+    top: 10px;
+    left: 10%;
 }
 
 #bet{
@@ -343,6 +354,12 @@ button{
     border-color:rgb(18, 20, 29);
 }
 
+.table-value-white{
+    color: #ffffff;
+    background-color: rgb(18, 20, 29);
+    border-color:rgb(18, 20, 29);
+}
+
 ::placeholder{
     color: white;
 }
@@ -372,7 +389,8 @@ button{
     #seconds {
         top: -255px;
         left: -40px;
-        font-size: 2.5rem
+        font-size: 2.5rem;
+        /*position: absolute;*/
     }
     #indication {
         top: -260px;

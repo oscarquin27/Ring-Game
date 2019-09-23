@@ -7,7 +7,7 @@
       <div id = "prize">
         <canvas class="roulette" id="canvas" width="620px" height="680px"></canvas>
         <!-- <img src="../assets/pointery.png" (click)="muteAudio()"> -->
-        <h3 id = "seconds">{{seconds}}.{{milis}}</h3>
+        <h3 id = "seconds">{{seconds}}.{{milis2}}{{milis}}</h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial">
@@ -75,10 +75,10 @@
           </div>
           <input id="bet" type="tel" class="form-control" [(ngModel)]="trx" placeholder="10" aria-label="Username" aria-describedby="basic-addon1" required>
           <div class="input-group" id="button-addon4">
-            <button class="btn btnops2 btn-secondary" type="button" (click)="betTwo(trx)">2x</button>
-            <button class="btn btnops2 btn-primary" type="button" (click)="betThree(trx)">3x</button>
-            <button class="btn btnops2 btn-success" type="button" (click)="betFive(trx)">5x</button>
-            <button class="btn btnops2 btn-warning" type="button" (click)="betFifty(trx)">50x</button>
+            <button id="b1" class="btn btnops2 btn-secondary" type="button" (click)="betTwo(trx)">2x</button>
+            <button id="b2" class="btn btnops2 btn-primary" type="button" (click)="betThree(trx)">3x</button>
+            <button id="b3" class="btn btnops2 btn-success" type="button" (click)="betFive(trx)">5x</button>
+            <button id="b4" class="btn btnops2 btn-warning" type="button" (click)="betFifty(trx)">50x</button>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
         <div class="cartas">
           <div class="card card-body">
             <div class="card-title">
-              <button id="b1" class="btn btn-secondary btn2x" (click)="betTwo(trx)">2X</button>
+              <button class="btn btn-secondary btn2x" [disabled]="true"><span class="inner-btn">2X</span><label class="max">Max: 30000 TRX</label></button>
             </div>
             <div class="card-text reduce color1">
               <div class="tron">
@@ -114,7 +114,7 @@
 
           <div class="card-body card">
             <div class="card-title">
-              <button id="b2" class="btn btn-secondary btn3x" (click)="betThree(trx)">3X</button>
+              <button class="btn btn-secondary btn3x" [disabled]="true"><span class="inner-btn">3X</span><label class="max">Max: 20000 TRX</label></button>
             </div>
             <div class="card-text reduce color2">
               <div class="tron">
@@ -136,7 +136,7 @@
 
           <div class="card-body card">
             <div class="card-title">
-              <button id="b3" class="btn btn-secondary btn5x" (click)="betFive(trx)">5X</button>
+              <button class="btn btn-secondary btn5x" [disabled]="true"><span class="inner-btn">5X</span><label class="max">Max: 12000 TRX</label></button>
             </div>
             <div class="card-text reduce color3">
               <div class="tron">
@@ -158,7 +158,7 @@
 
           <div class="card-body card">
             <div class="card-title">
-              <button id="b4" class="btn btn-secondary btn50x" (click)="betFifty(trx)">50X</button>
+              <button class="btn btn-secondary btn50x" [disabled]="true"><span class="inner-btn">50x</span><label class="max">Max: 1200 TRX</label></button>
             </div>
             <div class="card-text reduce color4">
               <div class="tron">
@@ -193,33 +193,37 @@
         </thead>
           <tbody>
         <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
+          <div *ngIf = "history.winner == 2; then winnerg"></div>
+          <div *ngIf = "history.winner == 3; then winnerb"></div>
+          <div *ngIf = "history.winner == 5; then winnerp"></div>
+          <div *ngIf = "history.winner == 5; then winnery"></div>
           <div *ngIf="history.betType == 2; then grey"></div>
           <ng-template #grey>
           <th class="table-numeral-grey" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
           <td class="table-value-grey">{{history.value}} TRX</td>
           <td class="table-value-grey">{{history.betType}}X</td>
-          <td class="table-value-grey">{{history.winner}}X</td>
+          <td class="table-value-white">{{history.winner}}X</td>
         </ng-template>
         <div *ngIf="history.betType == 3; then blue"></div>
           <ng-template #blue>
               <th class="table-numeral-blue" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
               <td class="table-value-blue">{{history.value}} TRX</td>
               <td class="table-value-blue">{{history.betType}}X</td>
-              <td class="table-value-grey">{{history.winner}}X</td>
+              <td class="table-value-white">{{history.winner}}X</td>
           </ng-template>
           <div *ngIf="history.betType == 5; then purple"></div>
           <ng-template #purple>
               <th class="table-numeral-purple" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
               <td class="table-value-purple">{{history.value}} TRX</td>
               <td class="table-value-purple">{{history.betType}}X</td>
-              <td class="table-value-grey">{{history.winner}}X</td>
+              <td class="table-value-white">{{history.winner}}X</td>
           </ng-template>
             <div *ngIf="history.betType == 50; then yellow"></div>
             <ng-template #yellow>
                 <th class="table-numeral-yellow" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
                 <td class="table-value-yellow">{{history.value}} TRX</td>
                 <td class="table-value-yellow">{{history.betType}}X</td>
-                <td class="table-value-grey">{{history.winner}}X</td>
+                <td class="table-value-white">{{history.winner}}X</td>
               </ng-template>
         </tr>
         <ngb-pagination
