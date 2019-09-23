@@ -185,42 +185,42 @@
         <table class="table">
         <thead>
           <tr>
-            <th class="table-numeral" scope="col">#</th>
+            <th class="table-numeral" scope="col">Player</th>
             <th class="table-amount" scope="col">Amount</th>
             <th class="table-multiplier" scope="col">Multiplier</th>
             <th class="table-multiplier" scope="col">Winner</th>
           </tr>
         </thead>
           <tbody>
-        <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
+        <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
           <div *ngIf = "history.winner == 2; then winnerg"></div>
           <div *ngIf = "history.winner == 3; then winnerb"></div>
           <div *ngIf = "history.winner == 5; then winnerp"></div>
           <div *ngIf = "history.winner == 5; then winnery"></div>
           <div *ngIf="history.betType == 2; then grey"></div>
           <ng-template #grey>
-          <th class="table-numeral-grey" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
+          <th class="table-numeral-grey" scope="row">{{address2}}...{{address3}}</th>
           <td class="table-value-grey">{{history.value}} TRX</td>
           <td class="table-value-grey">{{history.betType}}X</td>
           <td class="table-value-white">{{history.winner}}X</td>
         </ng-template>
         <div *ngIf="history.betType == 3; then blue"></div>
           <ng-template #blue>
-              <th class="table-numeral-blue" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
+              <th class="table-numeral-blue" scope="row">{{address2}}...{{address3}}</th>
               <td class="table-value-blue">{{history.value}} TRX</td>
               <td class="table-value-blue">{{history.betType}}X</td>
               <td class="table-value-white">{{history.winner}}X</td>
           </ng-template>
           <div *ngIf="history.betType == 5; then purple"></div>
           <ng-template #purple>
-              <th class="table-numeral-purple" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
+              <th class="table-numeral-purple" scope="row">{{address2}}...{{address3}}</th>
               <td class="table-value-purple">{{history.value}} TRX</td>
               <td class="table-value-purple">{{history.betType}}X</td>
               <td class="table-value-white">{{history.winner}}X</td>
           </ng-template>
             <div *ngIf="history.betType == 50; then yellow"></div>
             <ng-template #yellow>
-                <th class="table-numeral-yellow" scope="row">{{i+1}} {{address2}}...{{address3}}</th>
+                <th class="table-numeral-yellow" scope="row">{{address2}}...{{address3}}</th>
                 <td class="table-value-yellow">{{history.value}} TRX</td>
                 <td class="table-value-yellow">{{history.betType}}X</td>
                 <td class="table-value-white">{{history.winner}}X</td>

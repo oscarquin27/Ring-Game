@@ -56,7 +56,7 @@ export class AppComponent {
   yellowPointer;
   animationState = 0;
   indication : string;
-  audio = new Audio("../assets/tick.wav"); //= <HTMLAudioElement>document.getElementById("tick");
+  audio = new Audio("../assets/spin.mp3"); //= <HTMLAudioElement>document.getElementById("tick");
   muted = false;
   aux2 : number = 1;
   dialogOpenGrey : boolean = true;
@@ -114,7 +114,7 @@ export class AppComponent {
       async initWheel() : Promise<any>{
         let playSound = () => {
           if(this.muted != true){
-          let audio = new Audio("../assets/tick.wav");
+          let audio = new Audio("../assets/spin.mp3");
           audio.pause();
           audio.currentTime = 0;
           audio.volume = 0.2;
@@ -196,7 +196,7 @@ export class AppComponent {
           'duration' : 4,
           'spins' : 3,
           'yoyo' : false,
-          'easing': 'Power3.easeOut',
+          'easing': 'Power2.easeOut',
           'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
           'callbackSound' : playSound,
         }
