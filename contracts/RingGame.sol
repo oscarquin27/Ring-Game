@@ -17,7 +17,7 @@ contract RingGame {
     bytes32 public salt;
     mapping(address => MyBets[]) public myBets;
     mapping(uint256 => PreviousGames) public previous;
-    uint256 previousCount = 0;
+    uint256 public previousCount = 0;
 
     struct Bet {
         uint betType;
