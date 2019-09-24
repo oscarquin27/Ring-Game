@@ -35,6 +35,8 @@
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
     top: -210px;
     left: 80px;
+    display: grid;
+    grid-template-columns: min-content min-content min-content min-content min-content
 }
 h3 {
     display: flex
@@ -44,7 +46,7 @@ h3 div {
     width: 30px;
 }
 h3 div:first-child {
-    text-align: left;
+    text-align: end;
     /* width: 60px */
 }
 h3 div:nth-child(2) {
@@ -197,6 +199,7 @@ h3 div:last-child {
     font-size: 20px;
     width: 100%;
     border-radius: 7px;
+    display: grid
 }
 .card {
     background-color: #1d2235;
@@ -204,9 +207,9 @@ h3 div:last-child {
     padding: 1.25rem;
 }
 
-.inner-btn{
+/* .inner-btn{
     margin-left:30%;
-}
+} */
 .btn2x {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
@@ -262,8 +265,8 @@ h3 div:last-child {
 .max{
     font-size: 12px;
     position:relative;
-    top: 10px;
-    left: 10%;
+    /* top: 10px; */
+    /* left: 10%; */
 }
 
 #bet{
@@ -274,7 +277,7 @@ h3 div:last-child {
     background-color: #131218
 }
 label{
-    padding-right: 12px;
+    /* padding-right: 12px; */
     padding-top: 5px;
     font-family: Courier, monospace;
     color: white;
