@@ -113,7 +113,7 @@ export class AppComponent {
       }
 
       async initWheel() : Promise<any>{
-        let playSound = setTimeout(() => {
+        let playSound = () => {
           if(this.muted != true){
           let audio = new Audio("../assets/spin.mp3");
           audio.pause();
@@ -121,7 +121,7 @@ export class AppComponent {
           audio.volume = 0.2;
           audio.play();
             }
-        }, 2);
+        }
       this.wheel = new Winwheel({
         'canvasId'    : 'canvas',
         'numSegments' : 54,
