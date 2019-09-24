@@ -51,6 +51,10 @@ h3 div:first-child {
 }
 h3 div:nth-child(2) {
     text-align: end;
+    margin-right: -0.5px
+}
+h3 div:nth-child(3) {
+    width: 4px;
 }
 h3 div:last-child {
     text-align: end;
@@ -452,6 +456,13 @@ button{
     h3 div:first-child {
         /* width: 76px; */
     }
+    h3 div:nth-child(2) {
+        text-align: end;
+        margin-right: -2px
+    }
+    /* h3 div:nth-child(3) {
+        width: 4px;
+    } */
     h3 div:last-child {
         text-align: end;
         margin-left: -2px;
@@ -505,6 +516,9 @@ button{
     }
     h3 div:first-child {
         /* width: 90px; */
+    }
+    h3 div:nth-child(3) {
+        width: 7px;
     }
     #indication {
         top: -310px;
