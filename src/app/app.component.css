@@ -45,7 +45,7 @@ h3 div {
 }
 h3 div:first-child {
     text-align: left;
-    width: 60px
+    /* width: 60px */
 }
 h3 div:nth-child(2) {
     text-align: end;
@@ -421,7 +421,7 @@ button{
         width: 40px;
     }
     h3 div:first-child {
-        width: 76px;
+        /* width: 76px; */
     }
     h3 div:last-child {
         text-align: end;
@@ -475,7 +475,7 @@ button{
         width: 45px;
     }
     h3 div:first-child {
-        width: 90px;
+        /* width: 90px; */
     }
     #indication {
         top: -310px;
