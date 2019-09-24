@@ -10,20 +10,7 @@
         <h3 id = "seconds"><div>{{decenas}}2</div><div>{{seconds}}1</div>.<div>{{milis2}}0</div><div>{{milis}}0</div></h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
-      <div class="historial" *ngFor="let prev of (aux | slice : aux.length - 10)">
-          <!--  -->
-        <!-- <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>
-        <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button> -->
-        
+      <div class="historial" *ngFor="let prev of aux">
         <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
             <!-- *ngIf="prev.a == 2" -->
           <div *ngIf="prev.a == 2" class="hist"> 
@@ -86,7 +73,9 @@
     </div>
 
   </div>
-
+  <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
+  <ng-template #closeChat><div class="example-box" cdkDrag>Drag me lol<span (click)="chatOpen = false"> X</span></div></ng-template>
+  <ng-template #openChat><img src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true"></ng-template>
   <ngb-tabset type="pills">
     <ngb-tab title="Stats">
       <ng-template ngbTabContent>

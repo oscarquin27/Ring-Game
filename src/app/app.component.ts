@@ -21,7 +21,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TGA8nyWpuDcuDchcBBjZcVDC545g1nZg4w";
+  contractAddress = "TAGHyZdPNUrcEw7iEbqG43ACey61k7mKZm";
   address;
   seconds;
   decenas;
@@ -67,9 +67,11 @@ export class AppComponent {
   myBetHistory = [];
   address2;
   address3;
+  chatOpen: boolean = false;
   private tronweb : TronWeb | any;
 
-  constructor(private tronWebService : UtilsService, private logger : NGXLogger){}
+  constructor(private tronWebService : UtilsService, private logger : NGXLogger){
+  }
 
     async ngOnInit() : Promise<any>{
       this.stopAt = 270;
@@ -79,7 +81,7 @@ export class AppComponent {
     }
 
     private async onPlatformReady() {
-      this.registerTronWeb().then(a => {}); 
+      this.registerTronWeb();
     }
   
     protected async registerTronWeb() {
@@ -87,6 +89,7 @@ export class AppComponent {
           this.tronWebService.initTronWeb()
               .then(async () => {
                   this.logger.info('Ring' + ' Successfully launched');
+                  //this.getPreviousGames();
                   this.timer();
                   this.startEventListener();
                   this.eventListenerTwo();
@@ -94,9 +97,9 @@ export class AppComponent {
                   this.eventListenerFive();
                   this.eventListenerFifty();
                   this.checkBalance();
+                  this.myBets();
                   this.address = await window.tronWeb.defaultAddress.base58;
                   this.addressShort();
-                  this.myBets();
                     })
                     .catch(() => {
                     this.logger.error('Could not initialize the app');
@@ -113,7 +116,7 @@ export class AppComponent {
       }
 
       async initWheel() : Promise<any>{
-        let playSound = setTimeout(() => {
+        let playSound = () => {
           if(this.muted != true){
           let audio = new Audio("../assets/spin.mp3");
           audio.pause();
@@ -121,7 +124,7 @@ export class AppComponent {
           audio.volume = 0.2;
           audio.play();
             }
-        }, 2);
+        }
       this.wheel = new Winwheel({
         'canvasId'    : 'canvas',
         'numSegments' : 54,
@@ -614,8 +617,7 @@ export class AppComponent {
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.getLength(address).call();
       let res2 = res.toNumber();
-      console.log(res2);
-      for(let i=(res2-1); i >= 0; i--){
+      for(let i=(res2-1); i >= 1; i--){
         this.address.toString();
         let res3 = await contract.myBets(address, i).call();
         let res4 = await contract.previous(res3.round.toNumber()).call();
@@ -627,7 +629,6 @@ export class AppComponent {
           timestamp: res3.timestamp,
           winner: winner
         });
-        console.log(this.myBetHistory);
       }
     }catch(e){}
     }
@@ -635,5 +636,29 @@ export class AppComponent {
     addressShort(){
       this.address2 = this.address.substring(0,4);
       this.address3 = this.address.substring(this.address.length - 4,this.address.length);
+    }
+
+    openChat(){
+      this.chatOpen = true;
+    }
+
+    closeChat(){
+      this.chatOpen = false;
+    }
+
+    async getPreviousGames() : Promise<any>{
+      try{
+        const contract = await window.tronWeb.contract().at(this.contractAddress);
+        let previous = await contract.previousCount().call();
+        let res = previous.toNumber();
+        console.log(res);
+        let comp = res - 10;
+        for(let i = res; i >= comp; i--){
+          let get = await contract.previous(i).call();
+          this.aux.push(get);
+        }
+        console.log(this.aux);
+        }
+      catch(e){}
     }
 }

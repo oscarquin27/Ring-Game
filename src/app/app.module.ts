@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,6 +22,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     NgbPopoverModule,
     NgbTabsetModule,
     NgbPaginationModule,
+    DragDropModule,
     LoggerModule.forRoot({
       level:
         NgxLoggerLevel.INFO ||
