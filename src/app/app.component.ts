@@ -203,6 +203,13 @@ export class AppComponent {
           'easing': 'Power2.easeOut',
           'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
           'callbackSound' : playSound,
+          'soundTrigger' : 'pin'
+        },
+        'pins' : {
+          'number' : 10,
+          'fillStyle' : "#ffffff00",
+          'strokeStyle' : "#ffffff00"
+
         }
       });
     }
