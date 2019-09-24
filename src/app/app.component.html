@@ -16,36 +16,61 @@
         </h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
-      <div class="historial" *ngFor="let prev of aux">
-        <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
-            <!-- *ngIf="prev.a == 2" -->
-          <div *ngIf="prev.a == 2" class="hist"> 
-            <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
-          </div>
-          <div *ngIf="prev.a == 3" class="hist">
-            <ng-template #content class="blue-info"><p class="blue-dialog">Hash: </p> {{prev.hash}} <br><p class="blue-dialog">Seed:</p> {{prev.salt}}<br><p class="blue-dialog">Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-blue showprev" placement="left" [ngbPopover]="content"></button>
-          </div>  
-          <div *ngIf="prev.a == 5" class="hist">
-            <ng-template #content class="purple-info"><p class="purple-dialog">Hash: </p> {{prev.hash}} <br><p class="purple-dialog">Seed:</p> {{prev.salt}}<br><p class="purple-dialog">Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-purple showprev" placement="left" [ngbPopover]="content"></button>  
-          </div>
-          <div *ngIf="prev.a == 50" class="hist">
-            <ng-template #content class="yellow-info"><p class="yellow-dialog">Hash: </p> {{prev.hash}} <br><p class="yellow-dialog">Seed:</p> {{prev.salt}}<br><p class="yellow-dialog">Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-yellow showprev" placement="left" [ngbPopover]="content"></button> 
-          </div>
-        <!-- </div> -->
+      <div class="historial">
+        <div class="" *ngFor="let prev of aux">
+          <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
+              <!-- *ngIf="prev.a == 2" -->
+            <div *ngIf="prev.a == 2" class=""> 
+              <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
+              <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
+            </div>
+            <div *ngIf="prev.a == 3" class="">
+              <ng-template #content class="blue-info"><p class="blue-dialog">Hash: </p> {{prev.hash}} <br><p class="blue-dialog">Seed:</p> {{prev.salt}}<br><p class="blue-dialog">Random:</p>{{prev.rand}}</ng-template>
+              <button type="button" class="button-trans-blue showprev" placement="left" [ngbPopover]="content"></button>
+            </div>  
+            <div *ngIf="prev.a == 5" class="">
+              <ng-template #content class="purple-info"><p class="purple-dialog">Hash: </p> {{prev.hash}} <br><p class="purple-dialog">Seed:</p> {{prev.salt}}<br><p class="purple-dialog">Random:</p>{{prev.rand}}</ng-template>
+              <button type="button" class="button-trans-purple showprev" placement="left" [ngbPopover]="content"></button>  
+            </div>
+            <div *ngIf="prev.a == 50" class="">
+              <ng-template #content class="yellow-info"><p class="yellow-dialog">Hash: </p> {{prev.hash}} <br><p class="yellow-dialog">Seed:</p> {{prev.salt}}<br><p class="yellow-dialog">Random:</p>{{prev.rand}}</ng-template>
+              <button type="button" class="button-trans-yellow showprev" placement="left" [ngbPopover]="content"></button> 
+            </div>
+          <!-- </div> -->
+        </div>
       </div>
     </div>
 
     <div class="place-bets b">
       <div class="balance">
+        <!-- Balance -->
         <div class="input-group">
           <img class="ico" height="35px" src="../assets/tron_logo_trans.png">{{balance}}
           <button id="check" class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
         </div>
-        <div style="text-align: end">
+        <!-- Chat -->
+        <div class="chat">
+          <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
+          <ng-template #closeChat>
+            <div class="example-box" cdkDrag>
+              <div class="top-chat">
+                Global Chat
+                <button (click)="chatOpen = false" type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="chat-content">
+                Aqui va el contenido del chat
+              </div>
+              <textarea class="text">Start chatting</textarea>
+            </div>
+          </ng-template>
+          <ng-template #openChat>
+            <img style="cursor: pointer" src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true">
+          </ng-template>
+        </div>
+        <!-- Mute button -->
+        <div style="text-align: end; padding-top: 14px">
           <div *ngIf="muted == false; then sound else nosound"></div>
           <ng-template #sound>
             <img class="mute" src="https://img.icons8.com/nolan/50/000000/medium-volume.png" (click)="muteAudio()">
@@ -77,11 +102,7 @@
         </div>
       </div>
     </div>
-
   </div>
-  <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
-  <ng-template #closeChat><div class="example-box" cdkDrag>Drag me lol<span (click)="chatOpen = false"> X</span></div></ng-template>
-  <ng-template #openChat><img src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true"></ng-template>
   <ngb-tabset type="pills">
     <ngb-tab title="Stats">
       <ng-template ngbTabContent>
