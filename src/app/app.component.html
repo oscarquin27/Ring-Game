@@ -7,7 +7,7 @@
       <div id = "prize">
         <canvas class="roulette" id="canvas" width="620px" height="680px"></canvas>
         <!-- <img src="../assets/pointery.png" (click)="muteAudio()"> -->
-        <h3 id = "seconds"><div>{{decenas}}{{seconds}}</div>.<div>{{milis2}}</div><div>{{milis}}</div></h3>
+        <h3 id = "seconds"><div>{{decenas}}</div><div>{{seconds}}</div>.<div>{{milis2}}</div><div>{{milis}}</div></h3>
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial" *ngFor="let prev of aux">
@@ -82,7 +82,10 @@
         <div class="cartas">
           <div class="card card-body">
             <div class="card-title">
-              <button class="btn btn-secondary btn2x" [disabled]="true"><span class="inner-btn">2X</span><label class="max">Max: 30000 TRX</label></button>
+              <button class="btn btn-secondary btn2x" [disabled]="true">
+                <span class="inner-btn">2X</span>
+                <label class="max">Max: 30000 TRX</label>
+              </button>
             </div>
             <div class="card-text reduce color1">
               <div class="tron">
@@ -104,7 +107,10 @@
 
           <div class="card-body card">
             <div class="card-title">
-              <button class="btn btn-secondary btn3x" [disabled]="true"><span class="inner-btn">3X</span><label class="max">Max: 20000 TRX</label></button>
+              <button class="btn btn-secondary btn3x" [disabled]="true">
+                <span class="inner-btn">3X</span>
+                <label class="max">Max: 20000 TRX</label>
+              </button>
             </div>
             <div class="card-text reduce color2">
               <div class="tron">
@@ -126,7 +132,10 @@
 
           <div class="card-body card">
             <div class="card-title">
-              <button class="btn btn-secondary btn5x" [disabled]="true"><span class="inner-btn">5X</span><label class="max">Max: 12000 TRX</label></button>
+              <button class="btn btn-secondary btn5x" [disabled]="true">
+                <span class="inner-btn">5X</span>
+                <label class="max">Max: 12000 TRX</label>
+              </button>
             </div>
             <div class="card-text reduce color3">
               <div class="tron">
@@ -148,7 +157,10 @@
 
           <div class="card-body card">
             <div class="card-title">
-              <button class="btn btn-secondary btn50x" [disabled]="true"><span class="inner-btn">50x</span><label class="max">Max: 1200 TRX</label></button>
+              <button class="btn btn-secondary btn50x" [disabled]="true">
+                <span class="inner-btn">50x</span>
+                <label class="max">Max: 1200 TRX</label>
+              </button>
             </div>
             <div class="card-text reduce color4">
               <div class="tron">
