@@ -21,7 +21,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TAGHyZdPNUrcEw7iEbqG43ACey61k7mKZm";
+  contractAddress = "TUf26PEhEMjn7xBnQvspkwxgrLN3peZPLj";
   address;
   seconds;
   decenas;
@@ -32,6 +32,7 @@ export class AppComponent {
   showThree = [];
   showFive = [];
   showFifty = [];
+  sendMessage : string;
   image = "../assets/greys.png";
   total2x : number = 0;
   players2x : number = 0;
@@ -47,6 +48,7 @@ export class AppComponent {
   player50xAddress : string;
   previousPlays = [];
   aux = [];
+  messages = [];
   trx;
   balance;
   salt;
@@ -78,6 +80,7 @@ export class AppComponent {
       this.loadImages();
       this.initWheel();
       this.onPlatformReady();
+      //this.getPreviousChats();
     }
 
     private async onPlatformReady() {
@@ -89,7 +92,7 @@ export class AppComponent {
           this.tronWebService.initTronWeb()
               .then(async () => {
                   this.logger.info('Ring' + ' Successfully launched');
-                  //this.getPreviousGames();
+                  this.getPreviousGames();
                   this.timer();
                   this.startEventListener();
                   this.eventListenerTwo();
@@ -673,4 +676,49 @@ export class AppComponent {
         }
       catch(e){}
     }
+
+    async getMessages(){
+      try{
+        const contract = await window.tronWeb.contract().at(this.contractAddress);
+        let res = await contract.messageCount().call();
+        
+        for(let i = 1; i <= res.toNumber(); i++){
+          let res2 = await contract.messages(i).call();
+          this.messages.push(res2);
+        }
+      }catch(e){}
+    }
+
+    async send(message : string){
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res = await contract.sendMessage(message).send({
+        feeLimit: 10000000,
+        callValue: 0,
+        shouldPollResponse : false
+      })
+      this.messageListener();
+    }
+
+    async messageListener(){
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res = await contract.MessageSent().watch(async (err, result) => {
+        if (err) return console.log("ERROR")
+        if(result){
+         this.messages.push(result.result); 
+        }
+      })
+      console.log(this.messages);
+    }
+
+   async getPreviousChats() : Promise<any>{
+    try{
+    const contract = await window.tronWeb.contract().at(this.contractAddress);
+    let res = await contract.messageCount().call();
+    
+    for(let i = 50; i >= (res.toNumber() - 49); i++){
+      let res2 = await contract.messages(i).call();
+      this.messages.push(res2);
+    }
+   } catch(e){}
+  }
 }

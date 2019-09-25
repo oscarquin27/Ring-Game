@@ -17,6 +17,8 @@ contract RingGame {
     bytes32 public salt;
     mapping(address => MyBets[]) public myBets;
     mapping(uint256 => PreviousGames) public previous;
+    mapping(uint256 => Message) public messages;
+    uint256 public messageCount = 0;
     uint256 public previousCount = 0;
 
     struct Bet {
@@ -36,6 +38,11 @@ contract RingGame {
         bytes32 salt;
         uint256 round;
     }
+
+    struct Message{
+        address sender;
+        string message;
+    }
     
     Bet[] public bets;
     
@@ -45,6 +52,7 @@ contract RingGame {
     event NewBetFifty(address player, uint amount);
     event PlayGame(uint time);
     event StopGame(uint time);
+    event MessageSent(address sender, string message);
     
     modifier OnlyOwner(){
         require(msg.sender == owner);
@@ -163,5 +171,10 @@ contract RingGame {
         return myBets[user].length;
     }
     
-    
+    function sendMessage(string b){
+        messageCount += 1;
+        messages[messageCount] = Message(msg.sender, b);
+        emit MessageSent(msg.sender, b);
+    }
+
 }

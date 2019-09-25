@@ -17,7 +17,7 @@
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial">
-        <div class="" *ngFor="let prev of aux">
+        <div class="" *ngFor="let prev of (aux | slice : aux.length - 10)">
           <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
               <!-- *ngIf="prev.a == 2" -->
             <div *ngIf="prev.a == 2" class=""> 
@@ -60,9 +60,12 @@
                 </button>
               </div>
               <div class="chat-content">
-                Aqui va el contenido del chat
+                  <div *ngFor="let message of messages">
+                  <p>{{message.message}}</p>
+                </div>
               </div>
-              <textarea class="text">Start chatting</textarea>
+              <textarea class="text" [(ngModel)]="sendMessage">Start chatting</textarea>
+              <button class="btn btn-outline-secondary" (click)="send(sendMessage)">Send</button>
             </div>
           </ng-template>
           <ng-template #openChat>
