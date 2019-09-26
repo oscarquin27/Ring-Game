@@ -55,17 +55,22 @@
             <div class="example-box" cdkDrag>
               <div class="top-chat">
                 Global Chat
+                <button class="btn btn-outline-secondary send2" (click)="send(sendMessage)">
+                  Send
+                </button>
                 <button (click)="chatOpen = false" type="button" class="close" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="chat-content">
-                  <div *ngFor="let message of messages">
+              <div class="chat-content" id="style-1">
+                <div *ngFor="let message of messages" >
                   <p>{{message.message}}</p>
                 </div>
               </div>
-              <textarea class="text" [(ngModel)]="sendMessage">Start chatting</textarea>
-              <button class="btn btn-outline-secondary" (click)="send(sendMessage)">Send</button>
+              <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
+              <button class="btn btn-outline-secondary send" (click)="send(sendMessage)">
+                Send
+              </button>
             </div>
           </ng-template>
           <ng-template #openChat>
