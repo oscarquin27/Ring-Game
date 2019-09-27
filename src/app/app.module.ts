@@ -11,6 +11,8 @@ import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,6 +24,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NgbPopoverModule,
     NgbTabsetModule,
     NgbPaginationModule,
+    MatProgressSpinnerModule,
     DragDropModule,
     LoggerModule.forRoot({
       level:

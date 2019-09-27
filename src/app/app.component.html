@@ -1,6 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid">
-
+  <!--<div *ngIf="spinner == true">
+      <mat-spinner></mat-spinner>
+  </div>-->
   <div class="first-div">
 
     <div class="a"> 
@@ -17,7 +19,7 @@
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial">
-        <div class="" *ngFor="let prev of (aux | slice : aux.length - 10)">
+        <div class="" *ngFor="let prev of (aux | slice : aux.length -10)">
           <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
               <!-- *ngIf="prev.a == 2" -->
             <div *ngIf="prev.a == 2" class=""> 

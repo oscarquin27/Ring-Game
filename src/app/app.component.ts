@@ -70,6 +70,7 @@ export class AppComponent {
   address2;
   address3;
   chatOpen: boolean = false;
+  spinner: boolean;
   private tronweb : TronWeb | any;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
@@ -92,14 +93,19 @@ export class AppComponent {
           this.tronWebService.initTronWeb()
               .then(async () => {
                   this.logger.info('Ring' + ' Successfully launched');
-                  this.getPreviousGames();
-                  this.timer();
+                  this.getPreviousGames().then(() =>{
+                    this.timer();
+                    this.spinner = false;
+                  })
+                  //this.timer();
+                  this.getPreviousChats();
                   this.startEventListener();
                   this.eventListenerTwo();
                   this.eventListenerThree();
                   this.eventListenerFive();
                   this.eventListenerFifty();
                   this.checkBalance();
+                  this.messageListener();
                   this.myBets();
                   this.address = await window.tronWeb.defaultAddress.base58;
                   this.addressShort();
@@ -662,17 +668,48 @@ export class AppComponent {
     }
 
     async getPreviousGames() : Promise<any>{
+      this.spinner = true;
       try{
         const contract = await window.tronWeb.contract().at(this.contractAddress);
         let previous = await contract.previousCount().call();
         let res = previous.toNumber();
-        console.log(res);
-        let comp = res - 10;
-        for(let i = res; i >= comp; i--){
+        //let comp = res - 2;
+        for(let i = res-10; i <= res; i++){
           let get = await contract.previous(i).call();
-          this.aux.push(get);
+          let a = parseInt(this.wheel.segments[get.random.toNumber()].text);
+          this.aux.push({
+           rand: get.random,
+           a: a,
+           round : get.round,
+           salt: get.salt,
+           hash : cryptojs.SHA256(get.salt + get.random)
+          });
+          let getColor = await contract.previous(res).call();
+          if(parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 2){
+            document.getElementById("indication").style.color = "#473f3d";
+            document.getElementById("seconds").style.color = "#473f3d";
+            document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
+          }
+          else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
+            document.getElementById("indication").style.color = "#228df0";
+            document.getElementById("seconds").style.color = "#228df0";
+            document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
+          }
+          else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
+            document.getElementById("indication").style.color = "#5632af";
+            document.getElementById("seconds").style.color = "#5632af";
+            document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)";
+          }
+          else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
+            document.getElementById("indication").style.color = "#fcc235";
+            document.getElementById("seconds").style.color = "#fcc235";
+            document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
+          }
+
         }
+        
         console.log(this.aux);
+        this.aux;
         }
       catch(e){}
     }
@@ -690,16 +727,18 @@ export class AppComponent {
     }
 
     async send(message : string){
+      try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.sendMessage(message).send({
         feeLimit: 10000000,
         callValue: 0,
         shouldPollResponse : false
       })
-      this.messageListener();
+      }catch(e){}
     }
 
     async messageListener(){
+      try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.MessageSent().watch(async (err, result) => {
         if (err) return console.log("ERROR")
@@ -707,7 +746,7 @@ export class AppComponent {
          this.messages.push(result.result); 
         }
       })
-      console.log(this.messages);
+    }catch(e){}
     }
 
    async getPreviousChats() : Promise<any>{
@@ -715,7 +754,7 @@ export class AppComponent {
     const contract = await window.tronWeb.contract().at(this.contractAddress);
     let res = await contract.messageCount().call();
     
-    for(let i = 50; i >= (res.toNumber() - 49); i++){
+    for(let i = res.toNumber(); i >=  (res.toNumber()-10); i--){
       let res2 = await contract.messages(i).call();
       this.messages.push(res2);
     }
