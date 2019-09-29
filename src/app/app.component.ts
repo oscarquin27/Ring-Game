@@ -72,6 +72,7 @@ export class AppComponent {
   chatOpen: boolean = false;
   spinner: boolean;
   private tronweb : TronWeb | any;
+  panelOpenState : boolean = false;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -754,7 +755,7 @@ export class AppComponent {
     const contract = await window.tronWeb.contract().at(this.contractAddress);
     let res = await contract.messageCount().call();
     
-    for(let i = res.toNumber(); i >=  (res.toNumber()-10); i--){
+    for(let i = (res.toNumber()-10); i <= res.toNumber(); i++){
       let res2 = await contract.messages(i).call();
       this.messages.push(res2);
     }

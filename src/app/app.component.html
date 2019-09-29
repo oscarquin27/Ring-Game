@@ -1,8 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div *ngIf="spinner == true">
+  <div class="contains">
+      <mat-spinner class="loading"></mat-spinner>
+      <h2 class="loading-letter">Loading...</h2>
+    </div>
+  </div>
 <div class="container-fluid">
-  <!--<div *ngIf="spinner == true">
-      <mat-spinner></mat-spinner>
-  </div>-->
   <div class="first-div">
 
     <div class="a"> 
@@ -66,7 +69,10 @@
               </div>
               <div class="chat-content" id="style-1">
                 <div *ngFor="let message of messages" >
-                  <p>{{message.message}}</p>
+                  <mat-card>
+                  <mat-card-title>{{message.sender}}</mat-card-title>
+                  <mat-card-content>{{message.message}}</mat-card-content>
+                </mat-card>
                 </div>
               </div>
               <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
@@ -77,6 +83,16 @@
           </ng-template>
           <ng-template #openChat>
             <img style="cursor: pointer" src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true">
+          </ng-template>
+        </div>
+        <!--Profile button-->
+        <div>
+          <div *ngIf="panelOpenState == true; then panelOpen else panelClosed"></div>
+          <ng-template #panelOpen>
+              <input matInput placeholder="Favorite food" value="Sushi">
+          </ng-template>
+          <ng-template #panelClosed>
+              <img (click)="panelOpenState = true" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
           </ng-template>
         </div>
         <!-- Mute button -->

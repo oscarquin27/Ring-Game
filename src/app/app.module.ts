@@ -12,6 +12,10 @@ import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgbPopoverModule,
     NgbTabsetModule,
     NgbPaginationModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatProgressSpinnerModule,
     DragDropModule,
     LoggerModule.forRoot({
