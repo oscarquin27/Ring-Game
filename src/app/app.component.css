@@ -52,7 +52,7 @@
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
     top: -210px;
-    left: 80px;
+    margin-left: 80px;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
 }
