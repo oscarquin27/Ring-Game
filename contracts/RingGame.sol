@@ -18,6 +18,7 @@ contract RingGame {
     mapping(address => MyBets[]) public myBets;
     mapping(uint256 => PreviousGames) public previous;
     mapping(uint256 => Message) public messages;
+    mapping(address => User) public users;
     uint256 public messageCount = 0;
     uint256 public previousCount = 0;
 
@@ -43,6 +44,11 @@ contract RingGame {
         address sender;
         string message;
     }
+
+    struct User {
+        string username;
+        string image;
+    }
     
     Bet[] public bets;
     
@@ -62,6 +68,14 @@ contract RingGame {
     constructor() public {
         time = now;
         owner = msg.sender;
+    }
+
+     function setUsername(string username) public {
+        users[msg.sender].username = username;
+    }
+    
+     function setAvatar(string avatar) public {
+        users[msg.sender].image = avatar;
     }
     
     function betTwo() public payable {
@@ -171,7 +185,7 @@ contract RingGame {
         return myBets[user].length;
     }
     
-    function sendMessage(string b){
+    function sendMessage(string b) public {
         messageCount += 1;
         messages[messageCount] = Message(msg.sender, b);
         emit MessageSent(msg.sender, b);

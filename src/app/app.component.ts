@@ -21,7 +21,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TUf26PEhEMjn7xBnQvspkwxgrLN3peZPLj";
+  contractAddress = "THNQEqHtfM1Axqv84yaA57oP9juP3rLEDa";
   address;
   seconds;
   decenas;
@@ -101,6 +101,7 @@ export class AppComponent {
                   //this.timer();
                   this.getPreviousChats();
                   this.startEventListener();
+                  this.startEventListenerStop();
                   this.eventListenerTwo();
                   this.eventListenerThree();
                   this.eventListenerFive();
@@ -281,6 +282,7 @@ export class AppComponent {
     }
 
     async startEventListener(){
+      try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.PlayGame().watch(async (err, result) => {
         if (err) return console.log("ERROR")
@@ -297,6 +299,13 @@ export class AppComponent {
           this.spinOf();
         }
       })
+    }catch(e){}
+
+    }
+
+    async startEventListenerStop(){
+      try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res2 = await contract.StopGame(this.inputNumber).watch(async (err, result) => {
         if(err) {this.timer();}
         if(result){
@@ -321,8 +330,9 @@ export class AppComponent {
             setTimeout(() => {
               this.timer();
             }, 4000)
-        }
-      })
+          }
+        })
+      } catch(e){}
     }
 
     async eventListenerTwo(){
@@ -760,5 +770,11 @@ export class AppComponent {
       this.messages.push(res2);
     }
    } catch(e){}
+  }
+
+  isWheelStopped(getTimeNow : number){
+    if (getTimeNow <= getTimeNow + 40000){
+      this.timer();
+    }
   }
 }
