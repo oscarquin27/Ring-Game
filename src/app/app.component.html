@@ -3,11 +3,10 @@
   <div class="contains">
       <mat-spinner class="loading"></mat-spinner>
       <h2 class="loading-letter">Loading...</h2>
-    </div>
   </div>
+</div>
 <div class="container-fluid">
   <div class="first-div">
-
     <div class="a"> 
       <div id = "prize">
         <canvas class="roulette" id="canvas" width="620px" height="680px"></canvas>
@@ -47,6 +46,7 @@
     </div>
 
     <div class="place-bets b">
+
       <div class="balance">
         <!-- Balance -->
         <div class="input-group">
@@ -54,56 +54,57 @@
           <button id="check" class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
         </div>
         <!-- Chat -->
-        <div class="chat">
-          <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
-          <ng-template #closeChat>
-            <div class="example-box" cdkDrag>
-              <div class="top-chat">
-                Global Chat
-                <button class="btn btn-outline-secondary send2" (click)="send(sendMessage)">
+        <div class="botones">
+          <div class="chat">
+            <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
+            <ng-template #closeChat>
+              <div class="example-box" cdkDrag>
+                <div class="top-chat">
+                  Global Chat
+                  <button (click)="chatOpen = false" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="chat-content" id="style-1">
+                  <div *ngFor="let message of messages" >
+                    <mat-card>
+                    <mat-card-title>{{message.sender}}</mat-card-title>
+                    <mat-card-content>{{message.message}}</mat-card-content>
+                  </mat-card>
+                  </div>
+                </div>
+                <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
+                <button class="btn btn-outline-secondary send" (click)="send(sendMessage)">
                   Send
                 </button>
-                <button (click)="chatOpen = false" type="button" class="close" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
               </div>
-              <div class="chat-content" id="style-1">
-                <div *ngFor="let message of messages" >
-                  <mat-card>
-                  <mat-card-title>{{message.sender}}</mat-card-title>
-                  <mat-card-content>{{message.message}}</mat-card-content>
-                </mat-card>
-                </div>
+            </ng-template>
+            <ng-template #openChat>
+              <img src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true">
+            </ng-template>
+          </div>
+          <!--Profile button-->
+          <div class="profile">
+            <div *ngIf="panelOpenState == true; then panelOpen else panelClosed"></div>
+            <ng-template #panelOpen>
+              <div class="prof">
+                <input matInput placeholder="Username" class="form-control" value="">
               </div>
-              <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
-              <button class="btn btn-outline-secondary send" (click)="send(sendMessage)">
-                Send
-              </button>
-            </div>
-          </ng-template>
-          <ng-template #openChat>
-            <img style="cursor: pointer" src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true">
-          </ng-template>
-        </div>
-        <!--Profile button-->
-        <div>
-          <div *ngIf="panelOpenState == true; then panelOpen else panelClosed"></div>
-          <ng-template #panelOpen>
-              <input matInput placeholder="Favorite food" value="Sushi">
-          </ng-template>
-          <ng-template #panelClosed>
-              <img (click)="panelOpenState = true" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
-          </ng-template>
-        </div>
-        <!-- Mute button -->
-        <div style="text-align: end; padding-top: 14px">
-          <div *ngIf="muted == false; then sound else nosound"></div>
-          <ng-template #sound>
-            <img class="mute" src="https://img.icons8.com/nolan/50/000000/medium-volume.png" (click)="muteAudio()">
-          </ng-template>
-          <ng-template #nosound>
-            <img class="mute" src="https://img.icons8.com/nolan/50/000000/mute.png" (click)="unMute()">
-          </ng-template>
+            </ng-template>
+            <ng-template #panelClosed>
+                <img (click)="panelOpenState = true" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
+            </ng-template>
+          </div>
+          <!-- Mute button -->
+          <div class="mute">
+            <div *ngIf="muted == false; then sound else nosound"></div>
+            <ng-template #sound>
+              <img src="https://img.icons8.com/nolan/50/000000/medium-volume.png" (click)="muteAudio()">
+            </ng-template>
+            <ng-template #nosound>
+              <img src="https://img.icons8.com/nolan/50/000000/mute.png" (click)="unMute()">
+            </ng-template>
+          </div>
         </div>
       </div>
 
@@ -129,7 +130,9 @@
       </div>
     </div>
   </div>
+
   <ngb-tabset type="pills">
+    <!-- first tab content -->
     <ngb-tab title="Stats">
       <ng-template ngbTabContent>
         <div class="cartas">
@@ -235,57 +238,58 @@
         </div>
       </ng-template>
     </ngb-tab>
+    <!-- second tab content -->
     <ngb-tab title="My Bets">
       <ng-template ngbTabContent>
         <table class="table">
-        <thead>
-          <tr>
-            <th class="table-numeral" scope="col">Player</th>
-            <th class="table-amount" scope="col">Amount</th>
-            <th class="table-multiplier" scope="col">Multiplier</th>
-            <th class="table-multiplier" scope="col">Winner</th>
-          </tr>
-        </thead>
+          <thead>
+            <tr>
+              <th class="table-numeral" scope="col">Player</th>
+              <th class="table-amount" scope="col">Amount</th>
+              <th class="table-multiplier" scope="col">Multiplier</th>
+              <th class="table-multiplier" scope="col">Winner</th>
+            </tr>
+          </thead>
           <tbody>
-        <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
-          <div *ngIf = "history.winner == 2; then winnerg"></div>
-          <div *ngIf = "history.winner == 3; then winnerb"></div>
-          <div *ngIf = "history.winner == 5; then winnerp"></div>
-          <div *ngIf = "history.winner == 5; then winnery"></div>
-          <div *ngIf="history.betType == 2; then grey"></div>
-          <ng-template #grey>
-          <th class="table-numeral-grey" scope="row">{{address2}}...{{address3}}</th>
-          <td class="table-value-grey">{{history.value}} TRX</td>
-          <td class="table-value-grey">{{history.betType}}X</td>
-          <td class="table-value-white">{{history.winner}}X</td>
-        </ng-template>
-        <div *ngIf="history.betType == 3; then blue"></div>
-          <ng-template #blue>
-              <th class="table-numeral-blue" scope="row">{{address2}}...{{address3}}</th>
-              <td class="table-value-blue">{{history.value}} TRX</td>
-              <td class="table-value-blue">{{history.betType}}X</td>
-              <td class="table-value-white">{{history.winner}}X</td>
-          </ng-template>
-          <div *ngIf="history.betType == 5; then purple"></div>
-          <ng-template #purple>
-              <th class="table-numeral-purple" scope="row">{{address2}}...{{address3}}</th>
-              <td class="table-value-purple">{{history.value}} TRX</td>
-              <td class="table-value-purple">{{history.betType}}X</td>
-              <td class="table-value-white">{{history.winner}}X</td>
-          </ng-template>
-            <div *ngIf="history.betType == 50; then yellow"></div>
-            <ng-template #yellow>
-                <th class="table-numeral-yellow" scope="row">{{address2}}...{{address3}}</th>
-                <td class="table-value-yellow">{{history.value}} TRX</td>
-                <td class="table-value-yellow">{{history.betType}}X</td>
+            <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
+              <div *ngIf = "history.winner == 2; then winnerg"></div>
+              <div *ngIf = "history.winner == 3; then winnerb"></div>
+              <div *ngIf = "history.winner == 5; then winnerp"></div>
+              <div *ngIf = "history.winner == 5; then winnery"></div>
+              <div *ngIf="history.betType == 2; then grey"></div>
+              <ng-template #grey>
+                <th class="table-numeral-grey" scope="row">{{address2}}...{{address3}}</th>
+                <td class="table-value-grey">{{history.value}} TRX</td>
+                <td class="table-value-grey">{{history.betType}}X</td>
                 <td class="table-value-white">{{history.winner}}X</td>
               </ng-template>
-        </tr>
-        <ngb-pagination
-        [(page)]="page"
-        [pageSize] ="pageSize"
-        [collectionSize]="myBetHistory.length"></ngb-pagination>
-        <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
+              <div *ngIf="history.betType == 3; then blue"></div>
+              <ng-template #blue>
+                <th class="table-numeral-blue" scope="row">{{address2}}...{{address3}}</th>
+                <td class="table-value-blue">{{history.value}} TRX</td>
+                <td class="table-value-blue">{{history.betType}}X</td>
+                <td class="table-value-white">{{history.winner}}X</td>
+              </ng-template>
+              <div *ngIf="history.betType == 5; then purple"></div>
+              <ng-template #purple>
+                <th class="table-numeral-purple" scope="row">{{address2}}...{{address3}}</th>
+                <td class="table-value-purple">{{history.value}} TRX</td>
+                <td class="table-value-purple">{{history.betType}}X</td>
+                <td class="table-value-white">{{history.winner}}X</td>
+              </ng-template>
+              <div *ngIf="history.betType == 50; then yellow"></div>
+              <ng-template #yellow>
+                  <th class="table-numeral-yellow" scope="row">{{address2}}...{{address3}}</th>
+                  <td class="table-value-yellow">{{history.value}} TRX</td>
+                  <td class="table-value-yellow">{{history.betType}}X</td>
+                  <td class="table-value-white">{{history.winner}}X</td>
+              </ng-template>
+            </tr>
+            <ngb-pagination
+            [(page)]="page"
+            [pageSize] ="pageSize"
+            [collectionSize]="myBetHistory.length"></ngb-pagination>
+            <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
           </tbody>
         </table>
       </ng-template>
@@ -363,7 +367,5 @@
         </ul>
       </div>
     </div> -->
-
 </div>
-
 <router-outlet></router-outlet>
