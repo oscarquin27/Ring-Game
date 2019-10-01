@@ -16,6 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MatInputModule} from '@angular/material/input';
     MatInputModule,
     MatProgressSpinnerModule,
     DragDropModule,
+    MatMenuModule,
     LoggerModule.forRoot({
       level:
         NgxLoggerLevel.INFO ||
