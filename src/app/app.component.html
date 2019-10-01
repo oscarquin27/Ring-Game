@@ -67,10 +67,10 @@
                 </div>
                 <div class="chat-content" id="style-1">
                   <div *ngFor="let message of messages" >
-                    <mat-card>
-                      <mat-card-title>{{message.sender}}</mat-card-title>
-                      <mat-card-content>{{message.message}}</mat-card-content>
-                    </mat-card>
+                    <div>
+                      <h5>{{message.sender}}</h5>
+                      <p>{{message.message}}</p>
+                    </div>
                   </div>
                 </div>
                 <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
