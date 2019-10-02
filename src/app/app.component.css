@@ -6,22 +6,23 @@
     padding-top: 5px
 }
 
-.contains{
-    width: 2000px;
-    height: 1080px;
+.contains {
+    width: 100%;
+    height: 230vh;
     background-color: #131218;
     z-index: 4;
-    position: relative;
+    position: absolute;
 }
 
-.loading{
-    margin:auto;
-    left: 60px;
-    top: 180px;
+.loading {
+    margin: auto;
+    top: 250px;
 }
 
 .loading-letter{
-    top: 250px;
+    margin-top: 280px;
+    color: white;
+    text-align: center
 }
 /* Ruleta y posiciones */
 #canvas {
@@ -653,6 +654,9 @@ mat-card-content input {
 }
 /* Version media */
 @media only screen and (min-width: 650px) {
+    .contains {
+        height: 1200px;
+    }
     .cartas {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr
@@ -710,6 +714,9 @@ mat-card-content input {
 
 /* Version desktop */
 @media only screen and (min-width: 890px) {
+    .contains {
+        height: 810px;
+    }
     .first-div {
         /* grid-template-columns:  minmax(100px, max-content) 1fr; */
         grid-template-columns: minmax(300px, 400px) 1fr;
