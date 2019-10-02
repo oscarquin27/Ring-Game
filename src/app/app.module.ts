@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -28,6 +29,7 @@ import {MatMenuModule} from '@angular/material/menu';
     FormsModule,
     NgbPopoverModule,
     NgbTabsetModule,
+    NgbModalModule,
     NgbPaginationModule,
     MatCardModule,
     MatExpansionModule,

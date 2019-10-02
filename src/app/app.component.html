@@ -108,8 +108,8 @@
             </ng-template> -->
             <img [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
             <mat-menu #afterMenu="matMenu" xPosition="after">
-              <button mat-menu-item>Set Username</button>
-              <button mat-menu-item>Set Avatar</button>
+              <button mat-menu-item data-toggle="modal" data-target="#usernameModal">Set Username</button>
+              <button mat-menu-item data-toggle="modal" data-target="#avatarModal">Set Avatar</button>
             </mat-menu>
           </div>
           <!-- Mute button -->
@@ -314,7 +314,9 @@
   </ngb-tabset>
 
   <!-- card para el nombre de usuario -->
-
+<div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
   <mat-card>
     <mat-card-title>
       Set your Username
@@ -323,16 +325,23 @@
       </button>
     </mat-card-title>
     <mat-card-content>
-      <p>New Username</p>
       <div>
+      <p>New Username</p>
+      <div class="modal-body">
         <input class="form-control name" placeholder="Your name" aria-label="Username">
         <button type="button" class="btn btn-success">Success</button>
         <p>The username is only allowed to change once</p>
       </div>
+    </div>
     </mat-card-content>
   </mat-card>
-
+  </div>
+</div>
+</div>
   <!-- card para el avatar -->
+  <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
   <mat-card>
     <mat-card-title>
       Set your Avatar
@@ -342,22 +351,32 @@
     </mat-card-title>
     <mat-card-content>
       <p>Choose Avatar</p>
+      <img src="../assets/64_1.png">
+      <img src="../assets/64_2.png">
+      <img src="../assets/64_3.png">
+      <img src="../assets/64_4.png">
+      <img src="../assets/64_5.png">
+      <img src="../assets/64_6.png">
+      <img src="../assets/64_7.png">
+      <img src="../assets/64_8.png">
+      <img src="../assets/64_9.png">
+      <img src="../assets/64_10.png">
+      <img src="../assets/64_11.png">
+      <img src="../assets/64_12.png">
+      <img src="../assets/64_13.png">
+      <img src="../assets/64_14.png">
+      <img src="../assets/64_15.png">
+      <img src="../assets/64_16.png">
       <div>
-        <div>
-          <img [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
-          <i class="material-icons">keyboard_arrow_down</i>
-          <mat-menu #afterMenu="matMenu" xPosition="after">
-            <button mat-menu-item>
-                <i class="material-icons ava">rowing</i>
-                Avatar 1
-              </button>
-            <button mat-menu-item>Set Avatar</button>
-          </mat-menu>
-        </div>
         <button type="button" class="btn btn-success">Success</button>
       </div>
     </mat-card-content>
   </mat-card>
+</div>
+</div>
+</div>
+<!--</div>
+</ng-template>-->
 <!-- 
   <div>
       <div class ="card card2">
