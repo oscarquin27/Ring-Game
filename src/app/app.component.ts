@@ -767,6 +767,7 @@ export class AppComponent {
     
     for(let i = (res.toNumber()-10); i <= res.toNumber(); i++){
       let res2 = await contract.messages(i).call();
+      let res3 = await window.tronWeb.address.fromHex(res2.sender).toString();
       this.messages.push(res2);
     }
    } catch(e){}
