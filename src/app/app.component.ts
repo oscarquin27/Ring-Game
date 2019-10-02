@@ -768,7 +768,20 @@ export class AppComponent {
     for(let i = (res.toNumber()-10); i <= res.toNumber(); i++){
       let res2 = await contract.messages(i).call();
       let res3 = await window.tronWeb.address.fromHex(res2.sender).toString();
-      this.messages.push(res2);
+      let res4 = await contract.users(res3).call();
+      if(res4 === ""){
+        this.messages.push({
+          sender: res4.username,
+          message: res2.message,
+        })
+      }
+      else{
+      this.messages.push({
+        sender: res3,
+        message: res2.message
+        });
+      }
+      console.log(res4, res3, this.messages)
     }
    } catch(e){}
   }
