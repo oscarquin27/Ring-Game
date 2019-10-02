@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import * as cryptojs from 'crypto-js';
 declare let window : any;
 declare var require: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -73,6 +74,9 @@ export class AppComponent {
   spinner: boolean;
   private tronweb : TronWeb | any;
   panelOpenState : boolean = false;
+  username : string;
+  usernameExists : string;
+  usernameBool : boolean;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -93,10 +97,12 @@ export class AppComponent {
       window.addEventListener('load', () => {
           this.tronWebService.initTronWeb()
               .then(async () => {
+                  this.address = await window.tronWeb.defaultAddress.base58.toString();
                   this.logger.info('Ring' + ' Successfully launched');
                   this.getPreviousGames().then(() =>{
                     this.timer();
                     this.spinner = false;
+                    this.hasUsername();
                   })
                   //this.timer();
                   this.getPreviousChats();
@@ -109,7 +115,6 @@ export class AppComponent {
                   this.checkBalance();
                   this.messageListener();
                   this.myBets();
-                  this.address = await window.tronWeb.defaultAddress.base58;
                   this.addressShort();
                     })
                     .catch(() => {
@@ -754,7 +759,20 @@ export class AppComponent {
       let res = await contract.MessageSent().watch(async (err, result) => {
         if (err) return console.log("ERROR")
         if(result){
-         this.messages.push(result.result); 
+         let res1 = await window.tronWeb.address.fromHex(result.result.sender).toString();
+         if(res1 === ""){
+         this.messages.push({
+           sender : res1,
+           message : result.result.message
+         }); 
+          }
+          else{
+            let username = await contract.users(res1).call();
+            this.messages.push({
+              sender : username.username,
+              message : result.result.message
+            })
+          }
         }
       })
     }catch(e){}
@@ -774,14 +792,16 @@ export class AppComponent {
           sender: res4.username,
           message: res2.message,
         })
+        console.log("Has", this.messages);
       }
       else{
       this.messages.push({
         sender: res3,
         message: res2.message
         });
+        console.log("0x", this.messages);
       }
-      console.log(res4, res3, this.messages)
+      //console.log(res4, res3, this.messages)
     }
    } catch(e){}
   }
@@ -790,5 +810,53 @@ export class AppComponent {
     if (getTimeNow <= getTimeNow + 40000){
       this.timer();
     }
+  }
+
+  async setUsername(username: string){
+    try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res = await contract.setUsername(username).send({
+        feeLimit: 10000000,
+        callValue: 0,
+        shouldPollResponse : false
+      }).then(() => {
+          Swal.fire(
+            'Awesome!',
+            'Username set correctly',
+            'success'
+          )
+      });
+    }catch(e){}
+  }
+
+  async setAvatar(avatar: string){
+    try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res = await contract.setAvatar(avatar).send({
+        feeLimit: 10000000,
+        callValue: 0,
+        shouldPollResponse : false
+      }).then(() => {
+        Swal.fire(
+          'Awesome!',
+          'Avatar set correctly',
+          'success'
+        )
+      });
+    }catch(e){}
+  }
+
+  async hasUsername(){
+    try{
+    const contract = await window.tronWeb.contract().at(this.contractAddress);
+    let res3 = await window.tronWeb.address.fromHex(this.address).toString();
+    let res4 = await contract.users(res3).call();
+
+    if(res4.username != ""){
+      this.usernameExists = res4.username;
+      this.usernameBool = true;
+    }
+
+    }catch(e){}
   }
 }

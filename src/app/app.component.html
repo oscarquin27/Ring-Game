@@ -72,17 +72,23 @@
                       <p>{{message.message}}</p>
                   </div> -->
                   <div class="container" *ngFor="let message of messages">
-                    <img src="../assets/64_1.png">
-                    <p>{{message.sender}}</p>
+                    <div *ngIf="message.sender === address; then own else other"></div>
+                    <ng-template #other>
+                      <img src="../assets/64_1.png">
+                    <p><b>{{message.sender}}</b></p>
                     <p>{{message.message}}</p>
                     <span class="time-right">11:00</span>
+                    </ng-template>
+                    <ng-template #own>
+                      <div class="container you">
+                        <img src="../assets/64_1.png" alt="Avatar" class="right">
+                        <p><b>{{message.sender}}</b></p>
+                        <p>{{message.message}}</p>
+                        <span class="time-left">11:01</span>
+                    </div>
+                  </ng-template>
                   </div>
-                  <div class="container you">
-                    <img src="../assets/64_1.png" alt="Avatar" class="right">
-                    <p>Hey! I'm fine. Thanks for asking!</p>
-                    <span class="time-left">11:01</span>
-                </div>
-                </div>
+                 </div>
                 <div class="down">
                   <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
                   <button class="btn btn-outline-secondary send" (click)="send(sendMessage)">
@@ -328,9 +334,8 @@
           <div>
           <p>New Username</p>
           <div class="modal-body">
-            <input class="form-control name" placeholder="Your name" aria-label="Username">
-            <button type="button" class="btn btn-success">Success</button>
-            <p>The username is only allowed to change once</p>
+            <input class="form-control name" placeholder="Write your username" [(ngModel)]="username" aria-label="Username">
+            <button type="button" class="btn btn-success" (click)="setUsername(username)">Change Username</button>
           </div>
         </div>
         </mat-card-content>
@@ -368,7 +373,7 @@
           <img src="../assets/64_15.png">
           <img src="../assets/64_16.png">
           <div>
-            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" class="btn btn-success">Change Avatar</button>
           </div>
         </mat-card-content>
       </mat-card>
