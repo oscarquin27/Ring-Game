@@ -556,6 +556,51 @@ textarea:-ms-input-placeholder {
     background: #555; 
   }
 
+/* Cartas name y avatar */
+mat-card {
+    max-width: 500px;
+}
+mat-card-content .form-control:focus {
+    border-color: #451c73;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(88, 57, 179, 0.4);
+}
+mat-card-content .btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #412b80;
+    border-color: #331a51;
+}
+.btn-success.focus, .btn-success:focus {
+    box-shadow: 0 0 0 0.2rem rgba(126, 72, 180, 0.5);
+}
+mat-card-content div {
+    text-align: center;
+}
+mat-card-content button {
+    max-width: 200px;
+    margin: 20px 0px
+}
+mat-card-content p {
+    font-size: 16px
+}
+mat-card-content div p {
+    font-size: 12px;
+    margin-bottom: 5px
+}
+mat-card-content i {
+    vertical-align: middle;
+    cursor: pointer;
+}
+mat-card-content img {
+    cursor: pointer;
+}
+mat-card-content input {
+    background-color: #131218;
+    color: white;
+}
+.ava {
+    vertical-align: middle;
+}
 /* Version media */
 @media only screen and (min-width: 650px) {
     .cartas {

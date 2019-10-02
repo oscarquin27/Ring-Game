@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -16,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import {MatInputModule} from '@angular/material/input';
     FormsModule,
     NgbPopoverModule,
     NgbTabsetModule,
+    NgbModalModule,
     NgbPaginationModule,
     MatCardModule,
     MatExpansionModule,
@@ -34,6 +37,7 @@ import {MatInputModule} from '@angular/material/input';
     MatInputModule,
     MatProgressSpinnerModule,
     DragDropModule,
+    MatMenuModule,
     LoggerModule.forRoot({
       level:
         NgxLoggerLevel.INFO ||

@@ -67,10 +67,10 @@
                 </div>
                 <div class="chat-content" id="style-1">
                   <div *ngFor="let message of messages" >
-                    <mat-card>
-                    <mat-card-title>{{message.sender}}</mat-card-title>
-                    <mat-card-content>{{message.message}}</mat-card-content>
-                  </mat-card>
+                    <div>
+                      <h5>{{message.sender}}</h5>
+                      <p>{{message.message}}</p>
+                    </div>
                   </div>
                 </div>
                 <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
@@ -85,15 +85,20 @@
           </div>
           <!--Profile button-->
           <div class="profile">
-            <div *ngIf="panelOpenState == true; then panelOpen else panelClosed"></div>
+            <!-- <div *ngIf="panelOpenState == true; then panelOpen else panelClosed"></div>
             <ng-template #panelOpen>
               <div class="prof">
                 <input matInput placeholder="Username" class="form-control" value="">
               </div>
             </ng-template>
             <ng-template #panelClosed>
-                <img (click)="panelOpenState = true" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
-            </ng-template>
+                <img (click)="panelOpenState = true" [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
+            </ng-template> -->
+            <img [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
+            <mat-menu #afterMenu="matMenu" xPosition="after">
+              <button mat-menu-item data-toggle="modal" data-target="#usernameModal">Set Username</button>
+              <button mat-menu-item data-toggle="modal" data-target="#avatarModal">Set Avatar</button>
+            </mat-menu>
           </div>
           <!-- Mute button -->
           <div class="mute">
@@ -296,25 +301,70 @@
     </ngb-tab>
   </ngb-tabset>
 
-  <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)">
-    <div *ngIf="prev.a == 2">
-      <ng-template #content><p class="grey-dialog">Hash: </p> {{prev.hash}} <br><p class="grey-dialog">Seed:</p> {{prev.salt}}<br><p class="grey-dialog">Random:</p>{{prev.rand}}</ng-template>
-      <button type="button" class="button-trans-grey showprev" placement="left" [ngbPopover]="content"></button>  
+  <!-- card para el nombre de usuario -->
+<div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <mat-card>
+    <mat-card-title>
+      Set your Username
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <div>
+      <p>New Username</p>
+      <div class="modal-body">
+        <input class="form-control name" placeholder="Your name" aria-label="Username">
+        <button type="button" class="btn btn-success">Success</button>
+        <p>The username is only allowed to change once</p>
+      </div>
     </div>
-    <div *ngIf="prev.a == 3">
-      <ng-template #content class="blue-info"><p class="blue-dialog">Hash: </p> {{prev.hash}} <br><p class="blue-dialog">Seed:</p> {{prev.salt}}<br><p class="blue-dialog">Random:</p>{{prev.rand}}</ng-template>
-      <button type="button" class="button-trans-blue showprev" placement="left" [ngbPopover]="content"></button>
-    </div>  
-    <div *ngIf="prev.a == 5">
-      <ng-template #content class="purple-info"><p class="purple-dialog">Hash: </p> {{prev.hash}} <br><p class="purple-dialog">Seed:</p> {{prev.salt}}<br><p class="purple-dialog">Random:</p>{{prev.rand}}</ng-template>
-      <button type="button" class="button-trans-purple showprev" placement="left" [ngbPopover]="content"></button>  
-    </div>
-    <div *ngIf="prev.a == 50">
-      <ng-template #content class="yellow-info"><p class="yellow-dialog">Hash: </p> {{prev.hash}} <br><p class="yellow-dialog">Seed:</p> {{prev.salt}}<br><p class="yellow-dialog">Random:</p>{{prev.rand}}</ng-template>
-      <button type="button" class="button-trans-yellow showprev" placement="left" [ngbPopover]="content"></button> 
-    </div>
-  </div> -->
-
+    </mat-card-content>
+  </mat-card>
+  </div>
+</div>
+</div>
+  <!-- card para el avatar -->
+  <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <mat-card>
+    <mat-card-title>
+      Set your Avatar
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <p>Choose Avatar</p>
+      <img src="../assets/64_1.png">
+      <img src="../assets/64_2.png">
+      <img src="../assets/64_3.png">
+      <img src="../assets/64_4.png">
+      <img src="../assets/64_5.png">
+      <img src="../assets/64_6.png">
+      <img src="../assets/64_7.png">
+      <img src="../assets/64_8.png">
+      <img src="../assets/64_9.png">
+      <img src="../assets/64_10.png">
+      <img src="../assets/64_11.png">
+      <img src="../assets/64_12.png">
+      <img src="../assets/64_13.png">
+      <img src="../assets/64_14.png">
+      <img src="../assets/64_15.png">
+      <img src="../assets/64_16.png">
+      <div>
+        <button type="button" class="btn btn-success">Success</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>
+</div>
+<!--</div>
+</ng-template>-->
 <!-- 
   <div>
       <div class ="card card2">
