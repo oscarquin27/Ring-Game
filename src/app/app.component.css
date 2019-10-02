@@ -419,6 +419,7 @@ button{
 }
 .botones img {
     cursor: pointer;
+    width: 80%
 }
 /* Sound button style */
 .mute {
@@ -443,6 +444,7 @@ button{
     padding-top: 14px;
     height: 70px;
 }
+/* All chat styles */
 .example-box {
     width: 340px;
     height: 530px;
@@ -452,7 +454,7 @@ button{
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #fff;
+    background: #dedede;
     border-radius: 4px;
     /* position: relative; */
     position: absolute;
@@ -481,10 +483,13 @@ button{
     color: white;
     background-color: #2f3132;
     display: grid;
-    padding: 20px;
+    padding: 10px 15px;
     width: 340px;
-    grid-template-columns: 1fr max-content max-content;
+    grid-template-columns:  max-content  1fr max-content;
     grid-column-gap: 5px
+}
+.top-chat h5 {
+    margin: auto
 }
 .close {
     margin-top: -5px
@@ -494,36 +499,81 @@ button{
 }
 .chat-content {
     height: 386px;
-    padding: 10px 0px;
     font-size: 14px;
-    margin-top: 7px;
     color: #666;
     background-color: #1b1b1b;
     overflow: auto;
     scrollbar-width: thin;
 }
+.container {
+    border: 2px solid #383838;
+    background-color: #2f2d2d;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+    width: 94%;
+
+}
+.you {
+    border-color: #d8d8d8;
+    background-color: #c1c1c1;
+}
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.container p {
+    word-wrap: break-word;
+    text-align: left;
+    color: #aaa
+}
+.you p {
+    color: #2f3132
+}
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 12%;
+    margin-right: 20px;
+    border-radius: 50%;
+ }
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+.time-right {
+    float: right;
+    color: #aaa;
+}
+.time-left {
+    float: left;
+    color: #2f3132
+}
 textarea {
     font-size: 13px;
-    width: 340px;
-    min-height: 80px;
+    width: 288px;
+    min-height: 71px;
     border: none;
     /* border-top: #2f3132 1px solid; */
     background-color: #666;
     color: white;
-    caret-color: white
+    caret-color: white;
+    padding: 7px
 }
 .send {
-    float: right;
     position: relative;
     font-size: 13px;
-    padding: 5px;
-    margin-top: -118px;
-    margin-right: 10px
 }
-.send2 {
-    font-size: 13px;
-    padding: 5px;
+.send i {
+    vertical-align: middle
 }
+.down {
+    display: grid;
+    grid-template-columns: 1fr max-content
+}
+
 textarea::-webkit-input-placeholder {
     color: rgb(211, 210, 210);
 }
