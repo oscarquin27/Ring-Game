@@ -89,7 +89,7 @@
                       </ng-template>
                     <p><b>{{message.sender}}</b></p>
                     <p>{{message.message}}</p>
-                    <span class="time-right">11:00</span>
+                    <span class="time-right">{{message.timestamp}}</span>
                     </ng-template>
                     <ng-template #own>
                       <div *ngIf="usernameBool == true; then username else nousername"></div>
@@ -104,7 +104,7 @@
                               </ng-template>
                               <p><b>{{usernameExists}}</b></p>
                               <p>{{message.message}}</p>
-                              <span class="time-left">11:01</span>
+                              <span class="time-left">{{message.timestamp}}</span>
                       </div>
                       </ng-template>
                       <ng-template #nousername>
@@ -118,7 +118,7 @@
                               </ng-template>
                               <p><b>{{message.sender}}</b></p>
                               <p>{{message.message}}</p>
-                              <span class="time-left">11:01</span>
+                              <span class="time-left">{{message.timestamp}}</span>
                       </div>
                       </ng-template>
                   </ng-template>

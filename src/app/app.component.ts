@@ -22,7 +22,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "THNQEqHtfM1Axqv84yaA57oP9juP3rLEDa";
+  contractAddress = "TQF57KPBC4SkymeWfXYeiLqgSYGDQHZpn3";
   address;
   seconds;
   decenas;
@@ -764,18 +764,25 @@ export class AppComponent {
         if(result){
          let res1 = await window.tronWeb.address.fromHex(result.result.sender).toString();
          let res2 = await contract.users(res1).call();
+         let timestamp = result.result.timestamp
+         let date = new Date(timestamp * 1000);
+         let hours = date.getHours();
+         let minutes = "0" + date.getMinutes();
+         let seconds = "0" + date.getSeconds(); 
          if(res2.username == "" || res2.username == undefined){
          this.messages.push({
            sender : res1,
            message : result.result.message,
-           avatar : res2.image 
+           avatar : res2.image,
+           timestamp: hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
          });
           }
           else{
             this.messages.push({
               sender : res2.username,
               message : result.result.message,
-              avatar : res2.image 
+              avatar : res2.image,
+              timestamp: hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
             });
           } 
         }
@@ -792,11 +799,17 @@ export class AppComponent {
       let res2 = await contract.messages(i).call();
       let res3 = await window.tronWeb.address.fromHex(res2.sender).toString();
       let res4 = await contract.users(res3).call();
+      let timestamp = res2.timestamp
+         let date = new Date(timestamp * 1000);
+         let hours = date.getHours();
+         let minutes = "0" + date.getMinutes();
+         let seconds = "0" + date.getSeconds(); 
       if(res4.username != "" && this.address != res3){
         this.messages.push({
           sender: res4.username,
           message: res2.message,
-          avatar : res4.image
+          avatar : res4.image,
+          timestamp : hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
         })
         console.log("Has", this.messages);
       }
@@ -804,7 +817,8 @@ export class AppComponent {
       this.messages.push({
         sender: res3,
         message: res2.message,
-        avatar: res4.image
+        avatar: res4.image,
+        timestamp: hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
         });
         console.log("0x", this.messages);
       }

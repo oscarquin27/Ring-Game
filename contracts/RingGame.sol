@@ -43,6 +43,7 @@ contract RingGame {
     struct Message{
         address sender;
         string message;
+        uint256 timestamp;
     }
 
     struct User {
@@ -58,7 +59,7 @@ contract RingGame {
     event NewBetFifty(address player, uint amount);
     event PlayGame(uint time);
     event StopGame(uint time);
-    event MessageSent(address sender, string message);
+    event MessageSent(address sender, string message, uint256 timestamp);
     
     modifier OnlyOwner(){
         require(msg.sender == owner);
@@ -187,8 +188,8 @@ contract RingGame {
     
     function sendMessage(string b) public {
         messageCount += 1;
-        messages[messageCount] = Message(msg.sender, b);
-        emit MessageSent(msg.sender, b);
+        messages[messageCount] = Message(msg.sender, b, now);
+        emit MessageSent(msg.sender, b, now);
     }
 
 }
