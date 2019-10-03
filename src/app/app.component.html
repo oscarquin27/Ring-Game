@@ -60,8 +60,14 @@
             <ng-template #closeChat>
               <div class="example-box" cdkDrag>
                 <div class="top-chat">
-                  <img src="../assets/64_1.png">
-                  <h5>Username</h5>
+                  <div *ngIf="avatarExists === undefined; then noavatarprofile else avatarprofile"></div>
+                  <ng-template #noavatarprofile>
+                      <img src="../assets/64_1.png">  
+                  </ng-template>
+                  <ng-template #avatarprofile>
+                      <img src="{{avatarExists}}">
+                  </ng-template>
+                  <h5>Global Chat</h5>
                   <button (click)="chatOpen = false" type="button" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -74,18 +80,47 @@
                   <div class="container" *ngFor="let message of messages">
                     <div *ngIf="message.sender === address; then own else other"></div>
                     <ng-template #other>
-                      <img src="../assets/64_1.png">
+                      <div *ngIf="message.avatar === undefined; then noavatarother else avatarother"></div>
+                      <ng-template #avatarother>
+                          <img src="{{message.avatar}}">
+                      </ng-template>
+                      <ng-template #noavatarother>
+                          <img src="../assets/64_1.png">
+                      </ng-template>
                     <p><b>{{message.sender}}</b></p>
                     <p>{{message.message}}</p>
                     <span class="time-right">11:00</span>
                     </ng-template>
                     <ng-template #own>
-                      <div class="container you">
-                        <img src="../assets/64_1.png" alt="Avatar" class="right">
-                        <p><b>{{message.sender}}</b></p>
-                        <p>{{message.message}}</p>
-                        <span class="time-left">11:01</span>
-                    </div>
+                      <div *ngIf="usernameBool == true; then username else nousername"></div>
+                      <ng-template #username>
+                          <div class="container you">
+                              <div *ngIf="message.avatar === undefined; then noavatar else avatar"></div>
+                              <ng-template #avatar>
+                                  <img src="{{message.avatar}}" alt="Avatar" class="right">
+                              </ng-template>
+                              <ng-template #noavatar>
+                                  <img src="../assets/64_1.png" alt="Avatar" class="right">
+                              </ng-template>
+                              <p><b>{{usernameExists}}</b></p>
+                              <p>{{message.message}}</p>
+                              <span class="time-left">11:01</span>
+                      </div>
+                      </ng-template>
+                      <ng-template #nousername>
+                          <div class="container you">
+                              <div *ngIf="message.avatar === undefined; then noavatar else avatar"></div>
+                              <ng-template #avatar>
+                                  <img src="{{message.avatar}}" alt="Avatar" class="right">
+                              </ng-template>
+                              <ng-template #noavatar>
+                                  <img src="../assets/64_1.png" alt="Avatar" class="right">
+                              </ng-template>
+                              <p><b>{{message.sender}}</b></p>
+                              <p>{{message.message}}</p>
+                              <span class="time-left">11:01</span>
+                      </div>
+                      </ng-template>
                   </ng-template>
                   </div>
                  </div>
@@ -356,25 +391,22 @@
         </mat-card-title>
         <mat-card-content>
           <p>Choose Avatar</p>
-          <img src="../assets/64_1.png">
-          <img src="../assets/64_2.png">
-          <img src="../assets/64_3.png">
-          <img src="../assets/64_4.png">
-          <img src="../assets/64_5.png">
-          <img src="../assets/64_6.png">
-          <img src="../assets/64_7.png">
-          <img src="../assets/64_8.png">
-          <img src="../assets/64_9.png">
-          <img src="../assets/64_10.png">
-          <img src="../assets/64_11.png">
-          <img src="../assets/64_12.png">
-          <img src="../assets/64_13.png">
-          <img src="../assets/64_14.png">
-          <img src="../assets/64_15.png">
-          <img src="../assets/64_16.png">
-          <div>
-            <button type="button" class="btn btn-success">Change Avatar</button>
-          </div>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_1.png')"><img src="../assets/64_1.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_2.png')"><img src="../assets/64_2.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_3.png')"><img src="../assets/64_3.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_4.png')"><img src="../assets/64_4.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_5.png')"><img src="../assets/64_5.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_6.png')"><img src="../assets/64_6.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_7.png')"><img src="../assets/64_7.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_8.png')"><img src="../assets/64_8.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_9.png')"><img src="../assets/64_9.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_10.png')"><img src="../assets/64_10.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_11.png')"><img src="../assets/64_11.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_12.png')"><img src="../assets/64_12.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_13.png')"><img src="../assets/64_13.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_14.png')"><img src="../assets/64_14.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_15.png')"><img src="../assets/64_15.png"></button>
+          <button class="btn-avatar" (click)="setAvatar('../assets/64_16.png')"><img src="../assets/64_16.png"></button>
         </mat-card-content>
       </mat-card>
       </div>

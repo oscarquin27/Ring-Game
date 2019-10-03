@@ -77,6 +77,8 @@ export class AppComponent {
   username : string;
   usernameExists : string;
   usernameBool : boolean;
+  avatarExists : string;
+  avatarBool : boolean;
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -103,6 +105,7 @@ export class AppComponent {
                     this.timer();
                     this.spinner = false;
                     this.hasUsername();
+                    this.hasAvatar();
                   })
                   //this.timer();
                   this.getPreviousChats();
@@ -760,19 +763,21 @@ export class AppComponent {
         if (err) return console.log("ERROR")
         if(result){
          let res1 = await window.tronWeb.address.fromHex(result.result.sender).toString();
-         if(res1 === ""){
+         let res2 = await contract.users(res1).call();
+         if(res2.username == "" || res2.username == undefined){
          this.messages.push({
            sender : res1,
-           message : result.result.message
-         }); 
+           message : result.result.message,
+           avatar : res2.image 
+         });
           }
           else{
-            let username = await contract.users(res1).call();
             this.messages.push({
-              sender : username.username,
-              message : result.result.message
-            })
-          }
+              sender : res2.username,
+              message : result.result.message,
+              avatar : res2.image 
+            });
+          } 
         }
       })
     }catch(e){}
@@ -787,17 +792,19 @@ export class AppComponent {
       let res2 = await contract.messages(i).call();
       let res3 = await window.tronWeb.address.fromHex(res2.sender).toString();
       let res4 = await contract.users(res3).call();
-      if(res4 === ""){
+      if(res4.username != "" && this.address != res3){
         this.messages.push({
           sender: res4.username,
           message: res2.message,
+          avatar : res4.image
         })
         console.log("Has", this.messages);
       }
       else{
       this.messages.push({
         sender: res3,
-        message: res2.message
+        message: res2.message,
+        avatar: res4.image
         });
         console.log("0x", this.messages);
       }
@@ -821,8 +828,8 @@ export class AppComponent {
         shouldPollResponse : false
       }).then(() => {
           Swal.fire(
-            'Awesome!',
-            'Username set correctly',
+            'Good job!',
+            'Username changed',
             'success'
           )
       });
@@ -830,20 +837,22 @@ export class AppComponent {
   }
 
   async setAvatar(avatar: string){
+    console.log(avatar);
     try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.setAvatar(avatar).send({
         feeLimit: 10000000,
         callValue: 0,
         shouldPollResponse : false
-      }).then(() => {
+      }).then(()=>{
         Swal.fire(
-          'Awesome!',
-          'Avatar set correctly',
+          'Good job!',
+          'Avatar changed',
           'success'
         )
       });
-    }catch(e){}
+    }catch(e){
+    }
   }
 
   async hasUsername(){
@@ -858,5 +867,19 @@ export class AppComponent {
     }
 
     }catch(e){}
+  }
+
+  async hasAvatar(){
+    try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res3 = await window.tronWeb.address.fromHex(this.address).toString();
+      let res4 = await contract.users(res3).call();
+  
+      if(res4.image != ""){
+        this.avatarExists = res4.image;
+        this.avatarBool = true;
+      }
+  
+      }catch(e){}
   }
 }
