@@ -131,7 +131,7 @@ export class AppComponent {
         this.wheel.wheelImage = wheelImg;
         this.wheel.draw();
       }
-      wheelImg.src = "../assets/roulettespacingsmall.png";
+      wheelImg.src = "../assets/roulettefinal.png";
       }
 
       async initWheel() : Promise<any>{
@@ -149,7 +149,7 @@ export class AppComponent {
         'numSegments' : 54,
         'rotationAngle' : this.stopAt,
         'responsive' : false,
-        'centerX'     : 258,
+        'centerX'     : 310,
         'centerY'     : 320,
         'lineWidth'   : 1,
         'innerRadius' : 200,
@@ -726,8 +726,6 @@ export class AppComponent {
           }
 
         }
-        
-        console.log(this.aux);
         this.aux;
         }
       catch(e){}
@@ -794,12 +792,12 @@ export class AppComponent {
     try{
     const contract = await window.tronWeb.contract().at(this.contractAddress);
     let res = await contract.messageCount().call();
-    
+    console.log(res.toNumber());
     for(let i = (res.toNumber()-10); i <= res.toNumber(); i++){
       let res2 = await contract.messages(i).call();
       let res3 = await window.tronWeb.address.fromHex(res2.sender).toString();
       let res4 = await contract.users(res3).call();
-      let timestamp = res2.timestamp
+      let timestamp = res2.timestamp;
          let date = new Date(timestamp * 1000);
          let hours = date.getHours();
          let minutes = "0" + date.getMinutes();

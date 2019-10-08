@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { NGXLogger } from 'ngx-logger';
 import TronWeb from 'tronweb';
+import { debug } from 'util';
 declare let window: any;
 
 export interface Request {
@@ -17,30 +18,38 @@ export interface Request {
 export class UtilsService {
   private tronweb : TronWeb | any;
   contractAddress = "TQF57KPBC4SkymeWfXYeiLqgSYGDQHZpn3";
-  public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  FOUNDATION_ADDRESS = 'TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB';
+  public loggedIn: boolean = false;
   balance;
 
   constructor( private logger : NGXLogger) { }
   
   async initTronWeb(){
     return new Promise(resolve => {
+      console.log("Initializing")
       if (typeof window.tronWeb != 'undefined') {
-        if (window.tronWeb && window.tronWeb.ready != undefined){
-        this.loggedIn.next(window.tronWeb && window.tronWeb.ready);
-         }
-      let fullNode = 'https://api.trongrid.io';
-      let solidityNode = 'https://api.trongrid.io';
-      let eventServer = 'https://api.trongrid.io';
-      
-      if (this.loggedIn){
-        fullNode = window.tronWeb.currentProviders().fullNode.host;
-        solidityNode = window.tronWeb.currentProviders().solidityNode.host;
-        eventServer = window.tronWeb.currentProviders().eventServer.host;
+        if (window.tronWeb != undefined && window.tronWeb.ready != false){
+        this.loggedIn = true;
+        console.log("ITS TRUE HE IS LOGGED IN");
 
-        this.logger.debug('SUCCESS');
+         }
+      let fullNode = 'https://api.shasta.trongrid.io';
+      let solidityNode = 'https://api.shasta.trongrid.io';
+      let eventServer = 'https://api.shasta.trongrid.io';
+      
+      if (this.loggedIn == true){
+        fullNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().fullNode.host;
+        solidityNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().solidityNode.host;
+        eventServer = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().eventServer.host;
+
+        this.logger.info('SUCCESS');
       }
-      if (!this.loggedIn){
-        console.log("Logged out");
+      if (this.loggedIn == false){
+          console.log("ITS false HE IS LOGGED IN");
+          window.tronWeb.defaultAddress = {
+          hex: window.tronWeb.address.toHex(this.FOUNDATION_ADDRESS),
+          base58 : this.FOUNDATION_ADDRESS
+        }
       }
       this.tronweb = new TronWeb (
         fullNode,
@@ -53,6 +62,7 @@ export class UtilsService {
       return resolve();
     } else {
       this.logger.debug('No? Try!');
+      console.log("initializing because error");
       window.tronWeb = new TronWeb(
         'https://api.shasta.trongrid.io',
         'https://api.shasta.trongrid.io',
