@@ -427,7 +427,8 @@ button{
 }
 .botones img {
     cursor: pointer;
-    width: 80%
+    width: 95%;
+    padding-right: 30px
 }
 /* Sound button style */
 .mute {
@@ -659,6 +660,10 @@ mat-card-content input {
 .ava {
     vertical-align: middle;
 }
+.bol {
+    width: 20px;
+    height: fit-content;
+}
 /* Version media */
 @media only screen and (min-width: 650px) {
     .contains {
@@ -723,6 +728,10 @@ mat-card-content input {
     }
     .botones {
         grid-gap: 70px
+    }
+    .botones img {
+        width: 100%;
+        padding: 0px 0px 40px 0px
     }
 }
 
@@ -794,6 +803,10 @@ mat-card-content input {
         height: 0px;
         padding-left: 10px;
         border-radius: 3px;
+    }
+    .botones img {
+        width: 105%;
+        padding: 0px 50px 0px 0px
     }
 
 }
