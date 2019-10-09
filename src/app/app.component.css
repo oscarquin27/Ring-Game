@@ -53,7 +53,7 @@
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
     top: -210px;
-    margin-left: 80px;
+    margin-left: 115px;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
 }
@@ -84,8 +84,8 @@ h3 div:last-child {
     color: white;
     font-size: 1rem;
     font-family: 'Orbitron', sans-serif;
-    top: -210px;
-    left: -25px;
+    top: -230px;
+    left: 8px;
 }
 /* Botones del historial */
 .historial {
@@ -94,13 +94,21 @@ h3 div:last-child {
     margin-top: -325px;
     margin-right: 10px;
     padding-top: 7px;
+    display: grid
 }
-.hist {
-    display: block;
-    height: 25px;
-    width: 25px;
+.hist1 {
+    width: 20px;
+}
+.hist2 {
+    width: 23px;
+}
+.hist3 {
+    width: 26px
+}
+.hist4 {
+    width: 29px
+}
 
-}
 .showprev {
     /*display: block;
     background-color: transparent;
@@ -111,11 +119,49 @@ h3 div:last-child {
         padding: 0;
         line-height: 10px;
         position: relative;
-        margin-top: 6px;
+        /* margin-top: 6px; */
         height: 0px;
         padding-left: 10px;
         border-radius: 3px;
 }
+
+.prueba1{
+    height: 15px;
+}
+.previous{
+    margin-left: 10%;
+}
+
+/* estilos del popover */
+:host >>> .popover-body {
+    background-color: #2f2d2d;
+    color: #a6a6a6
+}
+.prueba1 p {
+    margin: 2px 0px 4px 0px;
+    font-weight: 500
+}
+.grey-dialog p {
+    color: white;
+}
+
+.red-dialog p {
+    color: #c9324e;
+}
+
+.green-dialog p {
+    color: #0c9b4b;
+}
+
+.yellow-dialog p {
+    color: #FDCA05;
+}
+:host >>>  .bs-popover-auto[x-placement^=left]>.arrow::after, .bs-popover-left>.arrow::after {
+    background-color: #2f2d2d;
+}
+
+/* Botones */
+
 .button-trans-grey {
     border: 3px solid rgb(105, 98, 97);
 }
@@ -246,11 +292,11 @@ h3 div:last-child {
 }
 .color2 {
     /* color: #24C6DC;  */
-    color: #4da8b5;
+    color: #c9324e;
 }
 .color3 {
     /* color: #5632af; */
-    color: #8f6de2;
+    color: #0c9b4b;
 }
 .color4 {
     /* color: #F7971E; */
@@ -310,29 +356,6 @@ button{
 .btn-avatar{
     background-color: #ffffff00;
     border-color: #ffffff00;
-}
-.previous{
-    margin-left: 10%;
-}
-
-.grey-dialog{
-    color: #313435;
-}
-
-.blue-dialog{
-    color: #228DF0;
-}
-
-.purple-dialog{
-    color: #5632AF;
-}
-
-.yellow-dialog{
-    color: #FDCA05;
-}
-
-.popover-body{
-    background-color: #161616d5;
 }
 
 .table-numeral{
@@ -660,10 +683,6 @@ mat-card-content input {
 .ava {
     vertical-align: middle;
 }
-.bol {
-    width: 20px;
-    height: fit-content;
-}
 /* Version media */
 @media only screen and (min-width: 650px) {
     .contains {
@@ -686,9 +705,15 @@ mat-card-content input {
     }
     #seconds {
         top: -255px;
-        left: 15px;
+        left: 20px;
         font-size: 2.5rem
     }
+    #indication {
+        top: -260px;
+        left: 10px;
+        font-size: 1.25rem
+    }
+
     h3 div {
         height: 60px;
         width: 40px;
@@ -707,11 +732,6 @@ mat-card-content input {
         text-align: end;
         margin-left: -2px;
     }
-    #indication {
-        top: -260px;
-        left: -32px;
-        font-size: 1.25rem
-    }
     .historial {
         margin-top: -365px
     }
@@ -727,7 +747,7 @@ mat-card-content input {
         border-radius: 3px;
     }
     .botones {
-        grid-gap: 70px
+        grid-gap: 40px
     }
     .botones img {
         width: 100%;
@@ -764,13 +784,18 @@ mat-card-content input {
     #prize {
         /* width: 600px;
         height: 463px; */
-        width: 470px;
+        width: 560px;
         height: 465px;
     }
     #seconds {
         top: -300px;
-        left: 23px;
+        left: 85px;
         font-size: 3rem
+    }
+    #indication {
+        top: -310px;
+        left: 10px;
+        font-size: 1.5rem
     }
     h3 div {
         height: 60px;
@@ -781,11 +806,6 @@ mat-card-content input {
     }
     h3 div:nth-child(3) {
         width: 7px;
-    }
-    #indication {
-        top: -310px;
-        left: -40px;
-        font-size: 1.5rem
     }
     .historial {
         margin-top: -422px
