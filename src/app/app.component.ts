@@ -99,6 +99,7 @@ export class AppComponent {
       window.addEventListener('load', () => {
           this.tronWebService.initTronWeb()
               .then(async () => {
+                  //this.spinOf();
                   this.address = await window.tronWeb.defaultAddress.base58.toString();
                   this.logger.info('Ring' + ' Successfully launched');
                   this.getPreviousGames().then(() =>{
@@ -229,8 +230,15 @@ export class AppComponent {
           'fillStyle' : "#ffffff00",
           'strokeStyle' : "#ffffff00"
 
+        },
+        'pointerGuide': {
+          
+          'display' : true,
+          'strokeStyle' : 'red',
+          'lineWidth' : 3
         }
       });
+      console.log(this.wheel.getRotationPosition());
     }
 
     muteAudio(){
@@ -314,7 +322,7 @@ export class AppComponent {
     async startEventListenerStop(){
       try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
-      let res2 = await contract.StopGame(this.inputNumber).watch(async (err, result) => {
+      let res2 = await contract.StopGame().watch(async (err, result) => {
         if(err) {this.timer();}
         if(result){
             console.log(result);
@@ -792,7 +800,7 @@ export class AppComponent {
     try{
     const contract = await window.tronWeb.contract().at(this.contractAddress);
     let res = await contract.messageCount().call();
-    console.log(res.toNumber());
+    //console.log(res.toNumber());
     for(let i = (res.toNumber()-10); i <= res.toNumber(); i++){
       let res2 = await contract.messages(i).call();
       let res3 = await window.tronWeb.address.fromHex(res2.sender).toString();
@@ -809,7 +817,7 @@ export class AppComponent {
           avatar : res4.image,
           timestamp : hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
         })
-        console.log("Has", this.messages);
+        //console.log("Has", this.messages);
       }
       else{
       this.messages.push({
@@ -818,9 +826,10 @@ export class AppComponent {
         avatar: res4.image,
         timestamp: hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
         });
-        console.log("0x", this.messages);
+        //console.log("0x", this.messages);
       }
       //console.log(res4, res3, this.messages)
+      let element = document.getElementById('prize')
     }
    } catch(e){}
   }
