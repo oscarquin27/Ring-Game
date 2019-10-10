@@ -79,7 +79,7 @@
                   </div> -->
                   <div class="container" *ngFor="let message of messages">
                     <div *ngIf="message.sender === address; then own else other"></div>
-                    <ng-template #other>
+                    <ng-template id ="themessage" #other>
                       <div *ngIf="message.avatar === undefined; then noavatarother else avatarother"></div>
                       <ng-template #avatarother>
                           <img src="{{message.avatar}}">
@@ -91,7 +91,7 @@
                       <p>{{message.message}}</p>
                       <span class="time-right">{{message.timestamp}}</span>
                     </ng-template>
-                    <ng-template #own>
+                    <ng-template id ="themessage" #own>
                       <div *ngIf="usernameBool == true; then username else nousername"></div>
                       <ng-template #username>
                         <div class="container you">
