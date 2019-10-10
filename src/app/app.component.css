@@ -28,24 +28,28 @@
 #canvas {
     height: 350px;
     width: 315px;
-    margin: auto
+    margin: auto;
+    position: relative;
+    z-index: -1;
+    margin-left: -90px
     /* 1,12903225806451612903225806451 */
 }
 #prize {
-    background-image : url(../assets/pointergris.png);
-    background-image : url(../assets/pointerb.png);
-    background-image : url(../assets/pointerm.png);
+    background-image : url(../assets/puntgris.png);
+    background-image : url(../assets/puntverde.png);
+    background-image : url(../assets/puntred.png);
     background-image : url(../assets/punteroam.png);
     /* background-image : url(../assets/pointeryellow.png); */
     background-repeat : no-repeat;
-    background-position-x : left;
+    background-position-x : inherit;
     background-position-y: center;
     /* width: 471px;
     height: 318px; */
     width: 340px;
-    height: 322px;
+    height: 337px;
     text-align: center;
-    margin: auto
+    margin: auto;
+    z-index: 1;
 }
 #seconds {
     position: relative;
@@ -53,7 +57,7 @@
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
     top: -210px;
-    margin-left: 115px;
+    margin-left: 75px;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
 }
@@ -85,7 +89,7 @@ h3 div:last-child {
     font-size: 1rem;
     font-family: 'Orbitron', sans-serif;
     top: -230px;
-    left: 8px;
+    left: -36px;
 }
 /* Botones del historial */
 .historial {
@@ -135,7 +139,8 @@ h3 div:last-child {
 /* estilos del popover */
 :host >>> .popover-body {
     background-color: #2f2d2d;
-    color: #a6a6a6
+    color: #a6a6a6;
+    border-right: 5px solid #C9324E
 }
 .prueba1 p {
     margin: 2px 0px 4px 0px;
@@ -155,9 +160,6 @@ h3 div:last-child {
 
 .yellow-dialog p {
     color: #FDCA05;
-}
-:host >>>  .bs-popover-auto[x-placement^=left]>.arrow::after, .bs-popover-left>.arrow::after {
-    background-color: #2f2d2d;
 }
 
 /* Botones */
@@ -448,10 +450,10 @@ button{
     display: grid;
     grid-template-columns: max-content max-content max-content;
 }
-.botones img {
+.icons {
     cursor: pointer;
     width: 95%;
-    padding-right: 30px
+    padding-right: 70px
 }
 /* Sound button style */
 .mute {
@@ -586,7 +588,7 @@ button{
 textarea {
     font-size: 13px;
     width: 288px;
-    min-height: 71px;
+    min-height: 59px;
     border: none;
     /* border-top: #2f3132 1px solid; */
     background-color: #666;
@@ -693,24 +695,24 @@ mat-card-content input {
         grid-template-rows: 1fr 1fr
     }
     #canvas {
-        height: 440px;
+        height: 418px;
         width: 400px;
-        margin: auto
+        margin-left: -47px
     }
     #prize {
         /* width: 545px;
         height: 399px; */
-        width: 415px;
+        /* width: 415px; */
         height: 402px;
     }
     #seconds {
         top: -255px;
-        left: 20px;
+        left: 8px;
         font-size: 2.5rem
     }
     #indication {
         top: -260px;
-        left: 10px;
+        left: -6px;
         font-size: 1.25rem
     }
 
@@ -747,11 +749,12 @@ mat-card-content input {
         border-radius: 3px;
     }
     .botones {
-        grid-gap: 40px
+        grid-gap: 70px
     }
-    .botones img {
+    .icons {
         width: 100%;
-        padding: 0px 0px 40px 0px
+        /* padding: 0px 0px 40px 0px */
+        padding-right: 0px
     }
 }
 
@@ -762,7 +765,7 @@ mat-card-content input {
     }
     .first-div {
         /* grid-template-columns:  minmax(100px, max-content) 1fr; */
-        grid-template-columns: minmax(300px, 400px) 1fr;
+        grid-template-columns: 300px 1fr;
         margin-bottom: 120px
     }
     .b {
@@ -780,16 +783,18 @@ mat-card-content input {
     #canvas {
         width: 460px;
         height: 510px;
+        margin-left: -60px
     }
     #prize {
         /* width: 600px;
         height: 463px; */
-        width: 560px;
-        height: 465px;
+        /* width: 560px; */
+        height: 488px;
+        background-position-x: inherit
     }
     #seconds {
         top: -300px;
-        left: 85px;
+        left: 12px;
         font-size: 3rem
     }
     #indication {
@@ -824,9 +829,12 @@ mat-card-content input {
         padding-left: 10px;
         border-radius: 3px;
     }
-    .botones img {
+    .botones {
+        grid-gap: 20px
+    }
+    .icons {
         width: 105%;
-        padding: 0px 50px 0px 0px
+        padding: 0px 45px 0px 0px
     }
 
 }
