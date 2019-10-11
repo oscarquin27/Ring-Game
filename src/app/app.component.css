@@ -56,8 +56,8 @@
     color: white;
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
-    top: -210px;
-    margin-left: 75px;
+    top: -212px;
+    margin-left: 70px;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
 }
@@ -123,11 +123,7 @@ h3 div:last-child {
         padding: 0;
         line-height: 10px;
         position: relative;
-<<<<<<< HEAD
         margin-top: 3px;
-=======
-        /* margin-top: 6px; */
->>>>>>> 5b4a028e8009faefe5cfe5650de5439252be38b7
         height: 0px;
         padding-left: 10px;
         border-radius: 3px;
@@ -146,6 +142,13 @@ h3 div:last-child {
     color: #a6a6a6;
     border-right: 5px solid #C9324E
 }
+:host >>> .arrow::after {
+    border-left-color: #C9324E
+}
+:host >>> .arrow::before {
+    border-left-color: #C9324E
+}
+
 .prueba1 p {
     margin: 2px 0px 4px 0px;
     font-weight: 500
@@ -487,7 +490,6 @@ button{
     width: 340px;
     height: 530px;
     color: rgba(0, 0, 0, 0.87);
-    cursor: move;
     display: block;
     justify-content: center;
     align-items: center;
@@ -524,7 +526,8 @@ button{
     padding: 10px 15px;
     width: 340px;
     grid-template-columns:  max-content  1fr max-content;
-    grid-column-gap: 5px
+    grid-column-gap: 5px;
+    cursor: move;
 }
 .top-chat h5 {
     margin: auto
@@ -711,11 +714,11 @@ mat-card-content input {
     }
     #seconds {
         top: -255px;
-        left: 8px;
+        left: 10.6px;
         font-size: 2.5rem
     }
     #indication {
-        top: -260px;
+        top: -270px;
         left: -6px;
         font-size: 1.25rem
     }
@@ -798,7 +801,7 @@ mat-card-content input {
     }
     #seconds {
         top: -300px;
-        left: 12px;
+        left: 18px;
         font-size: 3rem
     }
     #indication {

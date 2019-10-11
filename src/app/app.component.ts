@@ -79,6 +79,11 @@ export class AppComponent {
   usernameBool : boolean;
   avatarExists : string;
   avatarBool : boolean;
+  // popover values
+  gris : boolean
+  red : boolean
+  yellow : boolean
+  green : boolean
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -221,7 +226,7 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power2.easeOut',
-          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
+          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/puntgris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/puntverde.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/puntred.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
           'callbackSound' : playSound,
           'soundTrigger' : 'pin'
         },
@@ -469,17 +474,17 @@ export class AppComponent {
               if(this.inputNumber == 2) {
                 document.getElementById("indication").style.color = "#473f3d";
                 document.getElementById("seconds").style.color = "#473f3d";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
               }
               if(this.inputNumber == 3){
                 document.getElementById("indication").style.color = "#228df0";
                 document.getElementById("seconds").style.color = "#228df0";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
               }
               if(this.inputNumber == 5){
                 document.getElementById("indication").style.color = "#5632af";
                 document.getElementById("seconds").style.color = "#5632af";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
               }
               if(this.inputNumber == 50){
                 document.getElementById("indication").style.color = "#fcc235";
@@ -658,6 +663,32 @@ export class AppComponent {
       console.log("close");
     }
 
+    // popg() {
+    //   this.gris = true;
+    // }
+    // if( gris = true) {
+    //    document.getElementById('hist1').style.width = '40px';
+    // }
+      //  document.getElementById("seconds").style.color = "#473f3d";
+      //  document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
+    // }
+    // else if ( == 3) {
+    //   document.getElementById("indication").style.color = "#228df0";
+    //   document.getElementById("seconds").style.color = "#228df0";
+    //   document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
+    // }
+    // else if ( == 5) {
+    //   document.getElementById("indication").style.color = "#5632af";
+    //   document.getElementById("seconds").style.color = "#5632af";
+    //   document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)";
+    // }
+    // else if ( == 50){
+    //   document.getElementById("indication").style.color = "#fcc235";
+    //   document.getElementById("seconds").style.color = "#fcc235";
+    //   document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
+    // }
+
+
     async myBets() : Promise<any>{
       this.myBetHistory = [];
       try{
@@ -715,17 +746,17 @@ export class AppComponent {
           if(parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 2){
             document.getElementById("indication").style.color = "#473f3d";
             document.getElementById("seconds").style.color = "#473f3d";
-            document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
             document.getElementById("indication").style.color = "#228df0";
             document.getElementById("seconds").style.color = "#228df0";
-            document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
             document.getElementById("indication").style.color = "#5632af";
             document.getElementById("seconds").style.color = "#5632af";
-            document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)";
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)";
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
             document.getElementById("indication").style.color = "#fcc235";
@@ -903,4 +934,5 @@ export class AppComponent {
   
       }catch(e){}
   }
+
 }

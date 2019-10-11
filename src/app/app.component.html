@@ -25,8 +25,8 @@
         <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
             <!-- *ngIf="prev.a == 2" -->
           <div *ngIf="prev.a == 2" class="grey-dialog"> 
-            <ng-template id="pave" #content><p>Hash: </p> {{prev.hash}}<p>Seed: </p> {{prev.salt}} <p>Random: </p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-grey showprev hist1" placement="left" [ngbPopover]="content"></button>  
+            <ng-template #content><p>Hash: </p> {{prev.hash}}<p>Seed: </p> {{prev.salt}} <p>Random: </p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-grey showprev hist1" placement="left" [ngbPopover]="content" (click)="popg()"></button>  
           </div>
           <div *ngIf="prev.a == 3" class="red-dialog">
             <ng-template #content class="red-info"><p>Hash: </p> {{prev.hash}} <p>Seed: </p> {{prev.salt}} <p>Random:</p>{{prev.rand}}</ng-template>
@@ -59,7 +59,7 @@
             <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
             <ng-template #closeChat>
               <div class="example-box" cdkDrag>
-                <div class="top-chat">
+                <div class="top-chat" cdkDragHandle>
                   <div *ngIf="avatarExists === undefined; then noavatarprofile else avatarprofile"></div>
                   <ng-template #noavatarprofile>
                       <img src="../assets/64_1.png">  
