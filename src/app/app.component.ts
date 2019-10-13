@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import * as Winwheel from 'winwheel';
 import { NGXLogger } from 'ngx-logger';
 import TronWeb from 'tronweb';
@@ -8,11 +8,13 @@ import * as cryptojs from 'crypto-js';
 declare let window : any;
 declare var require: any;
 import Swal from 'sweetalert2';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'ring';
@@ -79,11 +81,6 @@ export class AppComponent {
   usernameBool : boolean;
   avatarExists : string;
   avatarBool : boolean;
-  // popover values
-  gris : boolean
-  red : boolean
-  yellow : boolean
-  green : boolean
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -662,32 +659,6 @@ export class AppComponent {
       this.dialogOpenYellow = false;
       console.log("close");
     }
-
-    // popg() {
-    //   this.gris = true;
-    // }
-    // if( gris = true) {
-    //    document.getElementById('hist1').style.width = '40px';
-    // }
-      //  document.getElementById("seconds").style.color = "#473f3d";
-      //  document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
-    // }
-    // else if ( == 3) {
-    //   document.getElementById("indication").style.color = "#228df0";
-    //   document.getElementById("seconds").style.color = "#228df0";
-    //   document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
-    // }
-    // else if ( == 5) {
-    //   document.getElementById("indication").style.color = "#5632af";
-    //   document.getElementById("seconds").style.color = "#5632af";
-    //   document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)";
-    // }
-    // else if ( == 50){
-    //   document.getElementById("indication").style.color = "#fcc235";
-    //   document.getElementById("seconds").style.color = "#fcc235";
-    //   document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
-    // }
-
 
     async myBets() : Promise<any>{
       this.myBetHistory = [];

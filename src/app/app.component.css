@@ -136,18 +136,65 @@ h3 div:last-child {
     margin-left: 10%;
 }
 
-/* estilos del popover */
+/* estilos del popover
 :host >>> .popover-body {
-    background-color: #2f2d2d;
+    background-color: #2f2d2d; 
     color: #a6a6a6;
-    border-right: 5px solid #C9324E
+    border-right: 5px solid #C9324E;
+} */
+.green .popover-body {
+    background-color: #2f2d2d; 
+    color: #a6a6a6;
+    border-right: 5px solid #0c9b4b;
 }
-:host >>> .arrow::after {
-    border-left-color: #C9324E
+.green .arrow::after {
+    border-left-color: #0c9b4b;
+    left: -3px
 }
-:host >>> .arrow::before {
-    border-left-color: #C9324E
+.green .arrow::before {
+    border-left-color: #0c9b4b;
+    left: -3px
 }
+.red .popover-body {
+    background-color: #2f2d2d; 
+    color: #a6a6a6;
+    border-right: 5px solid #C9324E;
+}
+.red .arrow::after {
+    border-left-color: #C9324E;
+    left: -3px
+}
+.red .arrow::before {
+    border-left-color: #C9324E;
+    left: -3px
+}
+.grey .popover-body {
+    background-color: #2f2d2d; 
+    color: #a6a6a6;
+    border-right: 5px solid grey;
+}
+.grey .arrow::after {
+    border-left-color: grey;
+    left: -3px
+}
+.grey .arrow::before {
+    border-left-color: grey;
+    left: -3px
+}
+.yellow .popover-body {
+    background-color: #2f2d2d; 
+    color: #a6a6a6;
+    border-right: 5px solid #FDCA05 !important;
+}
+.yellow .arrow::after {
+    border-left-color: #FDCA05;
+    left: -3px
+}
+.yellow .arrow::before {
+    border-left-color: #FDCA05;
+    left: -3px
+}
+
 
 .prueba1 p {
     margin: 2px 0px 4px 0px;
@@ -168,6 +215,28 @@ h3 div:last-child {
 .yellow-dialog p {
     color: #FDCA05;
 }
+
+/* Pop over en div */
+/* .csgo-history-item-detail {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: roboto;
+    color: #c13c3c;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 14px!important;
+    border-right: 5px solid #666;
+    line-height: 1.3;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    width: 155px;
+    left: -150px;
+    top: -15px;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 6px;
+    border-color: #c13c3c;
+    display: none;
+} */
 
 /* Botones */
 
