@@ -178,6 +178,47 @@ export class AppComponent {
         'imageOverlay' : false,
         'segments'    :
         [
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
           {'text' : '5'},
           {'text' : '2'},
           {'text' : '5'},
@@ -192,47 +233,6 @@ export class AppComponent {
           {'text' : '50'},
           {'text' : '5'},
           {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
         ],
         'animation' :
         {
@@ -241,18 +241,12 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power2.easeOut',
-<<<<<<< HEAD
-          'callbackAfter' : getPosition,//'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
-||||||| merged common ancestors
-          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
-=======
           'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/puntgris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/puntverde.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/puntred.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
->>>>>>> 471be812327497d559983b0d0c740ae52e6e676b
           'callbackSound' : playSound,
           'soundTrigger' : 'pin'
         },
         'pins' : {
-          'number' : 54,
+          'number' : 10,
           'fillStyle' : "#ffffff00",
           'strokeStyle' : "#ffffff00"
 
@@ -493,19 +487,19 @@ export class AppComponent {
             });
             setTimeout(a => {
               if(this.inputNumber == 2) {
-                document.getElementById("indication").style.color = "#473f3d";
-                document.getElementById("seconds").style.color = "#473f3d";
+                document.getElementById("indication").style.color = "#5B5B5B";
+                document.getElementById("seconds").style.color = "#5B5B5B";
                 document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
               }
               if(this.inputNumber == 3){
-                document.getElementById("indication").style.color = "#228df0";
-                document.getElementById("seconds").style.color = "#228df0";
-                document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
+                document.getElementById("indication").style.color = "#C9324E";
+                document.getElementById("seconds").style.color = "#C9324E";
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
               }
               if(this.inputNumber == 5){
-                document.getElementById("indication").style.color = "#5632af";
-                document.getElementById("seconds").style.color = "#5632af";
-                document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
+                document.getElementById("indication").style.color = "#0C9B4B";
+                document.getElementById("seconds").style.color = "#0C9B4B";
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
               }
               if(this.inputNumber == 50){
                 document.getElementById("indication").style.color = "#fcc235";
@@ -746,12 +740,12 @@ export class AppComponent {
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
             document.getElementById("indication").style.color = "#228df0";
             document.getElementById("seconds").style.color = "#228df0";
-            document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
             document.getElementById("indication").style.color = "#5632af";
             document.getElementById("seconds").style.color = "#5632af";
-            document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)";
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)";
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
             document.getElementById("indication").style.color = "#fcc235";

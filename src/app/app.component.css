@@ -46,7 +46,7 @@
     /* width: 471px;
     height: 318px; */
     width: 340px;
-    height: 337px;
+    height: 420px;
     text-align: center;
     margin: auto;
     z-index: 1;
@@ -123,17 +123,9 @@ h3 div:last-child {
         padding: 0;
         line-height: 10px;
         position: relative;
-<<<<<<< HEAD
         /* margin-top: 6px; */
-||||||| merged common ancestors
-<<<<<<< HEAD
-        margin-top: 3px;
-=======
         /* margin-top: 6px; */
->>>>>>> 5b4a028e8009faefe5cfe5650de5439252be38b7
-=======
         margin-top: 3px;
->>>>>>> 471be812327497d559983b0d0c740ae52e6e676b
         height: 0px;
         padding-left: 10px;
         border-radius: 3px;
