@@ -145,9 +145,27 @@ export class AppComponent {
           audio.play();
             }
         }
+
+        let getPosition = () => {
+          let rand = this.wheel.getIndicatedSegmentNumber()
+          if(this.wheel.segments[rand].text == '2'){
+            document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
+          }
+          if(this.wheel.segments[rand].text == '3'){
+            document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
+          }
+          if(this.wheel.segments[rand].text == '5'){
+            document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)"; 
+          }
+          if(this.wheel.segments[rand].text == '50'){
+            document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
+          }
+          
+        }
       this.wheel = new Winwheel({
         'canvasId'    : 'canvas',
         'numSegments' : 54,
+        'pointerAngle' : 270,
         'rotationAngle' : this.stopAt,
         'responsive' : false,
         'centerX'     : 310,
@@ -221,12 +239,12 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power2.easeOut',
-          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
+          'callbackAfter' : getPosition,//'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
           'callbackSound' : playSound,
           'soundTrigger' : 'pin'
         },
         'pins' : {
-          'number' : 10,
+          'number' : 54,
           'fillStyle' : "#ffffff00",
           'strokeStyle' : "#ffffff00"
 
@@ -701,7 +719,7 @@ export class AppComponent {
         let previous = await contract.previousCount().call();
         let res = previous.toNumber();
         //let comp = res - 2;
-        for(let i = res-10; i <= res; i++){
+        for(let i = res-30; i <= res; i++){
           let get = await contract.previous(i).call();
           let a = parseInt(this.wheel.segments[get.random.toNumber()].text);
           this.aux.push({
