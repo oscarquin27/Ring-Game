@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import * as Winwheel from 'winwheel';
 import { NGXLogger } from 'ngx-logger';
 import TronWeb from 'tronweb';
@@ -8,11 +8,13 @@ import * as cryptojs from 'crypto-js';
 declare let window : any;
 declare var require: any;
 import Swal from 'sweetalert2';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'ring';
@@ -239,7 +241,13 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power2.easeOut',
+<<<<<<< HEAD
           'callbackAfter' : getPosition,//'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
+||||||| merged common ancestors
+          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/pointergris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/pointerb.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/pointerm.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
+=======
+          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/puntgris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/puntverde.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/puntred.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
+>>>>>>> 471be812327497d559983b0d0c740ae52e6e676b
           'callbackSound' : playSound,
           'soundTrigger' : 'pin'
         },
@@ -487,17 +495,17 @@ export class AppComponent {
               if(this.inputNumber == 2) {
                 document.getElementById("indication").style.color = "#473f3d";
                 document.getElementById("seconds").style.color = "#473f3d";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
               }
               if(this.inputNumber == 3){
                 document.getElementById("indication").style.color = "#228df0";
                 document.getElementById("seconds").style.color = "#228df0";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
               }
               if(this.inputNumber == 5){
                 document.getElementById("indication").style.color = "#5632af";
                 document.getElementById("seconds").style.color = "#5632af";
-                document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)"; 
+                document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
               }
               if(this.inputNumber == 50){
                 document.getElementById("indication").style.color = "#fcc235";
@@ -733,17 +741,17 @@ export class AppComponent {
           if(parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 2){
             document.getElementById("indication").style.color = "#473f3d";
             document.getElementById("seconds").style.color = "#473f3d";
-            document.getElementById('prize').style.backgroundImage="url(../assets/pointergris.png)"; 
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
             document.getElementById("indication").style.color = "#228df0";
             document.getElementById("seconds").style.color = "#228df0";
-            document.getElementById('prize').style.backgroundImage="url(../assets/pointerb.png)"; 
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
             document.getElementById("indication").style.color = "#5632af";
             document.getElementById("seconds").style.color = "#5632af";
-            document.getElementById('prize').style.backgroundImage="url(../assets/pointerm.png)";
+            document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)";
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
             document.getElementById("indication").style.color = "#fcc235";
@@ -921,4 +929,5 @@ export class AppComponent {
   
       }catch(e){}
   }
+
 }

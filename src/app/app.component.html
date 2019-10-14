@@ -1,11 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<!-- <div *ngIf="spinner == true">
+<div *ngIf="spinner == true">
   <div class="contains">
       <mat-spinner class="loading"></mat-spinner>
       <h2 class="loading-letter">Loading...</h2>
   </div>
-</div> -->
+</div>
 <div class="container-fluid">
+  <p id="prueba1">Prueba</p>
   <div class="first-div">
     <div class="a"> 
       <div id = "prize">
@@ -25,20 +26,20 @@
         <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
             <!-- *ngIf="prev.a == 2" -->
           <div *ngIf="prev.a == 2" class="grey-dialog"> 
-            <ng-template class="pop" #content><p>Hash: </p> {{prev.hash}}<p>Seed: </p> {{prev.salt}} <p>Random: </p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-grey showprev hist1" placement="left" [ngbPopover]="content"></button>  
+            <ng-template #content1 id='content1'><p>Hash: </p> {{prev.hash}}<p>Seed: </p> {{prev.salt}} <p>Random: </p>{{prev.rand}}</ng-template>
+          <button type="button" class="button-trans-grey showprev hist1" placement="left" popoverClass="grey" [ngbPopover]="content1" ></button>  
           </div>
           <div *ngIf="prev.a == 3" class="red-dialog">
-            <ng-template #content class="red-info"><p>Hash: </p> {{prev.hash}} <p>Seed: </p> {{prev.salt}} <p>Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-blue showprev hist2" placement="left" [ngbPopover]="content"></button>
+            <ng-template #content2 class="red-info"><p>Hash: </p> {{prev.hash}} <p>Seed: </p> {{prev.salt}} <p>Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-blue showprev hist2" placement="left" popoverClass="red" [ngbPopover]="content2"></button>
           </div>  
           <div *ngIf="prev.a == 5" class="green-dialog">
-            <ng-template #content class="green-info"><p >Hash: </p> {{prev.hash}} <br><p>Seed:</p> {{prev.salt}}<br><p>Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-purple showprev hist3" placement="left" [ngbPopover]="content"></button>  
+            <ng-template #content3 class="green-info"><p >Hash: </p> {{prev.hash}} <br><p>Seed:</p> {{prev.salt}}<br><p>Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-purple showprev hist3" placement="left" popoverClass="green" [ngbPopover]="content3"></button>  
           </div>
           <div *ngIf="prev.a == 50" class="yellow-dialog">
-            <ng-template #content class="yellow-info"><p>Hash: </p> {{prev.hash}} <br><p>Seed:</p> {{prev.salt}}<br><p>Random:</p>{{prev.rand}}</ng-template>
-            <button type="button" class="button-trans-yellow showprev hist4" placement="left" [ngbPopover]="content"></button> 
+            <ng-template #content4 class="yellow-info"><p>Hash: </p> {{prev.hash}} <br><p>Seed:</p> {{prev.salt}}<br><p>Random:</p>{{prev.rand}}</ng-template>
+            <button type="button" class="button-trans-yellow showprev hist4" placement="left" popoverClass="yellow" [ngbPopover]="content4"></button> 
           </div>
         <!-- </div> -->
         </div>
@@ -59,7 +60,7 @@
             <div *ngIf = "chatOpen == false; then openChat else closeChat"></div>
             <ng-template #closeChat>
               <div class="example-box" cdkDrag>
-                <div class="top-chat">
+                <div class="top-chat" cdkDragHandle>
                   <div *ngIf="avatarExists === undefined; then noavatarprofile else avatarprofile"></div>
                   <ng-template #noavatarprofile>
                       <img src="../assets/64_1.png">  
@@ -133,7 +134,7 @@
               </div>
             </ng-template>
             <ng-template #openChat>
-              <img src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true">
+              <img class="icons" src="https://img.icons8.com/nolan/50/000000/new-message.png" (click)="chatOpen = true">
             </ng-template>
           </div>
           <!--Profile button-->
@@ -147,7 +148,7 @@
             <ng-template #panelClosed>
                 <img (click)="panelOpenState = true" [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
             </ng-template> -->
-            <img [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
+            <img class="icons" [matMenuTriggerFor]="afterMenu" src="https://img.icons8.com/nolan/40/000000/gender-neutral-user.png">
             <mat-menu #afterMenu="matMenu" xPosition="after">
               <button mat-menu-item data-toggle="modal" data-target="#usernameModal">Set Username</button>
               <button mat-menu-item data-toggle="modal" data-target="#avatarModal">Set Avatar</button>
@@ -157,10 +158,10 @@
           <div class="mute">
             <div *ngIf="muted == false; then sound else nosound"></div>
             <ng-template #sound>
-              <img src="https://img.icons8.com/nolan/50/000000/medium-volume.png" (click)="muteAudio()">
+              <img class="icons" src="https://img.icons8.com/nolan/50/000000/medium-volume.png" (click)="muteAudio()">
             </ng-template>
             <ng-template #nosound>
-              <img src="https://img.icons8.com/nolan/50/000000/mute.png" (click)="unMute()">
+              <img class="icons" src="https://img.icons8.com/nolan/50/000000/mute.png" (click)="unMute()">
             </ng-template>
           </div>
         </div>
@@ -414,3 +415,12 @@
   </div>
 </div>
 <router-outlet></router-outlet>
+          
+<div class="csgo-history-item-detail" style="display: none;" title="">
+  <!-- react-text: 5813 -->Hash<!-- /react-text --><!-- react-text: 5814 -->:<!-- /react-text -->
+  <br><span style="color: rgb(170, 170, 170);">b31d269121eb1a641587391b0f8d0d39ebd6ee333db5d8c7a0acfb4755b0fcff</span>
+  <br><!-- react-text: 5818 -->Salt<!-- /react-text --><!-- react-text: 5819 -->:<!-- /react-text --><br>
+  <span style="color: rgb(170, 170, 170);">7bb6646648e7f3a1f6gdRZequxsyxnlx</span>
+  <br><!-- react-text: 5823 -->Random<!-- /react-text --><!-- react-text: 5824 -->:<!-- /react-text --><br>
+  <span style="color: rgb(170, 170, 170);">28</span>
+</div>
