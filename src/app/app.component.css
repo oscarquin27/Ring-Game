@@ -837,7 +837,7 @@ mat-card-content input {
 /* Version desktop */
 @media only screen and (min-width: 890px) {
     .contains {
-        height: 810px;
+        height: 900px;
     }
     .first-div {
         /* grid-template-columns:  minmax(100px, max-content) 1fr; */
