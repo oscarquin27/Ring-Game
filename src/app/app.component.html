@@ -6,7 +6,6 @@
   </div>
 </div>
 <div class="container-fluid">
-  <p id="prueba1">Prueba</p>
   <div class="first-div">
     <div class="a"> 
       <div id = "prize">
@@ -22,7 +21,7 @@
         <h2 id= "indication"> {{indication}}</h2>
       </div>
       <div class="historial">
-        <div class="prueba1" *ngFor="let prev of (aux | slice : aux.length -30)">
+        <div class="history" *ngFor="let prev of (aux | slice : aux.length -30)">
         <!-- <div *ngFor="let prev of (aux | slice : aux.length - 10)"> IRAN 10 DE ESTOS CUANDO SEA AUTOMATICO -->
             <!-- *ngIf="prev.a == 2" -->
           <div *ngIf="prev.a == 2" class="grey-dialog"> 
