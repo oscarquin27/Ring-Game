@@ -46,7 +46,7 @@
     /* width: 471px;
     height: 318px; */
     width: 340px;
-    height: 337px;
+    height: 420px;
     text-align: center;
     margin: auto;
     z-index: 1;
@@ -123,6 +123,8 @@ h3 div:last-child {
         padding: 0;
         line-height: 10px;
         position: relative;
+        /* margin-top: 6px; */
+        /* margin-top: 6px; */
         margin-top: 3px;
         height: 0px;
         padding-left: 10px;
@@ -796,9 +798,9 @@ mat-card-content input {
         height: 60px;
         width: 40px;
     }
-    h3 div:first-child {
+    /*h3 div:first-child {
         /* width: 76px; */
-    }
+    /*}*/
     h3 div:nth-child(2) {
         text-align: end;
         margin-right: -2px
@@ -882,9 +884,9 @@ mat-card-content input {
         height: 60px;
         width: 45px;
     }
-    h3 div:first-child {
+    /*h3 div:first-child {
         /* width: 90px; */
-    }
+    /*} */
     h3 div:nth-child(3) {
         width: 7px;
     }
