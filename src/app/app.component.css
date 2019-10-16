@@ -25,9 +25,12 @@
     text-align: center
 }
 /* Ruleta y posiciones */
+.a {
+    padding-top: 30px
+}
 #canvas {
-    height: 350px;
-    width: 315px;
+    height: 389px;
+    width: 352px;
     margin: auto;
     position: relative;
     z-index: -1;
@@ -46,7 +49,7 @@
     /* width: 471px;
     height: 318px; */
     width: 340px;
-    height: 420px;
+    height: 388px;
     text-align: center;
     margin: auto;
     z-index: 1;
@@ -121,9 +124,9 @@ h3 div:last-child {
 .historial {
     float: right;
     position: relative;
-    margin-top: -325px;
+    margin-top: -430px;
     margin-right: 10px;
-    padding-top: 7px;
+    padding-top: 5px;
     display: grid
 }
 .hist1 {
@@ -157,7 +160,7 @@ h3 div:last-child {
         border-radius: 3px;
 }
 
-.prueba1{
+.history{
     height: 15px;
 }
 .previous{
@@ -224,7 +227,7 @@ h3 div:last-child {
 }
 
 
-.prueba1 p {
+.history p {
     margin: 2px 0px 4px 0px;
     font-weight: 500
 }
@@ -792,22 +795,19 @@ mat-card-content input {
 /* Version media */
 @media only screen and (min-width: 650px) {
     .contains {
-        height: 1200px;
+        height: 1250px;
     }
     .cartas {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr
     }
     #canvas {
-        height: 418px;
+        height: 440px;
         width: 400px;
         margin-left: -47px
     }
     #prize {
-        /* width: 545px;
-        height: 399px; */
-        /* width: 415px; */
-        height: 402px;
+        height: 437px;
     }
     #seconds {
         top: -255px;
@@ -839,7 +839,8 @@ mat-card-content input {
         margin-left: -2px;
     }
     .historial {
-        margin-top: -365px
+        margin-top: -452px;
+        margin-right: 15px
     }
     .showprev {
         /*height: 30px;
@@ -865,12 +866,12 @@ mat-card-content input {
 /* Version desktop */
 @media only screen and (min-width: 890px) {
     .contains {
-        height: 810px;
+        height: 900px;
     }
     .first-div {
         /* grid-template-columns:  minmax(100px, max-content) 1fr; */
         grid-template-columns: 300px 1fr;
-        margin-bottom: 120px
+        /* margin-bottom: 120px */
     }
     .b {
         order: 1;
@@ -893,7 +894,7 @@ mat-card-content input {
         /* width: 600px;
         height: 463px; */
         /* width: 560px; */
-        height: 488px;
+        height: 507px;
         background-position-x: inherit
     }
     #seconds {
@@ -917,7 +918,7 @@ mat-card-content input {
         width: 7px;
     }
     .historial {
-        margin-top: -422px
+        margin-top: -493px
     }
     .card {
         padding: 1rem
