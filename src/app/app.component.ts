@@ -86,7 +86,7 @@ export class AppComponent {
   }
 
     async ngOnInit() : Promise<any>{
-      this.stopAt = 270;
+      //this.stopAt = 270;
       this.loadImages();
       this.initWheel();
       this.onPlatformReady();
@@ -167,7 +167,7 @@ export class AppComponent {
       this.wheel = new Winwheel({
         'canvasId'    : 'canvas',
         'numSegments' : 54,
-        'pointerAngle' : 270,
+        //'pointerAngle' : 270,
         'rotationAngle' : this.stopAt,
         'responsive' : false,
         'centerX'     : 310,
@@ -178,47 +178,6 @@ export class AppComponent {
         'imageOverlay' : false,
         'segments'    :
         [
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
           {'text' : '5'},
           {'text' : '2'},
           {'text' : '5'},
@@ -233,6 +192,47 @@ export class AppComponent {
           {'text' : '50'},
           {'text' : '5'},
           {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '5'},
         ],
         'animation' :
         {
@@ -251,12 +251,12 @@ export class AppComponent {
           'strokeStyle' : "#ffffff00"
 
         },
-        'pointerGuide': {
+        /*'pointerGuide': {
           
           'display' : true,
           'strokeStyle' : 'red',
           'lineWidth' : 3
-        }
+        }*/
       });
       console.log(this.wheel.getRotationPosition());
     }
@@ -733,18 +733,18 @@ export class AppComponent {
           });
           let getColor = await contract.previous(res).call();
           if(parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 2){
-            document.getElementById("indication").style.color = "#473f3d";
-            document.getElementById("seconds").style.color = "#473f3d";
+            document.getElementById("indication").style.color = "#5B5B5B";
+            document.getElementById("seconds").style.color = "#5B5B5B";
             document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
-            document.getElementById("indication").style.color = "#228df0";
-            document.getElementById("seconds").style.color = "#228df0";
+            document.getElementById("indication").style.color = "#C9324E";
+            document.getElementById("seconds").style.color = "#C9324E";
             document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
-            document.getElementById("indication").style.color = "#5632af";
-            document.getElementById("seconds").style.color = "#5632af";
+            document.getElementById("indication").style.color = "#0C9B4B";
+            document.getElementById("seconds").style.color = "#0C9B4B";
             document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)";
           }
           else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
@@ -754,7 +754,7 @@ export class AppComponent {
           }
 
         }
-        this.aux;
+        this.stopAt = this.wheel.getRandomForSegments(this.aux[this.aux.length-1].rand);
         }
       catch(e){}
     }

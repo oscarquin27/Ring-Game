@@ -61,6 +61,32 @@
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
 }
+#csgo-auto{
+    padding: 10px 0;
+    position: relative;
+    border-radius: 4px;
+}
+#csgo-auto>span{
+border-width: 3px;
+border-style: solid;
+display: inline-block;
+width: 20px;
+height: 20px;
+text-align: center;
+border-radius: 10px;
+margin-right: 5px;
+cursor: pointer;
+}
+.s-3x{
+    border-color: #c13c3c;
+}
+.s-5x{
+    border-color: #278dcb;
+}
+
+.s-50x{
+    border-color: #FCC235;
+}
 h3 {
     display: flex
 }
