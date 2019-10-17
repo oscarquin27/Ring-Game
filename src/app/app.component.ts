@@ -521,6 +521,7 @@ export class AppComponent {
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
       else{
+      if(trx <= 30000) {
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betTwo().send({
           feeLimit: 10000000,
@@ -528,8 +529,13 @@ export class AppComponent {
           shouldPollResponse : false
       }).then(() => this.checkBalance())
       }
-      if(trx > this.balance){
+      }
+      if(trx > this.balance && this.balance <= 30000){
         this.trx = this.balance;
+      }
+      else{
+        this.trx = 10;
+        ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
     }
 
@@ -539,6 +545,7 @@ export class AppComponent {
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
       else{
+        if(trx <= 20000){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betThree().send({
           feeLimit: 10000000,
@@ -546,8 +553,13 @@ export class AppComponent {
           shouldPollResponse : false
       }).then(() => this.checkBalance())
       }
-      if(trx > this.balance){
+    }
+      if(trx > this.balance && this.balance <= 20000){
         this.trx = this.balance;
+      }
+      else{
+        this.trx = 10;
+        ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
     }
 
@@ -557,6 +569,7 @@ export class AppComponent {
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
       else{
+        if(trx <= 12000){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betFive().send({
           feeLimit: 10000000,
@@ -564,8 +577,13 @@ export class AppComponent {
           shouldPollResponse : false
       }).then(() => this.checkBalance())
       }
-      if(trx > this.balance){
+    }
+      if(trx > this.balance && this.balance <= 12000){
         this.trx = this.balance;
+      }
+      else{
+        this.trx = 10;
+        ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
     }
 
@@ -575,15 +593,21 @@ export class AppComponent {
         ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
       else{
+        if(trx <= 1200){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betFifty().send({
           feeLimit: 10000000,
           callValue: trx * 1000000,
           shouldPollResponse : false
       }).then(() => this.checkBalance())
+        }
       }
-      if(trx > this.balance){
+      if(trx > this.balance && this.balance <= 12000){
         this.trx = this.balance;
+      }
+      else{
+        this.trx = 10;
+        ((<HTMLInputElement>document.getElementById("bet")).value) = "10";
       }
     }
 
