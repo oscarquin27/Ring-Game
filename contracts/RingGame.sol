@@ -19,6 +19,7 @@ contract RingGame {
     mapping(uint256 => PreviousGames) public previous;
     mapping(uint256 => Message) public messages;
     mapping(address => User) public users;
+    mapping(uint256 => History[]) public history;
     uint256 public messageCount = 0;
     uint256 public previousCount = 0;
 
@@ -26,6 +27,13 @@ contract RingGame {
         uint betType;
         address player;
         uint value;
+    }
+    
+    struct History{
+        uint betType;
+        uint value;
+        address sender;
+        uint256 round;
     }
     struct MyBets {
         uint betType;
@@ -38,6 +46,7 @@ contract RingGame {
         uint random;
         bytes32 salt;
         uint256 round;
+        uint256 timestamp;
     }
 
     struct Message{
@@ -71,11 +80,11 @@ contract RingGame {
         owner = msg.sender;
     }
 
-     function setUsername(string username) public {
+     function setUsername(string  username) public {
         users[msg.sender].username = username;
     }
     
-     function setAvatar(string avatar) public {
+     function setAvatar(string  avatar) public {
         users[msg.sender].image = avatar;
     }
     
@@ -92,6 +101,12 @@ contract RingGame {
             betType: 2,
             value: msg.value,
             timestamp: now,
+            round: previousCount
+        }));
+        history[previousCount].push(History({
+            betType: 2,
+            value: msg.value,
+            sender: msg.sender,
             round: previousCount
         }));
     }
@@ -112,6 +127,13 @@ contract RingGame {
             round: previousCount
         }));
         
+        history[previousCount].push(History({
+            betType: 3,
+            value: msg.value,
+            sender: msg.sender,
+            round: previousCount
+        }));
+        
     }
     
      function betFive() public payable {
@@ -127,6 +149,13 @@ contract RingGame {
             betType: 5,
             value: msg.value,
             timestamp: now,
+            round: previousCount
+        }));
+        
+        history[previousCount].push(History({
+            betType: 5,
+            value: msg.value,
+            sender: msg.sender,
             round: previousCount
         }));
         
@@ -149,6 +178,12 @@ contract RingGame {
             round: previousCount
         }));
         
+        history[previousCount].push(History({
+            betType: 50,
+            value: msg.value,
+            sender: msg.sender,
+            round: previousCount
+        }));
     }
     
     function play() public OnlyOwner returns (uint) {
@@ -161,7 +196,7 @@ contract RingGame {
         hashval = sha256(abi.encodePacked(salt,random));
         previousCount += 1;
         emit PlayGame(random);
-        previous[previousCount] = PreviousGames(random, salt, previousCount);
+        previous[previousCount] = PreviousGames(random, salt, previousCount, now );
         return random;
    }
 

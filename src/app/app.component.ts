@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TQF57KPBC4SkymeWfXYeiLqgSYGDQHZpn3";
+  contractAddress = "TFBjpyRWm2aoJ7zm5oFTfvPW3SmdMqYxQy";
   address;
   seconds;
   decenas;
@@ -81,6 +81,7 @@ export class AppComponent {
   usernameBool : boolean;
   avatarExists : string;
   avatarBool : boolean;
+  historial = [];
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -102,6 +103,10 @@ export class AppComponent {
           this.tronWebService.initTronWeb()
               .then(async () => {
                   //this.spinOf();
+                  let getConnection = await window.tronWeb.isConnected();
+                  if (getConnection.fullNode != true){
+                  this.spinner = false;
+                  }
                   this.address = await window.tronWeb.defaultAddress.base58.toString();
                   this.logger.info('Ring' + ' Successfully launched');
                   this.getPreviousGames().then(() =>{
@@ -111,6 +116,7 @@ export class AppComponent {
                     this.hasAvatar();
                   })
                   //this.timer();
+                  this.getHistorial();
                   this.getPreviousChats();
                   this.startEventListener();
                   this.startEventListenerStop();
@@ -134,7 +140,7 @@ export class AppComponent {
         this.wheel.wheelImage = wheelImg;
         this.wheel.draw();
       }
-      wheelImg.src = "../assets/roulettefinal.png";
+      wheelImg.src = "../assets/ry3.png";
       }
 
       async initWheel() : Promise<any>{
@@ -326,13 +332,17 @@ export class AppComponent {
           console.log(result);
           this.indication = "Finding a winner";
           let res = await contract.random().call();
-          this.segmentNumber = res.toNumber();
+          this.segmentNumber = 1//res.toNumber();
           this.inputNumber = parseInt(this.wheel.segments[this.segmentNumber].text);
           console.log(this.segmentNumber, "INPUT : " + this.inputNumber);
           this.previousPlays.push(this.inputNumber);
           this.salt = await contract.salt().call();
           this.hash = cryptojs.SHA256(this.salt+this.segmentNumber);
           this.spinOf();
+          let getConnection = await window.tronWeb.isConnected();
+            if(getConnection.fullNode != true){
+              this.spinOf();
+            }
         }
       })
     }catch(e){}
@@ -946,6 +956,52 @@ export class AppComponent {
       }
   
       }catch(e){}
+  }
+
+  async getHistorial() : Promise<any>{
+    this.spinner = true;
+    try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let previous = await contract.previousCount().call();
+      let res = previous.toNumber();
+      //let comp = res - 2;
+      for(let i = res-30; i <= res; i++){
+        let get = await contract.previous(i).call();
+        let a = parseInt(this.wheel.segments[get.random.toNumber()].text);
+        this.aux.push({
+         rand: get.random,
+         a: a,
+         round : get.round,
+         salt: get.salt,
+         hash : cryptojs.SHA256(get.salt + get.random)
+        });
+        console.log(this.aux);
+        let getColor = await contract.previous(res).call();
+        if(parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 2){
+          document.getElementById("indication").style.color = "#5B5B5B";
+          document.getElementById("seconds").style.color = "#5B5B5B";
+          document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
+        }
+        else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
+          document.getElementById("indication").style.color = "#C9324E";
+          document.getElementById("seconds").style.color = "#C9324E";
+          document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
+        }
+        else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
+          document.getElementById("indication").style.color = "#0C9B4B";
+          document.getElementById("seconds").style.color = "#0C9B4B";
+          document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)";
+        }
+        else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
+          document.getElementById("indication").style.color = "#fcc235";
+          document.getElementById("seconds").style.color = "#fcc235";
+          document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
+        }
+
+      }
+      this.stopAt = this.wheel.getRandomForSegments(this.aux[this.aux.length-1].rand);
+      }
+    catch(e){}
   }
 
 }
