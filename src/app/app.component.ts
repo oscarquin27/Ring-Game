@@ -997,15 +997,15 @@ export class AppComponent {
         console.log(state);
   }
 
-  autoRollRed(trx : number){
+  autoRollRed(ev, trx : number){
 
   }
 
-  autoRollGreen(trx : number){
+  autoRollGreen(ev, trx : number){
 
   }
 
-  autoRollYellow(trx : number){
+  autoRollYellow(ev, trx : number){
 
   }
 
