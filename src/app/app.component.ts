@@ -73,7 +73,7 @@ export class AppComponent {
   address2;
   address3;
   chatOpen: boolean = false;
-  spinner: boolean;
+  spinner: boolean = false;
   private tronweb : TronWeb | any;
   panelOpenState : boolean = false;
   username : string;
@@ -116,7 +116,7 @@ export class AppComponent {
                     this.hasAvatar();
                   })
                   //this.timer();
-                  this.getHistorial();
+                  this.historialGames();
                   this.getPreviousChats();
                   this.startEventListener();
                   this.startEventListenerStop();
@@ -184,17 +184,6 @@ export class AppComponent {
         'imageOverlay' : false,
         'segments'    :
         [
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
           {'text' : '50'},
           {'text' : '5'},
           {'text' : '2'},
@@ -224,6 +213,16 @@ export class AppComponent {
           {'text' : '2'},
           {'text' : '3'},
           {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
           {'text' : '3'},
           {'text' : '2'},
           {'text' : '3'},
@@ -239,6 +238,7 @@ export class AppComponent {
           {'text' : '3'},
           {'text' : '2'},
           {'text' : '5'},
+          {'text' : '50'},
         ],
         'animation' :
         {
@@ -332,7 +332,7 @@ export class AppComponent {
           console.log(result);
           this.indication = "Finding a winner";
           let res = await contract.random().call();
-          this.segmentNumber = 1//res.toNumber();
+          this.segmentNumber = res.toNumber();
           this.inputNumber = parseInt(this.wheel.segments[this.segmentNumber].text);
           console.log(this.segmentNumber, "INPUT : " + this.inputNumber);
           this.previousPlays.push(this.inputNumber);
@@ -735,6 +735,39 @@ export class AppComponent {
     }catch(e){}
     }
 
+    async historialGames() : Promise<any>{
+      this.historial = [];
+      try{ 
+      let res = await window.tronWeb.getEventResult(this.contractAddress,{
+        eventName : 'StopGame',
+        size : 100,
+
+      });
+      console.log(res);
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res2 = await contract.previousCount().call();
+      let res3 = res2.toNumber();
+      let j = 0;
+      console.log(res3);
+      for(let i = (res3); i >= (res3-100); i--){
+        let res4 = await contract.previous(i).call();
+        let winner = parseInt(this.wheel.segments[res4.random.toNumber()].text);
+        let hash = res[j].transaction;
+        let timestamp = res[j].timestamp;
+        let time = new Date(timestamp);
+        this.historial.push({
+          winner : winner,
+          hash : hash,
+          timestamp : time,
+          round : i
+        })
+        console.log(this.historial);
+        j++;
+        }
+    }
+      catch(e){}
+    }
+
     addressShort(){
       this.address2 = this.address.substring(0,4);
       this.address3 = this.address.substring(this.address.length - 4,this.address.length);
@@ -958,50 +991,22 @@ export class AppComponent {
       }catch(e){}
   }
 
-  async getHistorial() : Promise<any>{
-    this.spinner = true;
-    try{
-      const contract = await window.tronWeb.contract().at(this.contractAddress);
-      let previous = await contract.previousCount().call();
-      let res = previous.toNumber();
-      //let comp = res - 2;
-      for(let i = res-30; i <= res; i++){
-        let get = await contract.previous(i).call();
-        let a = parseInt(this.wheel.segments[get.random.toNumber()].text);
-        this.aux.push({
-         rand: get.random,
-         a: a,
-         round : get.round,
-         salt: get.salt,
-         hash : cryptojs.SHA256(get.salt + get.random)
-        });
-        console.log(this.aux);
-        let getColor = await contract.previous(res).call();
-        if(parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 2){
-          document.getElementById("indication").style.color = "#5B5B5B";
-          document.getElementById("seconds").style.color = "#5B5B5B";
-          document.getElementById('prize').style.backgroundImage="url(../assets/puntgris.png)"; 
-        }
-        else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 3){
-          document.getElementById("indication").style.color = "#C9324E";
-          document.getElementById("seconds").style.color = "#C9324E";
-          document.getElementById('prize').style.backgroundImage="url(../assets/puntred.png)"; 
-        }
-        else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 5){
-          document.getElementById("indication").style.color = "#0C9B4B";
-          document.getElementById("seconds").style.color = "#0C9B4B";
-          document.getElementById('prize').style.backgroundImage="url(../assets/puntverde.png)";
-        }
-        else if (parseInt(this.wheel.segments[getColor.random.toNumber()].text) == 50){
-          document.getElementById("indication").style.color = "#fcc235";
-          document.getElementById("seconds").style.color = "#fcc235";
-          document.getElementById('prize').style.backgroundImage="url(../assets/punteroam.png)"; 
-        }
+  autoRollGrey(ev, trx : number){
+    let el = <HTMLInputElement>document.getElementById("r1");
+       let state = el.checked;
+        console.log(state);
+  }
 
-      }
-      this.stopAt = this.wheel.getRandomForSegments(this.aux[this.aux.length-1].rand);
-      }
-    catch(e){}
+  autoRollRed(trx : number){
+
+  }
+
+  autoRollGreen(trx : number){
+
+  }
+
+  autoRollYellow(trx : number){
+
   }
 
 }
