@@ -12,6 +12,7 @@ contract RingGame {
     uint fifty = 50;
     uint public random;
     uint public length;
+    uint public playersLength;
     string secretKey = "8vQ3X5StoY";
     bytes32 public hashval;
     bytes32 public salt;
@@ -19,6 +20,7 @@ contract RingGame {
     mapping(uint256 => PreviousGames) public previous;
     mapping(uint256 => Message) public messages;
     mapping(address => User) public users;
+    mapping(uint256 => History[]) public history;
     uint256 public messageCount = 0;
     uint256 public previousCount = 0;
 
@@ -26,6 +28,13 @@ contract RingGame {
         uint betType;
         address player;
         uint value;
+    }
+    
+    struct History{
+        uint betType;
+        uint value;
+        address sender;
+        uint256 round;
     }
     struct MyBets {
         uint betType;
@@ -38,6 +47,7 @@ contract RingGame {
         uint random;
         bytes32 salt;
         uint256 round;
+        uint256 timestamp;
     }
 
     struct Message{
@@ -52,6 +62,7 @@ contract RingGame {
     }
     
     Bet[] public bets;
+
     
     event NewBetTwo(address player, uint amount);
     event NewBetThree(address player, uint amount);
@@ -71,11 +82,11 @@ contract RingGame {
         owner = msg.sender;
     }
 
-     function setUsername(string username) public {
+     function setUsername(string  username) public {
         users[msg.sender].username = username;
     }
     
-     function setAvatar(string avatar) public {
+     function setAvatar(string  avatar) public {
         users[msg.sender].image = avatar;
     }
     
@@ -111,7 +122,7 @@ contract RingGame {
             timestamp: now,
             round: previousCount
         }));
-        
+ 
     }
     
      function betFive() public payable {
@@ -148,7 +159,6 @@ contract RingGame {
             timestamp: now,
             round: previousCount
         }));
-        
     }
     
     function play() public OnlyOwner returns (uint) {
@@ -161,7 +171,7 @@ contract RingGame {
         hashval = sha256(abi.encodePacked(salt,random));
         previousCount += 1;
         emit PlayGame(random);
-        previous[previousCount] = PreviousGames(random, salt, previousCount);
+        previous[previousCount] = PreviousGames(random, salt, previousCount, now );
         return random;
    }
 
@@ -174,9 +184,15 @@ contract RingGame {
         for(uint256 i = 0; i < bets.length; i++){
            if(bets[i].betType == _type){
                bets[i].player.transfer(bets[i].value*bets[i].betType);
-           } 
+           }
+           history[previousCount].push(History({
+               betType : bets[i].betType,
+               value : bets[i].value,
+               sender : bets[i].player,
+               round : previousCount
+           }));
         }
-        
+        history[previousCount].length = playersLength;
         bets.length = 0;
         time = now;
         emit StopGame(time);

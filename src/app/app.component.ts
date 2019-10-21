@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TQF57KPBC4SkymeWfXYeiLqgSYGDQHZpn3";
+  contractAddress = "TFBjpyRWm2aoJ7zm5oFTfvPW3SmdMqYxQy";
   address;
   seconds;
   decenas;
@@ -73,7 +73,7 @@ export class AppComponent {
   address2;
   address3;
   chatOpen: boolean = false;
-  spinner: boolean;
+  spinner: boolean = false;
   private tronweb : TronWeb | any;
   panelOpenState : boolean = false;
   username : string;
@@ -81,6 +81,7 @@ export class AppComponent {
   usernameBool : boolean;
   avatarExists : string;
   avatarBool : boolean;
+  historial = [];
 
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
@@ -102,6 +103,10 @@ export class AppComponent {
           this.tronWebService.initTronWeb()
               .then(async () => {
                   //this.spinOf();
+                  let getConnection = await window.tronWeb.isConnected();
+                  if (getConnection.fullNode != true){
+                  this.spinner = false;
+                  }
                   this.address = await window.tronWeb.defaultAddress.base58.toString();
                   this.logger.info('Ring' + ' Successfully launched');
                   this.getPreviousGames().then(() =>{
@@ -111,6 +116,7 @@ export class AppComponent {
                     this.hasAvatar();
                   })
                   //this.timer();
+                  this.historialGames();
                   this.getPreviousChats();
                   this.startEventListener();
                   this.startEventListenerStop();
@@ -134,7 +140,7 @@ export class AppComponent {
         this.wheel.wheelImage = wheelImg;
         this.wheel.draw();
       }
-      wheelImg.src = "../assets/roulettefinal.png";
+      wheelImg.src = "../assets/ry3.png";
       }
 
       async initWheel() : Promise<any>{
@@ -178,17 +184,6 @@ export class AppComponent {
         'imageOverlay' : false,
         'segments'    :
         [
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '5'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '3'},
-          {'text' : '2'},
-          {'text' : '5'},
           {'text' : '50'},
           {'text' : '5'},
           {'text' : '2'},
@@ -218,6 +213,16 @@ export class AppComponent {
           {'text' : '2'},
           {'text' : '3'},
           {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '5'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
+          {'text' : '3'},
+          {'text' : '2'},
           {'text' : '3'},
           {'text' : '2'},
           {'text' : '3'},
@@ -233,6 +238,7 @@ export class AppComponent {
           {'text' : '3'},
           {'text' : '2'},
           {'text' : '5'},
+          {'text' : '50'},
         ],
         'animation' :
         {
@@ -333,6 +339,10 @@ export class AppComponent {
           this.salt = await contract.salt().call();
           this.hash = cryptojs.SHA256(this.salt+this.segmentNumber);
           this.spinOf();
+          let getConnection = await window.tronWeb.isConnected();
+            if(getConnection.fullNode != true){
+              this.spinOf();
+            }
         }
       })
     }catch(e){}
@@ -725,6 +735,39 @@ export class AppComponent {
     }catch(e){}
     }
 
+    async historialGames() : Promise<any>{
+      this.historial = [];
+      try{ 
+      let res = await window.tronWeb.getEventResult(this.contractAddress,{
+        eventName : 'StopGame',
+        size : 100,
+
+      });
+      console.log(res);
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let res2 = await contract.previousCount().call();
+      let res3 = res2.toNumber();
+      let j = 0;
+      console.log(res3);
+      for(let i = (res3); i >= (res3-100); i--){
+        let res4 = await contract.previous(i).call();
+        let winner = parseInt(this.wheel.segments[res4.random.toNumber()].text);
+        let hash = res[j].transaction;
+        let timestamp = res[j].timestamp;
+        let time = new Date(timestamp);
+        this.historial.push({
+          winner : winner,
+          hash : hash,
+          timestamp : time,
+          round : i
+        })
+        console.log(this.historial);
+        j++;
+        }
+    }
+      catch(e){}
+    }
+
     addressShort(){
       this.address2 = this.address.substring(0,4);
       this.address3 = this.address.substring(this.address.length - 4,this.address.length);
@@ -946,6 +989,24 @@ export class AppComponent {
       }
   
       }catch(e){}
+  }
+
+  autoRollGrey(ev, trx : number){
+    let el = <HTMLInputElement>document.getElementById("r1");
+       let state = el.checked;
+        console.log(state);
+  }
+
+  autoRollRed(trx : number){
+
+  }
+
+  autoRollGreen(trx : number){
+
+  }
+
+  autoRollYellow(trx : number){
+
   }
 
 }

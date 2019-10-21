@@ -142,6 +142,70 @@ h3 div:last-child {
     width: 29px
 }
 
+.rad1.mat-radio-button.mat-accent{
+    border-color:grey; 
+  }
+.rad1.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:grey; 
+  }
+  
+.rad1.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:grey;
+    background-color:grey;
+  }
+  
+  .rad1.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:grey
+  }
+
+  .rad2.mat-radio-button.mat-accent{
+    border-color:#CA2E4D; 
+  }
+.rad2.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color: #CA2E4D; 
+  }
+  
+.rad2.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color: #CA2E4D;
+    background-color:#CA2E4D;
+  }
+  
+  .rad2.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:#CA2E4D;
+  }
+
+  .rad3.mat-radio-button.mat-accent{
+    border-color: #0C9C4A; 
+  }
+.rad3.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color: #0C9C4A; 
+  }
+  
+.rad3.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:#0C9C4A;
+    background-color:#0C9C4A;
+  }
+  
+  .rad3.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:#0C9C4A
+  }
+
+  .rad4.mat-radio-button.mat-accent{
+    border-color: #FDB501; 
+  }
+.rad4.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:#FDB501; 
+  }
+  
+.rad4.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:#FDB501;
+    background-color:#FDB501;
+  }
+  
+  .rad4.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:#FDB501
+  }
+
 .showprev {
     /*display: block;
     background-color: transparent;
@@ -286,7 +350,7 @@ h3 div:last-child {
 
 .btn-secondary{
     background-color: #5B5B5B;
-    border-color:#5B5B5B;
+    border-color:#55555500;
 }
 
 .btn-primary{
