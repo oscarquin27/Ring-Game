@@ -12,6 +12,7 @@ contract RingGame {
     uint fifty = 50;
     uint public random;
     uint public length;
+    uint public playersLength;
     string secretKey = "8vQ3X5StoY";
     bytes32 public hashval;
     bytes32 public salt;
@@ -61,6 +62,7 @@ contract RingGame {
     }
     
     Bet[] public bets;
+
     
     event NewBetTwo(address player, uint amount);
     event NewBetThree(address player, uint amount);
@@ -103,12 +105,6 @@ contract RingGame {
             timestamp: now,
             round: previousCount
         }));
-        history[previousCount].push(History({
-            betType: 2,
-            value: msg.value,
-            sender: msg.sender,
-            round: previousCount
-        }));
     }
     
      function betThree() public payable {
@@ -126,14 +122,7 @@ contract RingGame {
             timestamp: now,
             round: previousCount
         }));
-        
-        history[previousCount].push(History({
-            betType: 3,
-            value: msg.value,
-            sender: msg.sender,
-            round: previousCount
-        }));
-        
+ 
     }
     
      function betFive() public payable {
@@ -149,13 +138,6 @@ contract RingGame {
             betType: 5,
             value: msg.value,
             timestamp: now,
-            round: previousCount
-        }));
-        
-        history[previousCount].push(History({
-            betType: 5,
-            value: msg.value,
-            sender: msg.sender,
             round: previousCount
         }));
         
@@ -175,13 +157,6 @@ contract RingGame {
             betType: 50,
             value: msg.value,
             timestamp: now,
-            round: previousCount
-        }));
-        
-        history[previousCount].push(History({
-            betType: 50,
-            value: msg.value,
-            sender: msg.sender,
             round: previousCount
         }));
     }
@@ -209,9 +184,15 @@ contract RingGame {
         for(uint256 i = 0; i < bets.length; i++){
            if(bets[i].betType == _type){
                bets[i].player.transfer(bets[i].value*bets[i].betType);
-           } 
+           }
+           history[previousCount].push(History({
+               betType : bets[i].betType,
+               value : bets[i].value,
+               sender : bets[i].player,
+               round : previousCount
+           }));
         }
-        
+        history[previousCount].length = playersLength;
         bets.length = 0;
         time = now;
         emit StopGame(time);
