@@ -184,19 +184,16 @@
             <button id="b3" class="btn btnops2 btn-success" type="button" (click)="betFive(trx)">5x</button>
             <button id="b4" class="btn btnops2 btn-warning" type="button" (click)="betFifty(trx)">50x</button>
           </div>
-          <div class="input-group radios">
-            <mat-radio-button id="r1" class="rad1" [(ngModel)]="greyChecked" (click)="autoRollGrey(greyChecked,trx)"  value="1"></mat-radio-button>
+            <mat-radio-button id="r1" class="rad1" [(ngModel)]="greyChecked" (click)="autoRollGrey(greyChecked,trx)" value="1" checked></mat-radio-button>
             <mat-radio-button id="r2" class="rad2" [(ngModel)]="redChecked" (click)="autoRollRed(redChecked,trx)" value="2"></mat-radio-button>
             <mat-radio-button id="r3" class="rad3" [(ngModel)]="greenChecked" (click)="autoRollGreen(greenChecked,trx)" value="3"></mat-radio-button>
             <mat-radio-button id="r4" class="rad4" [(ngModel)]="yellowChecked" (click)="autoRollYellow(yellowChecked, trx)" value="4"></mat-radio-button>
-          </div>
         </div>
       </div>
     </div>
   </div>
   <!--<div *ngFor="let history of historial">
     <p>{{history.sender}}</p>
-<<<<<<< HEAD
   </div>-->
   <ngb-tabset type="pills">
     <!-- first tab content -->
@@ -474,7 +471,6 @@
       </div>
     </div>
   </div>
-</div>
 <router-outlet></router-outlet>
           
 <div class="csgo-history-item-detail" style="display: none;" title="">
