@@ -29,7 +29,7 @@
     padding-top: 30px
 }
 #canvas {
-    height: 370px;
+    height: 390px;
     width: 352px;
     margin: auto;
     position: relative;
@@ -49,7 +49,7 @@
     /* width: 471px;
     height: 318px; */
     width: 360px;
-    height: 355px;
+    height: 402px;
     text-align: center;
     margin: auto;
     z-index: 1;
@@ -60,7 +60,7 @@
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
     top: -212px;
-    margin-left: 70px;
+    margin-left: 80px;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
 }
@@ -124,7 +124,7 @@ h3 div:last-child {
 .historial {
     float: right;
     position: relative;
-    margin-top: -400px;
+    margin-top: -440px;
     margin-right: 10px;
     padding-top: 5px;
     display: grid
@@ -140,6 +140,9 @@ h3 div:last-child {
 }
 .hist4 {
     width: 29px
+}
+.mat-radio-button {
+    border-color: blue
 }
 
 .rad1.mat-radio-button.mat-accent{
@@ -917,12 +920,14 @@ ngb-tabset {
         margin-left: -47px
     }
     #prize {
-        height: 420px;
+        height: 455px;
+        width: 340px;
     }
     #seconds {
         top: -255px;
-        left: 10.6px;
-        font-size: 2.5rem
+        /* left: 10.6px; */
+        font-size: 2.5rem;
+        /* margin-left: 70px */
     }
     #indication {
         top: -270px;
@@ -1004,7 +1009,7 @@ ngb-tabset {
         /* width: 600px;
         height: 463px; */
         /* width: 560px; */
-        height: 485px;
+        height: 525px;
         background-position-x: inherit
     }
     #seconds {
@@ -1028,7 +1033,7 @@ ngb-tabset {
         width: 7px;
     }
     .historial {
-        margin-top: -493px
+        margin-top: -510px
     }
     .card {
         padding: 1rem
