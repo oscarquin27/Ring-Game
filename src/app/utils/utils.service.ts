@@ -17,22 +17,23 @@ export interface Request {
 })
 export class UtilsService {
   private tronweb : TronWeb | any;
-  contractAddress = "TFBjpyRWm2aoJ7zm5oFTfvPW3SmdMqYxQy";
+  contractAddress = "TMTFWvsdfyPVMfME13h8GbcspRPW32uzy1";
   FOUNDATION_ADDRESS = 'TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB';
   public loggedIn: boolean = false;
   balance;
+  OtherObject : any;
 
   constructor( private logger : NGXLogger) { }
   
   async initTronWeb(){
-    return new Promise(resolve => {
+    return new Promise(async resolve => {
       console.log("Initializing")
       if (typeof window.tronWeb != 'undefined') {
         if (window.tronWeb != undefined && window.tronWeb.ready != false){
-        this.loggedIn = true;
-        console.log("ITS TRUE HE IS LOGGED IN");
+          console.log("ITS TRUE HE IS LOGGED IN");
 
          }
+      let address = await window.tronWeb.defaultAddress.base58;
       let fullNode = 'https://api.shasta.trongrid.io';
       let solidityNode = 'https://api.shasta.trongrid.io';
       let eventServer = 'https://api.shasta.trongrid.io';
@@ -44,12 +45,14 @@ export class UtilsService {
 
         this.logger.info('SUCCESS');
       }
-      if (this.loggedIn == false){
-          console.log("ITS false HE IS LOGGED IN");
-          window.tronWeb.defaultAddress = {
-          hex: window.tronWeb.address.toHex(this.FOUNDATION_ADDRESS),
-          base58 : this.FOUNDATION_ADDRESS
-        }
+      if (address == false){
+          console.log("ITS false");
+        window.tronWeb = new TronWeb(
+          fullNode = 'https://api.shasta.trongrid.io',//window.tronWeb.currentProviders().fullNode.host;
+          solidityNode = 'https://api.shasta.trongrid.io',//window.tronWeb.currentProviders().solidityNode.host;
+          eventServer = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().eventServer.host;
+        )
+        await window.tronWeb.setAddress('TL6aqANC1UrmSxpjqL3tAU1UuEEEsEoX1y');
       }
       this.tronweb = new TronWeb (
         fullNode,
@@ -68,6 +71,7 @@ export class UtilsService {
         'https://api.shasta.trongrid.io',
         'https://api.shasta.trongrid.io',
       );
+      await window.tronWeb.setAddress('TL6aqANC1UrmSxpjqL3tAU1UuEEEsEoX1y');
       return resolve();
     }
   })
