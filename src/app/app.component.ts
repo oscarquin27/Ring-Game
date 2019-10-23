@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TR6xa8juB2E47trBjDvyx42LATBegaAfPm";
+  contractAddress = "TFX8UpB7gyyucXtUhKAJqbh2GjwTrstRz3";
   address;
   seconds;
   decenas;
@@ -294,7 +294,7 @@ export class AppComponent {
           this.seconds = dec [0];
           this.decenas = dec [1];
         }
-        if(distance <= 0) { 
+        if(distance <= 0) {
           this.milis = "";
           this.milis2 = 0;
           this.decenas = "";
