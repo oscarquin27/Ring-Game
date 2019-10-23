@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TFBjpyRWm2aoJ7zm5oFTfvPW3SmdMqYxQy";
+  contractAddress = "TMTFWvsdfyPVMfME13h8GbcspRPW32uzy1";
   address;
   seconds;
   decenas;
@@ -82,7 +82,7 @@ export class AppComponent {
   avatarExists : string;
   avatarBool : boolean;
   historial = [];
-
+  greyChecked;
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
 
@@ -103,10 +103,6 @@ export class AppComponent {
           this.tronWebService.initTronWeb()
               .then(async () => {
                   //this.spinOf();
-                  let getConnection = await window.tronWeb.isConnected();
-                  if (getConnection.fullNode != true){
-                  this.spinner = false;
-                  }
                   this.address = await window.tronWeb.defaultAddress.base58.toString();
                   this.logger.info('Ring' + ' Successfully launched');
                   this.getPreviousGames().then(() =>{
@@ -275,6 +271,7 @@ export class AppComponent {
       this.muted = false;
     }
     async timer(){
+      console.log(this.address);
       this.indication = "Place your bets";
       const contract1 = await window.tronWeb.contract().at(this.contractAddress);
       const res1 = await contract1.time().call();
@@ -310,15 +307,18 @@ export class AppComponent {
           (<HTMLButtonElement>document.getElementById('b3')).disabled = true;
           (<HTMLButtonElement>document.getElementById('b4')).disabled = true;
           try{
-            if (this.address == "TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB"){
+            if (this.address == "TLV6Y5iryU6imRxKrAFmHjEUobXKyBcSU7"){
+              console.log('can call');
             const contract = await window.tronWeb.contract().at(this.contractAddress);
               var res = await contract.play().send({
-                feeLimit: 10000000,
+                feeLimit: 1000000000,
                 callValue: 0,
                 shouldPollResponse : false
               })
             }
-          }catch(e){}
+          }catch(e){
+            console.log(e);
+          }
         }
       })
     }
@@ -473,7 +473,7 @@ export class AppComponent {
     async spinOf(): Promise<any>{
             this.spin().then(a => {
               this.alertPrize().then(async b => {
-                if(this.address == "TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB"){
+                if(this.address == "TLV6Y5iryU6imRxKrAFmHjEUobXKyBcSU7"){
                 const contract = await window.tronWeb.contract().at(this.contractAddress);
                 let res = await contract.betLenght().call();
                 let trx : number = 0;
@@ -534,7 +534,7 @@ export class AppComponent {
       if(trx <= 30000) {
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betTwo().send({
-          feeLimit: 10000000,
+          feeLimit: 1000000000,
           callValue: trx * 1000000,
           shouldPollResponse : false
       }).then(() => this.checkBalance())
@@ -558,7 +558,7 @@ export class AppComponent {
         if(trx <= 20000){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betThree().send({
-          feeLimit: 10000000,
+          feeLimit: 1000000000,
           callValue: trx * 1000000,
           shouldPollResponse : false
       }).then(() => this.checkBalance())
@@ -582,7 +582,7 @@ export class AppComponent {
         if(trx <= 12000){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betFive().send({
-          feeLimit: 10000000,
+          feeLimit: 1000000000,
           callValue: trx * 1000000,
           shouldPollResponse : false
       }).then(() => this.checkBalance())
@@ -606,7 +606,7 @@ export class AppComponent {
         if(trx <= 1200){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res3 = await contract.betFifty().send({
-          feeLimit: 10000000,
+          feeLimit: 1000000000,
           callValue: trx * 1000000,
           shouldPollResponse : false
       }).then(() => this.checkBalance())
@@ -842,7 +842,7 @@ export class AppComponent {
       try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.sendMessage(message).send({
-        feeLimit: 10000000,
+        feeLimit: 1000000000,
         callValue: 0,
         shouldPollResponse : false
       })
@@ -931,7 +931,7 @@ export class AppComponent {
     try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.setUsername(username).send({
-        feeLimit: 10000000,
+        feeLimit: 1000000000,
         callValue: 0,
         shouldPollResponse : false
       }).then(() => {
@@ -949,7 +949,7 @@ export class AppComponent {
     try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.setAvatar(avatar).send({
-        feeLimit: 10000000,
+        feeLimit: 1000000000,
         callValue: 0,
         shouldPollResponse : false
       }).then(()=>{
@@ -994,7 +994,7 @@ export class AppComponent {
   autoRollGrey(ev, trx : number){
     let el = <HTMLInputElement>document.getElementById("r1");
        let state = el.checked;
-        console.log(state);
+        console.log(state, ev);
   }
 
   autoRollRed(ev, trx : number){

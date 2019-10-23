@@ -13,7 +13,7 @@ module.exports = {
     shasta: {
       privateKey: process.env.SHASTA,
       consume_user_resource_percent: 100,
-      fee_limit: 100000000,
+      fee_limit: 1000000000,
       fullNode: "https://api.shasta.trongrid.io",
       solidityNode: "https://api.shasta.trongrid.io",
       eventServer: "https://api.shasta.trongrid.io",
