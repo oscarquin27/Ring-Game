@@ -166,14 +166,14 @@
         </div>
       </div>
 
-      <div id ="amount" class="input-group mb-3">
-        <div class="input-group" id="button-addon4">
-          <button class="btn btnops btn-outline-secondary" type="button" (click)="min()">min</button>
-          <button class="btn btnops btn-outline-secondary" type="button" (click)="half()">1/2</button>
-          <button class="btn btnops btn-outline-secondary" type="button" (click)="double()">x2</button>
-          <button class="btn btnops btn-outline-secondary" type="button" (click)="max()">max</button>
-        </div>
+      <!-- <div id ="amount" class="input-group mb-3"> -->
         <div class="input-group mb-3 input-margin">
+          <div class="input-group" id="button-addon4">
+            <button class="btn btnops btn-outline-secondary" type="button" (click)="min()">min</button>
+            <button class="btn btnops btn-outline-secondary" type="button" (click)="half()">1/2</button>
+            <button class="btn btnops btn-outline-secondary" type="button" (click)="double()">x2</button>
+            <button class="btn btnops btn-outline-secondary" type="button" (click)="max()">max</button>
+          </div>
           <div class="input-group-prepend">
             <span class="input-group-text back" id="basic-addon1"><img height="20px" src="../assets/tron_logo_trans.png"></span>
           </div>
@@ -191,10 +191,14 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
+
+=======
   </div>
   <div *ngFor="let history of historial">
     <p>{{history.sender}}</p>
   </div>
+>>>>>>> e5799613a5cc61a8032530f1a979559c825e69e1
   <ngb-tabset type="pills">
     <!-- first tab content -->
     <ngb-tab title="Stats">
@@ -349,10 +353,11 @@
                   <td class="table-value-white">{{history.winner}}X</td>
               </ng-template>
             </tr>
-            <ngb-pagination
-            [(page)]="page"
-            [pageSize] ="pageSize"
-            [collectionSize]="myBetHistory.length"></ngb-pagination>
+              <ngb-pagination
+              [(page)]="page"
+              [pageSize] ="pageSize"
+              [collectionSize]="myBetHistory.length"></ngb-pagination>
+            <!-- </div> -->
             <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
           </tbody>
         </table>
@@ -424,7 +429,7 @@
           </button>
         </mat-card-title>
         <mat-card-content>
-          <div>
+        <div>
           <p>New Username</p>
           <div class="modal-body">
             <input class="form-control name" placeholder="Write your username" [(ngModel)]="username" aria-label="Username">
