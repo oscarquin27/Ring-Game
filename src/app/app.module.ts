@@ -19,6 +19,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -36,6 +39,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSlideToggleModule,
     DragDropModule,
     MatMenuModule,
     MatRadioModule,

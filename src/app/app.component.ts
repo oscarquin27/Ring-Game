@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TF8nEMtZSYGBUDL14hMyRegsdR6R9WmFd4";
+  contractAddress = "TR6xa8juB2E47trBjDvyx42LATBegaAfPm";
   address;
   seconds;
   decenas;
@@ -82,7 +82,8 @@ export class AppComponent {
   avatarExists : string;
   avatarBool : boolean;
   historial = [];
-  greyChecked;
+  radioChecked;
+  toggleState : number = 0;
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
 
@@ -293,7 +294,7 @@ export class AppComponent {
           this.seconds = dec [0];
           this.decenas = dec [1];
         }
-        if(distance <= 0) {
+        if(distance <= 0) { 
           this.milis = "";
           this.milis2 = 0;
           this.decenas = "";
@@ -318,8 +319,9 @@ export class AppComponent {
             }
           }catch(e){
             console.log(e);
-          }
+            }
         }
+        
       })
     }
 
@@ -486,7 +488,7 @@ export class AppComponent {
                 }
                 console.log("AMOUNT : ", trx);
                 let res3 = await contract.stop(this.inputNumber).send({
-                  feeLimit: 1000000000,
+                  feeLimit: 1e9,
                   callValue: trx * this.inputNumber,
                   shouldPollResponse : false
                     })
@@ -991,22 +993,31 @@ export class AppComponent {
       }catch(e){}
   }
 
-  autoRollGrey(ev, trx : number){
-    let el = <HTMLInputElement>document.getElementById("r1");
-       let state = el.checked;
-        console.log(state, ev);
+  async autoRoll(rollValue, trx){
+
+    if(this.toggleState != undefined && this.radioChecked != undefined && this.toggleState%2 != 0){
+      this.radioChecked = rollValue;
+        if(this.radioChecked == 1){
+          this.betTwo(trx);
+        }
+        else if(this.radioChecked == 2){
+          this.betThree(trx);
+        }
+        else if(this.radioChecked == 3){
+          this.betFive(trx);
+        }
+        else if(this.radioChecked == 4){
+          this.betFifty(trx);
+        }
+    }
+    else{
+      console.log('keep');
+    }
   }
 
-  autoRollRed(ev, trx : number){
-
-  }
-
-  autoRollGreen(ev, trx : number){
-
-  }
-
-  autoRollYellow(ev, trx : number){
-
+  autoRollState(){
+    this.toggleState += 1;
+    console.log(this.toggleState);
   }
 
 }
