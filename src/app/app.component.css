@@ -144,39 +144,44 @@ h3 div:last-child {
 .mat-radio-button {
     border-color: blue
 }
-
+.rad1 .mat-radio-outer-circle  {
+    border-color: grey
+}
 .rad1.mat-radio-button.mat-accent{
     border-color:grey; 
   }
 .rad1.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
     border-color:grey; 
-  }
+}
   
 .rad1.mat-radio-button.mat-accent .mat-radio-inner-circle{
     color:grey;
     background-color:grey;
-  }
+}
   
-  .rad1.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+.rad1.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:grey
-  }
+}
 
-  .rad2.mat-radio-button.mat-accent{
+.rad2 .mat-radio-outer-circle {
+    border-color: #CA2E4D
+}
+.rad2.mat-radio-button.mat-accent {
     border-color:#CA2E4D; 
   }
 .rad2.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
     border-color: #CA2E4D; 
   }
-  
 .rad2.mat-radio-button.mat-accent .mat-radio-inner-circle{
     color: #CA2E4D;
     background-color:#CA2E4D;
   }
-  
-  .rad2.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+.rad2.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:#CA2E4D;
-  }
-
+}
+.rad3 .mat-radio-outer-circle {
+    border-color: #0C9C4A
+}
   .rad3.mat-radio-button.mat-accent{
     border-color: #0C9C4A; 
   }
@@ -187,12 +192,13 @@ h3 div:last-child {
 .rad3.mat-radio-button.mat-accent .mat-radio-inner-circle{
     color:#0C9C4A;
     background-color:#0C9C4A;
-  }
-  
-  .rad3.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  } 
+.rad3.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:#0C9C4A
-  }
-
+}
+.rad4  .mat-radio-outer-circle{
+    border-color: #FDB501
+}
   .rad4.mat-radio-button.mat-accent{
     border-color: #FDB501; 
   }

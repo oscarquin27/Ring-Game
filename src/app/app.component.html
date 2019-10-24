@@ -1,10 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="spinner == true">
+<!-- <div *ngIf="spinner == true">
   <div class="contains">
       <mat-spinner class="loading"></mat-spinner>
       <h2 class="loading-letter">Loading...</h2>
   </div>
-</div>
+</div> -->
 <div class="container-fluid">
   <div class="first-div">
     <div class="a"> 
@@ -191,7 +191,7 @@
             <mat-radio-button id="r3" class="rad3"  value="3" (click)="autoRoll(3,trx)"></mat-radio-button>
             <mat-radio-button id="r4" class="rad4"  value="4" (click)="autoRoll(4,trx)"></mat-radio-button>
           </mat-radio-group>
-          <mat-slide-toggle (click)="autoRollState()">Auto Roll</mat-slide-toggle>
+          <mat-slide-toggle color="primary" (click)="autoRollState()">Auto Roll</mat-slide-toggle>
           </div>
       </div>
     </div>
