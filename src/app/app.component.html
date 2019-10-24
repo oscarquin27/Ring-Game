@@ -212,14 +212,14 @@
                 <label class="max">Max: 30000 TRX</label>
               </button>
             </div>
-              <div class="card-text reduce color1">
+            <!-- <div class="card-text reduce color1">
               <div class="tron">
                 <img height="18px" src="../assets/tron_logo_trans.png">{{total2x}}
               </div>
               <div>
                 <img src="https://img.icons8.com/small/16/000000/user.png">{{players2x}}
               </div>
-            </div>  
+            </div>   -->
             <div *ngFor = "let bet of showTwo">
               <div class="card-text reduce color1" *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
                 <div class="tron">
