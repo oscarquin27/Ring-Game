@@ -37,15 +37,14 @@ export class UtilsService {
       let fullNode = 'https://api.shasta.trongrid.io';
       let solidityNode = 'https://api.shasta.trongrid.io';
       let eventServer = 'https://api.shasta.trongrid.io';
-      
-      if (address){
+      let address2 = await window.tronWeb.defaultAddress.base58;
+      if (address && address2 != false){
         fullNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().fullNode.host;
         solidityNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().solidityNode.host;
         eventServer = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().eventServer.host;
-
-        this.logger.info('SUCCESS');
+        this.logger.info('SUCCESS', address2);
       }
-      if (!address){
+      else{
           console.log("ITS false");
         window.tronWeb = new TronWeb(
           fullNode = 'https://api.shasta.trongrid.io',//window.tronWeb.currentProviders().fullNode.host;
