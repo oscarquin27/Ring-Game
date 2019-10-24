@@ -428,14 +428,9 @@ h3 div:last-child {
 .nav {
     margin-left: 15px;
 }
-.table {
-    margin: 15px;
-    width: -webkit-fill-available;
-    /* border: 1px solid #9f9f9f; */
-}
-thead {
+/* thead {
     border: 1px solid white
-}
+} */
 /* botones de las cartas */
 .cartas {
     border-radius: 0.25rem;
@@ -799,7 +794,7 @@ textarea {
     background-color: #666;
     color: white;
     caret-color: white;
-    padding: 7px
+    padding: 7px;
 }
 .send {
     position: relative;
@@ -890,21 +885,68 @@ mat-card-content input {
 .ava {
     vertical-align: middle;
 }
-#button-addon4 button {
-    width: 60px
+#button-addon4 {
+    margin-left: -5px
 }
-.table td {
-    background-color: rgb(25, 24, 33);
+#button-addon4 button {
+    width: 60px;
 }
 mat-radio-button {
     padding-right: 41px;
 }
-.radios {
-    margin-left: 26px;
+mat-radio-group {
+    margin-left: 21px;
+}
+/*Estilos tabla de MyBets  */
+/* .table { 
+    width: -webkit-fill-available;  
+     border-collapse: collapse;  
+    background-color: rgb(25, 24, 33);
+    margin: 40px 15px;
+}
+     */
+.table {
+    width: -webkit-fill-available;
+    margin: 20px auto;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: 40px 15px;
+}
+/deep/ .pagination .page-item .page-link {
+  border-radius: 0 !important;
 }
 
-ngb-tabset {
+/deep/ .pagination .page-link {
+  border-top-style: none !important;
+  border-bottom-style: none !important;
+  background-color: #f6f6f6 !important;
+  color: black !important;
 }
+/* .hash {
+    max-width: 300px;
+    word-wrap: break-word; 
+} */
+.winner {
+    max-width: 20px;
+      overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+td:nth-child(1),
+td:nth-child(2) {
+    font-size: 22px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 400;
+}
+td:nth-child(3) {
+    max-width: 300px;
+    word-wrap: break-word; 
+}
+td:nth-child(4) {
+    width: 50%
+} 
+
 /* Version media */
 @media only screen and (min-width: 650px) {
     .contains {

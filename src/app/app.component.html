@@ -381,27 +381,27 @@
               <div *ngIf = "history.winner == 5; then purple"></div>
               <div *ngIf = "history.winner == 50; then yellow"></div>
               <ng-template #grey>
-                <td class="table-value-white">{{history.winner}}X</td>
+                <td class="table-value-white col1">{{history.winner}}X</td>
                 <td class="table-value-white">{{history.round}}</td>
-                <td class="table-value-white"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
+                <td class="table-value-white hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
                 <td class="table-value-white">{{history.timestamp}}</td>
               </ng-template>
               <ng-template #blue>
-                <td class="table-value-blue">{{history.winner}}X</td>
+                <td class="table-value-blue winner">{{history.winner}}X</td>
                 <td class="table-value-white">{{history.round}}</td>
-                <td class="table-value-white"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
+                <td class="table-value-white hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                 <td class="table-value-white">{{history.timestamp}}</td>
               </ng-template>
               <ng-template #purple>
-                <td class="table-value-purple">{{history.winner}}X</td>
+                <td class="table-value-purple winner">{{history.winner}}X</td>
                 <td class="table-value-white">{{history.round}}</td>
-                <td class="table-value-white"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
+                <td class="table-value-white hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                 <td class="table-value-white">{{history.timestamp}}</td>
               </ng-template>
               <ng-template #yellow>
-                  <td class="table-value-yellow">{{history.winner}}X</td>
+                  <td class="table-value-yellow winner">{{history.winner}}X</td>
                   <td class="table-value-white">{{history.round}}</td>
-                  <td class="table-value-white"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
+                  <td class="table-value-white hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                   <td class="table-value-white">{{history.timestamp}}</td>
               </ng-template>
             </tr>
