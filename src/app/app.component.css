@@ -370,6 +370,10 @@ h3 div:last-child {
     background-color: #db092f;
     border-color: #db092f;
 }
+.btn-primary:disabled {
+    background-color: #db092f;
+    border-color: #db092f;
+}
 .btn-primary.focus, .btn-primary:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 38, 38, 0.5);
 }
@@ -395,6 +399,10 @@ h3 div:last-child {
     display: grid;
     padding-left: 10px
     /* grid-template-columns:max-content 1fr max-content; */
+}
+.balance .input-group p {
+    color: white;
+    margin: 12px 5px
 }
 .ico {
     height: 25px;
@@ -529,32 +537,6 @@ label{
 button{
     align-content: center;
 }
-
-.reduce1{
-    font-size: 20px;
-    background-color: #191d2e;
-    width: 90%;
-}
-
-.reduce2{
-    font-size: 20px;
-    background-color: #191d2e;
-    width: 90%;
-    color: #2DADCF;
-}
-.reduce3{
-    font-size: 20px;
-    background-color: #191d2e;
-    width: 90%;
-    color: rgb(137, 96, 226);
-}
-.reduce4{
-    font-size: 20px;
-    background-color: #191d2e;
-    width: 90%;
-    color: #FBB410;
-}
-
 .btn-avatar{
     background-color: #ffffff00;
     border-color: #ffffff00;
@@ -908,29 +890,8 @@ mat-radio-group {
 .table {
     width: -webkit-fill-available;
     margin: 20px auto;
-    table-layout: auto;
     border-collapse: collapse;
     margin: 40px 15px;
-}
-/deep/ .pagination .page-item .page-link {
-  border-radius: 0 !important;
-}
-
-/deep/ .pagination .page-link {
-  border-top-style: none !important;
-  border-bottom-style: none !important;
-  background-color: #f6f6f6 !important;
-  color: black !important;
-}
-/* .hash {
-    max-width: 300px;
-    word-wrap: break-word; 
-} */
-.winner {
-    max-width: 20px;
-      overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 td:nth-child(1),
 td:nth-child(2) {
@@ -943,14 +904,12 @@ td:nth-child(3) {
     max-width: 300px;
     word-wrap: break-word; 
 }
-td:nth-child(4) {
-    width: 50%
-} 
+
 
 /* Version media */
 @media only screen and (min-width: 650px) {
     .contains {
-        height: 1250px;
+        height: 1350px;
     }
     .cartas {
         grid-template-columns: 1fr 1fr;
@@ -962,7 +921,7 @@ td:nth-child(4) {
         margin-left: -47px
     }
     #prize {
-        height: 455px;
+        height: 450px;
         width: 340px;
     }
     #seconds {
@@ -1056,7 +1015,7 @@ td:nth-child(4) {
     }
     #seconds {
         top: -300px;
-        left: 18px;
+        left: 10px;
         font-size: 3rem
     }
     #indication {
