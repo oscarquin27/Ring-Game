@@ -33,19 +33,19 @@ export class UtilsService {
           console.log("ITS TRUE HE IS LOGGED IN");
 
          }
-      let address = await window.tronWeb.defaultAddress.base58;
+      let address = await window.tronWeb || false;
       let fullNode = 'https://api.shasta.trongrid.io';
       let solidityNode = 'https://api.shasta.trongrid.io';
       let eventServer = 'https://api.shasta.trongrid.io';
       
-      if (this.loggedIn == true){
+      if (address){
         fullNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().fullNode.host;
         solidityNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().solidityNode.host;
         eventServer = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().eventServer.host;
 
         this.logger.info('SUCCESS');
       }
-      if (address == false){
+      if (!address){
           console.log("ITS false");
         window.tronWeb = new TronWeb(
           fullNode = 'https://api.shasta.trongrid.io',//window.tronWeb.currentProviders().fullNode.host;
@@ -59,8 +59,9 @@ export class UtilsService {
         solidityNode,
         eventServer,
       )
-      window.tronWeb.on('addressChanged', () => {
+      window.tronWeb.on('addressChanged', async () => {
         this.logger.info('Address changed to : ' + this.getAddress);
+        await window.tronWeb.setAddress(this.getAddress);
       })
       return resolve();
     } else {

@@ -84,6 +84,7 @@ export class AppComponent {
   historial = [];
   radioChecked;
   toggleState : number = 0;
+  onlyOnce : number = 0;
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
 
@@ -289,12 +290,15 @@ export class AppComponent {
         let n = Math.floor((distance % (1000))/10);//centisegundo
         let n2 = (""+n).split("");
         this.milis = n2[1];
+        this.onlyOnce++;
+        this.autoRollAux(this.onlyOnce);
         // contador salto a los 10 segundos
         if(distance <= 10000) {
           this.seconds = dec [0];
           this.decenas = dec [1];
         }
         if(distance <= 0) {
+          this.onlyOnce = 0;
           this.milis = "";
           this.milis2 = 0;
           this.decenas = "";
@@ -1012,6 +1016,12 @@ export class AppComponent {
     }
     else{
       console.log('keep');
+    }
+  }
+
+  autoRollAux(onlyonce){
+    if(onlyonce == 1){
+    this.autoRoll(this.radioChecked, this.trx);
     }
   }
 
