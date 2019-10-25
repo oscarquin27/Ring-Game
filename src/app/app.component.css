@@ -144,39 +144,44 @@ h3 div:last-child {
 .mat-radio-button {
     border-color: blue
 }
-
+.rad1 .mat-radio-outer-circle  {
+    border-color: grey
+}
 .rad1.mat-radio-button.mat-accent{
     border-color:grey; 
   }
 .rad1.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
     border-color:grey; 
-  }
+}
   
 .rad1.mat-radio-button.mat-accent .mat-radio-inner-circle{
     color:grey;
     background-color:grey;
-  }
+}
   
-  .rad1.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+.rad1.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:grey
-  }
+}
 
-  .rad2.mat-radio-button.mat-accent{
+.rad2 .mat-radio-outer-circle {
+    border-color: #CA2E4D
+}
+.rad2.mat-radio-button.mat-accent {
     border-color:#CA2E4D; 
   }
 .rad2.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
     border-color: #CA2E4D; 
   }
-  
 .rad2.mat-radio-button.mat-accent .mat-radio-inner-circle{
     color: #CA2E4D;
     background-color:#CA2E4D;
   }
-  
-  .rad2.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+.rad2.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:#CA2E4D;
-  }
-
+}
+.rad3 .mat-radio-outer-circle {
+    border-color: #0C9C4A
+}
   .rad3.mat-radio-button.mat-accent{
     border-color: #0C9C4A; 
   }
@@ -187,12 +192,13 @@ h3 div:last-child {
 .rad3.mat-radio-button.mat-accent .mat-radio-inner-circle{
     color:#0C9C4A;
     background-color:#0C9C4A;
-  }
-  
-  .rad3.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  } 
+.rad3.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:#0C9C4A
-  }
-
+}
+.rad4  .mat-radio-outer-circle{
+    border-color: #FDB501
+}
   .rad4.mat-radio-button.mat-accent{
     border-color: #FDB501; 
   }
@@ -543,84 +549,6 @@ button{
     background-color: #ffffff00;
     border-color: #ffffff00;
 }
-
-.table-numeral{
-    color:white;
-    background-color: rgb(13, 14, 20);
-    border-color: rgb(13, 14, 20);
-}
-
-.table-amount{
-    color:white;
-    border-color: rgb(13, 14, 20);
-    background-color: rgb(13, 14, 20);
-}
-
-.table-multiplier{
-    color:white;
-    border-color: rgb(13, 14, 20);
-    background-color: rgb(13, 14, 20);
-}
-
-.table{
-    background-color: #11131F;
-}
-
-.table-numeral-grey{
-    color: #4e5152;
-    background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445);
-}
-
-.table-numeral-blue{
-    color: #C9324E;
-    background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445);
-}
-
-.table-numeral-purple{
-    color: #0C9B4B;
-    background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445);
-}
-
-
-.table-numeral-yellow{
-    color: #FAAC17;
-    /* background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445); */
-}
-
-.table-value-grey{
-    color: #4e5152;
-    /* background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445); */
-}
-
-.table-value-blue{
-    color: #C9324E;
-    /* background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445); */
-}
-
-.table-value-purple{
-    color: #0C9B4B;
-    /* background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgba(18, 20, 29, 0.445); */
-}
-
-.table-value-yellow{
-    color: #FAAC17;
-    /* background-color: rgba(18, 20, 29, 0.445);
-    border-color:rgb(18, 20, 29); */
-}
-
-.table-value-white{
-    color: #ffffff;
-    /* background-color: rgb(18, 20, 29);
-    border-color:rgb(18, 20, 29); */
-}
-
 ::placeholder{
     color: white;
 }
@@ -882,31 +810,76 @@ mat-radio-group {
     margin-left: 21px;
 }
 /*Estilos tabla de MyBets  */
-/* .table { 
-    width: -webkit-fill-available;  
-     border-collapse: collapse;  
-    background-color: rgb(25, 24, 33);
-    margin: 40px 15px;
-}
-     */
 .table {
     width: -webkit-fill-available;
     margin: 20px auto;
     border-collapse: collapse;
-    margin: 40px 15px;
+    margin: 25px 15px 15px 15px;
+    font-size: 13px;
 }
-/* td:nth-child(1),
-td:nth-child(2) {
-    font-size: 22px;
-    text-align: center;
-    vertical-align: middle;
-    font-weight: 400;
+thead {
+    color:white;
+    background-color: black;
 }
-td:nth-child(3) {
-    max-width: 300px;
-    word-wrap: break-word; 
-} */
+tbody {
+    background-color: #2a2b31;
+}
+th, td {
+    border: 1px solid white;
+}
+td, th {
+    color: white;
+}
+.table a {
+    color: #007bff;
+}
+ngb-pagination .page-item.active .page-link {
+    background-color: #7b1fa2;
+    border-color: #7b1fa2;
+}
+ngb-tabset .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #7b1fa2;
+}
+ngb-tabset  .page-link:hover {
+    color: black;
+} 
+ngb-tabset .page-link:focus {
+    box-shadow: none;
+}
+ngb-tabset a, .page-link {
+    color: #7b1fa2;
+    /* text-decoration: none;
+    background-color: transparent; */
+}
+ngb-tabset a:hover {
+    color: white;
+    text-decoration: underline;
+}
+.paginacion button {
+    margin-top: -10px;
+    margin-left: 16px;
+    margin-bottom: 20px;
+}
+.grey {
+    color: #4e5152;
+}
 
+.red {
+    color: #C9324E;
+}
+
+.green {
+    color: #0C9B4B;
+}
+.yellow{
+    color: #FAAC17;
+}
+
+.hash {
+    max-width: 140px;
+    word-wrap: break-word; 
+}
 
 /* Version media */
 @media only screen and (min-width: 650px) {
@@ -982,6 +955,16 @@ td:nth-child(3) {
         /* padding: 0px 0px 40px 0px */
         padding-right: 0px
     }
+    .table {
+        font-size: 17px;
+    }
+    .hash {
+        max-width: 270px;
+    }
+    .paginacion button {
+        margin-top: -100px; 
+        margin-left: 16px;
+    }
 }
 
 /* Version desktop */
@@ -997,10 +980,11 @@ td:nth-child(3) {
     .b {
         order: 1;
         /* margin: auto */
-        margin-top: 75px
+        margin-top: 55px
     }
     .a {
         order: 2;
+        padding-top: 0px;
     }
     .cartas {
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -1032,9 +1016,6 @@ td:nth-child(3) {
         height: 60px;
         width: 45px;
     }
-    /*h3 div:first-child {
-        /* width: 90px; */
-    /*} */
     h3 div:nth-child(3) {
         width: 7px;
     }
@@ -1045,8 +1026,6 @@ td:nth-child(3) {
         padding: 1rem
     }
     .showprev {
-        /*height: 35px;
-        width: 35px*/
         padding: 0;
         line-height: 10px;
         position: relative;
@@ -1062,12 +1041,11 @@ td:nth-child(3) {
         width: 105%;
         padding: 0px 45px 0px 0px
     }
-
+    .hash {
+        max-width: 400px;
+    }
+    .paginacion button {
+        margin-top: -100px; 
+        margin-left: 16px;
+    }
 }
-
-
-/* #canvas{
-    height: 429px;
-    width: 380px;
-    margin: auto
-} */
