@@ -830,17 +830,36 @@ th, td {
 td, th {
     color: white;
 }
-ngb-pagination .page-item.active .page-link {
-    background-color: #7460ee;
-    border-color: #7460ee;
+.table a {
+    color: #007bff;
 }
-/* ngb-pagination .pagination { */
-    /* margin-left: 230%; */
-    /* margin-top: 15px; */
-/* } */
+ngb-pagination .page-item.active .page-link {
+    background-color: #7b1fa2;
+    border-color: #7b1fa2;
+}
+ngb-tabset .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #7b1fa2;
+}
+ngb-tabset  .page-link:hover {
+    color: black;
+} 
+ngb-tabset .page-link:focus {
+    box-shadow: none;
+}
+ngb-tabset a, .page-link {
+    color: #7b1fa2;
+    /* text-decoration: none;
+    background-color: transparent; */
+}
+ngb-tabset a:hover {
+    color: white;
+    text-decoration: underline;
+}
 .paginacion button {
-    margin-top: -100px; 
+    margin-top: -10px;
     margin-left: 16px;
+    margin-bottom: 20px;
 }
 .grey {
     color: #4e5152;
@@ -861,19 +880,6 @@ ngb-pagination .page-item.active .page-link {
     max-width: 140px;
     word-wrap: break-word; 
 }
-
-/* td:nth-child(1),
-td:nth-child(2) {
-    font-size: 22px;
-    text-align: center;
-    vertical-align: middle;
-    font-weight: 400;
-}
-td:nth-child(3) {
-    max-width: 300px;
-    word-wrap: break-word; 
-} */
-
 
 /* Version media */
 @media only screen and (min-width: 650px) {
@@ -955,6 +961,10 @@ td:nth-child(3) {
     .hash {
         max-width: 270px;
     }
+    .paginacion button {
+        margin-top: -100px; 
+        margin-left: 16px;
+    }
 }
 
 /* Version desktop */
@@ -1006,9 +1016,6 @@ td:nth-child(3) {
         height: 60px;
         width: 45px;
     }
-    /*h3 div:first-child {
-        /* width: 90px; */
-    /*} */
     h3 div:nth-child(3) {
         width: 7px;
     }
@@ -1019,8 +1026,6 @@ td:nth-child(3) {
         padding: 1rem
     }
     .showprev {
-        /*height: 35px;
-        width: 35px*/
         padding: 0;
         line-height: 10px;
         position: relative;
@@ -1039,11 +1044,8 @@ td:nth-child(3) {
     .hash {
         max-width: 400px;
     }
+    .paginacion button {
+        margin-top: -100px; 
+        margin-left: 16px;
+    }
 }
-
-
-/* #canvas{
-    height: 429px;
-    width: 380px;
-    margin: auto
-} */
