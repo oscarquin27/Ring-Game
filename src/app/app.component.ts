@@ -73,7 +73,7 @@ export class AppComponent {
   address2;
   address3;
   chatOpen: boolean = false;
-  spinner: boolean = false;
+  spinner: boolean = true;
   private tronweb : TronWeb | any;
   panelOpenState : boolean = false;
   username : string;
