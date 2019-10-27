@@ -52,7 +52,8 @@
         <div class="input-group">
           <img class="ico" height="35px" src="../assets/tron_logo_trans.png">
           <p>{{balance}}</p>
-          <button id="check" class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
+            <img src="../assets/renew.png" height="30px" width="30px" id="check" (click)="checkBalance()">
+            <img src="../assets/history.png" height="30px" width="30px">
         </div>
         <!-- Chat -->
         <div class="botones">
@@ -216,14 +217,14 @@
                 <label class="max">Max: 30000 TRX</label>
               </button>
             </div>
-            <!-- <div class="card-text reduce color1">
+            <div class="card-text reduce color1">
               <div class="tron">
                 <img height="18px" src="../assets/tron_logo_trans.png">{{total2x}}
               </div>
               <div>
                 <img src="https://img.icons8.com/small/16/000000/user.png">{{players2x}}
               </div>
-            </div>   -->
+            </div> 
             <div *ngFor = "let bet of showTwo">
               <div class="card-text reduce color1" *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
                 <div class="tron">
@@ -243,14 +244,14 @@
                 <label class="max">Max: 20000 TRX</label>
               </button>
             </div>
-            <!-- <div class="card-text reduce color2">
+            <div class="card-text reduce color2">
               <div class="tron">
                 <img height="18px" src="../assets/tron_logo_trans.png"> {{total3x}}
               </div>
               <div class="player">
                 <img src="https://img.icons8.com/small/16/000000/user.png">{{players3x}}
               </div>
-            </div> -->
+            </div> 
             <div *ngFor = "let bet of showThree">
               <div class="card-text reduce color2" *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
                 <div class="tron">
@@ -270,14 +271,14 @@
                 <label class="max">Max: 12000 TRX</label>
               </button>
             </div>
-            <!-- <div class="card-text reduce color3">
+            <div class="card-text reduce color3">
               <div class="tron">
                 <img height="18px" src="../assets/tron_logo_trans.png"> {{total5x}}
               </div>
               <div>
                 <img src="https://img.icons8.com/small/16/000000/user.png">{{players5x}}
               </div>
-            </div> -->
+            </div>
             <div *ngFor = "let bet of showFive">
               <div class="card-text reduce color3" *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
                 <div class="tron">
@@ -297,14 +298,14 @@
                 <label class="max">Max: 1200 TRX</label>
               </button>
             </div>
-            <!-- <div class="card-text reduce color4">
+            <div class="card-text reduce color4">
               <div class="tron">
                 <img height="18px" src="../assets/tron_logo_trans.png"> {{total50x}}
               </div>
               <div>
                 <img src="https://img.icons8.com/small/16/000000/user.png">{{players50x}}
               </div>
-            </div> -->
+            </div>
             <div *ngFor = "let bet of showFifty">
               <div class="card-text reduce color4" *ngIf = "bet.result.amount !== undefined || bet.result.player !== undefined">
                 <div class="tron">
@@ -346,9 +347,9 @@
               </ng-template>
               <div *ngIf="history.betType == 3; then blue"></div>
               <ng-template #blue>
-                <th class="blue" scope="row">{{address2}}...{{address3}}</th>
-                <td class="blue">{{history.value}} TRX</td>
-                <td class="blue">{{history.betType}}X</td>
+                <th class="red" scope="row">{{address2}}...{{address3}}</th>
+                <td class="red">{{history.value}} TRX</td>
+                <td class="red">{{history.betType}}X</td>
                 <td>{{history.winner}}X</td>
               </ng-template>
               <div *ngIf="history.betType == 5; then purple"></div>
@@ -396,19 +397,19 @@
               <div *ngIf = "history.winner == 5; then purple"></div>
               <div *ngIf = "history.winner == 50; then yellow"></div>
               <ng-template #grey>
-                <th>{{history.winner}}X</th>
+                <th class="grey">{{history.winner}}X</th>
                 <td>{{history.round}}</td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
                 <td>{{history.timestamp}}</td>
               </ng-template>
               <ng-template #blue>
-                <th class="blue">{{history.winner}}X</th>
+                <th class="red">{{history.winner}}X</th>
                 <td>{{history.round}}</td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                 <td>{{history.timestamp}}</td>
               </ng-template>
               <ng-template #purple>
-                <th class="purple">{{history.winner}}X</th>
+                <th class="green">{{history.winner}}X</th>
                 <td>{{history.round}}</td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                 <td>{{history.timestamp}}</td>

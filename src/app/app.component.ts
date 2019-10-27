@@ -73,7 +73,7 @@ export class AppComponent {
   address2;
   address3;
   chatOpen: boolean = false;
-  spinner: boolean = false;
+  spinner: boolean = true;
   private tronweb : TronWeb | any;
   panelOpenState : boolean = false;
   username : string;
@@ -245,7 +245,7 @@ export class AppComponent {
           'spins' : 3,
           'yoyo' : false,
           'easing': 'Power2.easeOut',
-          'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/puntgris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/puntverde.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/puntred.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
+          //'callbackBefore' : 'let rand = Math.floor(Math.random()*4); if(rand == 0){document.getElementById("prize").style.backgroundImage="url(../assets/puntgris.png)";}else if(rand == 1){document.getElementById("prize").style.backgroundImage="url(../assets/puntverde.png)";}else if (rand == 2){document.getElementById("prize").style.backgroundImage="url(../assets/puntred.png)";}else if(rand == 3){document.getElementById("prize").style.backgroundImage="url(../assets/punteroam.png)";}',
           'callbackSound' : playSound,
           'soundTrigger' : 'pin'
         },
@@ -262,7 +262,6 @@ export class AppComponent {
           'lineWidth' : 3
         }*/
       });
-      console.log(this.wheel.getRotationPosition());
     }
 
     muteAudio(){
@@ -273,7 +272,6 @@ export class AppComponent {
       this.muted = false;
     }
     async timer(){
-      console.log(this.address);
       this.indication = "Place your bets";
       const contract1 = await window.tronWeb.contract().at(this.contractAddress);
       const res1 = await contract1.time().call();
@@ -313,7 +311,6 @@ export class AppComponent {
           (<HTMLButtonElement>document.getElementById('b4')).disabled = true;
           try{
             if (this.address == "TLV6Y5iryU6imRxKrAFmHjEUobXKyBcSU7"){
-              console.log('can call');
             const contract = await window.tronWeb.contract().at(this.contractAddress);
               var res = await contract.play().send({
                 feeLimit: 1000000000,
@@ -322,7 +319,6 @@ export class AppComponent {
               })
             }
           }catch(e){
-            console.log(e);
             }
         }
         
@@ -333,14 +329,13 @@ export class AppComponent {
       try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.PlayGame().watch(async (err, result) => {
-        if (err) return console.log("ERROR")
+        if (err) return
         if(result){
-          console.log(result);
           this.indication = "Finding a winner";
           let res = await contract.random().call();
           this.segmentNumber = res.toNumber();
           this.inputNumber = parseInt(this.wheel.segments[this.segmentNumber].text);
-          console.log(this.segmentNumber, "INPUT : " + this.inputNumber);
+        
           this.previousPlays.push(this.inputNumber);
           this.salt = await contract.salt().call();
           this.hash = cryptojs.SHA256(this.salt+this.segmentNumber);
@@ -361,7 +356,6 @@ export class AppComponent {
       let res2 = await contract.StopGame().watch(async (err, result) => {
         if(err) {this.timer();}
         if(result){
-            console.log(result);
             this.indication = "Preparing next round"
             this.showTwo = [];
             this.showThree = [];
@@ -390,7 +384,7 @@ export class AppComponent {
     async eventListenerTwo(){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.NewBetTwo().watch(async (err, result) => {
-        if(err) return console.log("ERROR")
+        if(err) return
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
@@ -406,7 +400,7 @@ export class AppComponent {
     async eventListenerThree(){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract["NewBetThree"]().watch(async (err, result) => {
-        if(err) return console.log("ERROR")
+        if(err) return
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
@@ -422,7 +416,7 @@ export class AppComponent {
     async eventListenerFive(){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract["NewBetFive"]().watch(async (err, result) => {
-        if(err) return console.log("ERROR")
+        if(err) return
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
@@ -438,7 +432,7 @@ export class AppComponent {
     async eventListenerFifty(){
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract["NewBetFifty"]().watch(async (err, result) => {
-        if(err) return console.log("ERROR")
+        if(err) return
         if(result){
           result.result.amount = result.result.amount/1000000;
           let pre = await window.tronWeb.address.fromHex(result.result.player).toString();
@@ -473,7 +467,6 @@ export class AppComponent {
     }
 
       async alertPrize() : Promise<any>{
-      console.log(this.wheel.segments[this.segmentNumber].text);
     }
 
     async spinOf(): Promise<any>{
@@ -490,7 +483,6 @@ export class AppComponent {
                     trx += numBet;
                   }
                 }
-                console.log("AMOUNT : ", trx);
                 let res3 = await contract.stop(this.inputNumber).send({
                   feeLimit: 1e9,
                   callValue: trx * this.inputNumber,
@@ -632,6 +624,7 @@ export class AppComponent {
       let res = await window.tronWeb.trx.getBalance(address);
       let aux = parseInt(res);
       this.balance = aux / 1000000;
+      console.log("checkclicked")
     }
 
     min(){
@@ -715,7 +708,6 @@ export class AppComponent {
       let x = (<HTMLDialogElement>document.getElementById("previous-yellow"));
       x.close(); 
       this.dialogOpenYellow = false;
-      console.log("close");
     }
 
     async myBets() : Promise<any>{
@@ -749,12 +741,12 @@ export class AppComponent {
         size : 100,
 
       });
-      console.log(res);
+
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res2 = await contract.previousCount().call();
       let res3 = res2.toNumber();
       let j = 0;
-      console.log(res3);
+
       for(let i = (res3); i >= (res3-100); i--){
         let res4 = await contract.previous(i).call();
         let winner = parseInt(this.wheel.segments[res4.random.toNumber()].text);
@@ -767,7 +759,7 @@ export class AppComponent {
           timestamp : time,
           round : i
         })
-        console.log(this.historial);
+  
         j++;
         }
     }
@@ -859,7 +851,7 @@ export class AppComponent {
       try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.MessageSent().watch(async (err, result) => {
-        if (err) return console.log("ERROR")
+        if (err) return
         if(result){
          let res1 = await window.tronWeb.address.fromHex(result.result.sender).toString();
          let res2 = await contract.users(res1).call();
@@ -951,7 +943,6 @@ export class AppComponent {
   }
 
   async setAvatar(avatar: string){
-    console.log(avatar);
     try{
       const contract = await window.tronWeb.contract().at(this.contractAddress);
       let res = await contract.setAvatar(avatar).send({
@@ -1015,7 +1006,6 @@ export class AppComponent {
         }
     }
     else{
-      console.log('keep');
     }
   }
 
@@ -1027,7 +1017,7 @@ export class AppComponent {
 
   autoRollState(){
     this.toggleState += 1;
-    console.log(this.toggleState);
+
   }
 
 }
