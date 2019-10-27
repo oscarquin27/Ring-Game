@@ -58,7 +58,7 @@
             <img src="../assets/renew.png" height="30px" width="30px" id="check" (click)="checkBalance()">
           <!-- </div> -->
           <!-- <div> -->
-            <img src="../assets/history.png" height="30px" width="30px">
+            <img src="../assets/history.png" height="30px" width="30px" data-toggle="modal" data-target="#historialModal">
           <!-- </div> -->
         </div>
         <!-- Chat -->
@@ -385,62 +385,88 @@
       </ng-template>
     </ngb-tab>
     <!--GENERAL HISTORY-->
-    <ngb-tab title="Previous Rounds">
-      <ng-template ngbTabContent>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Winner</th>
-              <th scope="col">Round</th>
-              <th scope="col">Hash</th>
-              <th scope="col">Timestamp</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor = "let history of historial | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
-              <div *ngIf = "history.winner == 2; then grey"></div>
-              <div *ngIf = "history.winner == 3; then blue"></div>
-              <div *ngIf = "history.winner == 5; then purple"></div>
-              <div *ngIf = "history.winner == 50; then yellow"></div>
-              <ng-template #grey>
-                <th class="grey">{{history.winner}}X</th>
-                <td>{{history.round}}</td>
-                <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
-                <td>{{history.timestamp}}</td>
-              </ng-template>
-              <ng-template #blue>
-                <th class="red">{{history.winner}}X</th>
-                <td>{{history.round}}</td>
-                <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
-                <td>{{history.timestamp}}</td>
-              </ng-template>
-              <ng-template #purple>
-                <th class="green">{{history.winner}}X</th>
-                <td>{{history.round}}</td>
-                <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
-                <td>{{history.timestamp}}</td>
-              </ng-template>
-              <ng-template #yellow>
-                <th class="yellow">{{history.winner}}X</th>
-                <td>{{history.round}}</td>
-                <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
-                <td>{{history.timestamp}}</td>
-              </ng-template>
-            </tr>
-          </tbody>
-        </table>
-        <div class="paginacion">
-          <ngb-pagination class="d-flex justify-content-center"
-          [maxSize]="4"
-          [(page)]="page"
-          [pageSize] ="pageSize"
-          [collectionSize]="historial.length"></ngb-pagination>
-          <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
-        </div>
-      </ng-template>
-    </ngb-tab>
   </ngb-tabset>
-
+  <!--MODAL HISTORY-->
+  <div class="modal fade" id="historialModal" tabindex="-1" role="dialog" aria-labelledby="historialModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Round Information</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="resetDetailed()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Winner</th>
+                  <th scope="col">Round</th>
+                  <th scope="col">Hash</th>
+                  <th scope="col">Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor = "let history of historial | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                  <div *ngIf = "history.winner == 2; then grey"></div>
+                  <div *ngIf = "history.winner == 3; then blue"></div>
+                  <div *ngIf = "history.winner == 5; then purple"></div>
+                  <div *ngIf = "history.winner == 50; then yellow"></div>
+                  <ng-template #grey>
+                    <th class="grey">{{history.winner}}X</th>
+                    <td (click)="detailedInfo(history.round)" data-toggle="modal" data-target="#exampleModal">{{history.round}} <img src="../assets/view.png" height="20px" width="20px"></td>
+                    <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
+                    <td>{{history.timestamp}}</td>
+                  </ng-template>
+                  <ng-template #blue>
+                    <th class="red">{{history.winner}}X</th>
+                    <td (click)="detailedInfo(history.round)" data-toggle="modal" data-target="#exampleModal">{{history.round}} <img src="../assets/view.png" height="20px" width="20px"></td>
+                    <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
+                    <td>{{history.timestamp}}</td>
+                  </ng-template>
+                  <ng-template #purple>
+                    <th class="green">{{history.winner}}X</th>
+                    <td (click)="detailedInfo(history.round)" data-toggle="modal" data-target="#exampleModal">{{history.round}} <img src="../assets/view.png" height="20px" width="20px"></td>
+                    <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
+                    <td>{{history.timestamp}}</td>
+                  </ng-template>
+                  <ng-template #yellow>
+                    <th class="yellow">{{history.winner}}X</th>
+                    <td (click)="detailedInfo(history.round)" data-toggle="modal" data-target="#exampleModal">{{history.round}} <img src="../assets/view.png" height="20px" width="20px"></td>
+                    <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
+                    <td>{{history.timestamp}}</td>
+                  </ng-template>
+                </tr>
+              </tbody>
+            </table>
+            <div class="paginacion">
+              <ngb-pagination class="d-flex justify-content-center"
+              [maxSize]="4"
+              [(page)]="page"
+              [pageSize] ="pageSize"
+              [collectionSize]="historial.length"></ngb-pagination>
+              <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
+            </div>
+        </div>
+  <!--MODAL DETAILED-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detailed Round Information</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="resetDetailed()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let info of detailedInformation">
+            <p>#{{info.id}}</p>
+            <p>Person: {{info.sender}}</p>
+            <p>Amount: {{info.value}}</p>
+            <p>Multiplier: {{info.betType}}</p>
+            <p>Profit: {{info.profit}}</p>
+          </div>
+        </div>
   <!-- card para el nombre de usuario -->
   <div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModal" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -20,11 +20,11 @@ export class AppComponent {
   title = 'ring';
   size = 14;
   page = 1;
-  pageSize = 10;
+  pageSize = 5;
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TFX8UpB7gyyucXtUhKAJqbh2GjwTrstRz3";
+  contractAddress = "TPnTqzWWFKJTH3iHnV9L8ts4HQbn7YBXyF";
   address;
   seconds;
   decenas;
@@ -85,6 +85,7 @@ export class AppComponent {
   radioChecked;
   toggleState : number = 0;
   onlyOnce : number = 0;
+  detailedInformation = [];
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
 
@@ -1020,4 +1021,37 @@ export class AppComponent {
 
   }
 
+  async detailedInfo(round:number): Promise<any>{
+    try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let prov= await contract.history(round,0).call();
+      let quantity = prov.qty.toNumber();
+      console.log(quantity, prov.betType);
+      let res4 = await contract.previous(round).call();
+      let winner = parseInt(this.wheel.segments[res4.random.toNumber()].text);
+      for(let i=0; i < quantity; i++){
+        let res = await contract.history(round,i).call();
+        if(winner == res.betType.toNumber()){
+          var profit = (res.value.toNumber()/1e6)*winner
+        }
+        else{
+          profit = 0;
+        }
+        this.detailedInformation.push({
+          id : i,
+          sender: await window.tronWeb.address.fromHex(res.sender).toString(),
+          value : (res.value.toNumber()/1e6),
+          betType : res.betType.toNumber(),
+          title: round,
+          profit : profit
+        });
+      }
+      console.log(this.detailedInformation);
+  }
+    catch(e){}
+  }
+
+  resetDetailed(){
+  this.detailedInformation = [];
+  }
 }

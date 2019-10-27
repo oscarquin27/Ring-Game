@@ -1,6 +1,7 @@
 pragma solidity ^0.4.23;
 
 
+
 contract RingGame {
     
     uint public time;
@@ -35,6 +36,7 @@ contract RingGame {
         uint value;
         address sender;
         uint256 round;
+        uint256 qty;
     }
     struct MyBets {
         uint betType;
@@ -189,10 +191,10 @@ contract RingGame {
                betType : bets[i].betType,
                value : bets[i].value,
                sender : bets[i].player,
-               round : previousCount
+               round : previousCount,
+               qty : bets.length
            }));
         }
-        history[previousCount].length = playersLength;
         bets.length = 0;
         time = now;
         emit StopGame(time);

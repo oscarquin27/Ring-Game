@@ -17,7 +17,7 @@ export interface Request {
 })
 export class UtilsService {
   private tronweb : TronWeb | any;
-  contractAddress = "TFX8UpB7gyyucXtUhKAJqbh2GjwTrstRz3";
+  contractAddress = "TPnTqzWWFKJTH3iHnV9L8ts4HQbn7YBXyF";
   FOUNDATION_ADDRESS = 'TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB';
   public loggedIn: boolean = false;
   balance;
@@ -38,7 +38,7 @@ export class UtilsService {
       let solidityNode = 'https://api.shasta.trongrid.io';
       let eventServer = 'https://api.shasta.trongrid.io';
       let address2 = await window.tronWeb.defaultAddress.base58;
-      if (address && address2 != false){
+      if (address || address2 != false){
         fullNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().fullNode.host;
         solidityNode = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().solidityNode.host;
         eventServer = 'https://api.shasta.trongrid.io'//window.tronWeb.currentProviders().eventServer.host;
