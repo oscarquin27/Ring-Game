@@ -393,10 +393,6 @@ h3 div:last-child {
     /* grid-template-columns:max-content 1fr max-content; */
     margin: 0% 7%;
 }
-.balance .input-group p {
-    color: white;
-    margin: 12px 5px
-}
 .ico {
     height: 25px;
     width: 25px;
@@ -417,6 +413,19 @@ h3 div:last-child {
     border-color: #131218;
     border-radius: 12px;
     margin: 5px;
+}
+.input-top {
+    display: grid;
+    grid-template-columns: max-content auto auto auto;
+    padding: 10px 0px;
+}
+.balance .input-top p {
+    color: white;
+    margin: 12px 5px
+}
+.input-top img {
+    margin-top: 10px;
+    cursor: pointer;
 }
 .input-group{
     padding: 10px 0px;
