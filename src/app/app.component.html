@@ -52,7 +52,8 @@
         <div class="input-group">
           <img class="ico" height="35px" src="../assets/tron_logo_trans.png">
           <p>{{balance}}</p>
-          <button id="check" class="btn btnops btn-outline-secondary" type="button" (click)="checkBalance()">Check balance</button>
+            <img src="../assets/renew.png" height="30px" width="30px" id="check" (click)="checkBalance()">
+            <img src="../assets/history.png" height="30px" width="30px">
         </div>
         <!-- Chat -->
         <div class="botones">
@@ -342,9 +343,9 @@
               </ng-template>
               <div *ngIf="history.betType == 3; then blue"></div>
               <ng-template #blue>
-                <th class="blue" scope="row">{{address2}}...{{address3}}</th>
-                <td class="blue">{{history.value}} TRX</td>
-                <td class="blue">{{history.betType}}X</td>
+                <th class="red" scope="row">{{address2}}...{{address3}}</th>
+                <td class="red">{{history.value}} TRX</td>
+                <td class="red">{{history.betType}}X</td>
                 <td>{{history.winner}}X</td>
               </ng-template>
               <div *ngIf="history.betType == 5; then purple"></div>
@@ -392,19 +393,19 @@
               <div *ngIf = "history.winner == 5; then purple"></div>
               <div *ngIf = "history.winner == 50; then yellow"></div>
               <ng-template #grey>
-                <th>{{history.winner}}X</th>
+                <th class="grey">{{history.winner}}X</th>
                 <td>{{history.round}}</td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
                 <td>{{history.timestamp}}</td>
               </ng-template>
               <ng-template #blue>
-                <th class="blue">{{history.winner}}X</th>
+                <th class="red">{{history.winner}}X</th>
                 <td>{{history.round}}</td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                 <td>{{history.timestamp}}</td>
               </ng-template>
               <ng-template #purple>
-                <th class="purple">{{history.winner}}X</th>
+                <th class="green">{{history.winner}}X</th>
                 <td>{{history.round}}</td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}X</a></td>
                 <td>{{history.timestamp}}</td>
