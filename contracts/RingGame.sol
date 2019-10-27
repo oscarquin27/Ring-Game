@@ -1,5 +1,7 @@
 pragma solidity ^0.4.23;
 
+
+
 contract RingGame {
     
     uint public time;
@@ -193,7 +195,6 @@ contract RingGame {
                qty : bets.length
            }));
         }
-        history[previousCount].length = playersLength;
         bets.length = 0;
         time = now;
         emit StopGame(time);
