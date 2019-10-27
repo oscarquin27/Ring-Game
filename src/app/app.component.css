@@ -979,18 +979,18 @@ ngb-tabset a:hover {
         padding: 10px 0px;
     }
     .mute img {
-        width: 60px;
+        width: 55px;
         /* padding-top: 5px; */
     }
     /* Profile button style */
     .profile img {
         /* text-align: center; */
-        width: 55px;
+        width: 50px;
         /* padding-top: 5px; */
     }
     /* Chat button styles */
     .chat img {
-        width: 60px;
+        width: 55px;
         /* padding-top: 5px; */
     }
     .table {
