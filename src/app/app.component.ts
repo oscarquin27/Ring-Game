@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TFX8UpB7gyyucXtUhKAJqbh2GjwTrstRz3";
+  contractAddress = "TW1X9m5pjcAof1g8BJ8Jdd1uUWdntJQZj4";
   address;
   seconds;
   decenas;
@@ -85,6 +85,7 @@ export class AppComponent {
   radioChecked;
   toggleState : number = 0;
   onlyOnce : number = 0;
+  detailedInformation;
   constructor(private tronWebService : UtilsService, private logger : NGXLogger){
   }
 
@@ -1020,4 +1021,23 @@ export class AppComponent {
 
   }
 
+  async detailedInfo(round:number): Promise<any>{
+    try{
+      const contract = await window.tronWeb.contract().at(this.contractAddress);
+      let prov= contract.history(round,0).call();
+      let quantity = prov.qty.toNumber();
+
+      if(quantity > 0){
+      for(let i=0; i< quantity; i++){
+        let res = contract.history(round,i).call();
+        this.detailedInformation.push(res);
+      }
+    }
+  }
+    catch(e){}
+  }
+
+  tellme(round: number){
+  console.log(round);
+  }
 }

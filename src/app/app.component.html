@@ -394,7 +394,7 @@
               <div *ngIf = "history.winner == 50; then yellow"></div>
               <ng-template #grey>
                 <th class="grey">{{history.winner}}X</th>
-                <td>{{history.round}}</td>
+                <td (click)="tellme(history.round)">{{history.round}} <img src="../assets/view.png" height="20px" width="20px"></td>
                 <td class="hash"><a href="https://shasta.tronscan.org/#/transaction/{{history.hash}}">{{history.hash}}</a></td>
                 <td>{{history.timestamp}}</td>
               </ng-template>
