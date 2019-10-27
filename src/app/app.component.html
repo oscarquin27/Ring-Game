@@ -388,16 +388,16 @@
   </ngb-tabset>
   <!--MODAL HISTORY-->
   <div class="modal fade" id="historialModal" tabindex="-1" role="dialog" aria-labelledby="historialModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-table" role="document">
+      <div class="modal-content modal-content-table">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Round Information</h5>
           <button type="button" class="close" data-dismiss="modal" (click)="resetDetailed()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <table class="table">
+        <div class="modal-body modal-body-table">
+            <table class="table history-table">
               <thead>
                 <tr>
                   <th scope="col">Winner</th>
@@ -442,12 +442,16 @@
             <div class="paginacion">
               <ngb-pagination class="d-flex justify-content-center"
               [maxSize]="4"
+              [size]="sm"
               [(page)]="page"
               [pageSize] ="pageSize"
               [collectionSize]="historial.length"></ngb-pagination>
               <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
             </div>
         </div>
+      </div>
+    </div>
+  </div>
   <!--MODAL DETAILED-->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -467,6 +471,9 @@
             <p>Profit: {{info.profit}}</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
   <!-- card para el nombre de usuario -->
   <div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -474,7 +481,7 @@
       <mat-card>
         <mat-card-title>
           Set your Username
-          <button type="button" class="close" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </mat-card-title>
@@ -498,7 +505,7 @@
       <mat-card>
         <mat-card-title>
           Set your Avatar
-          <button type="button" class="close" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </mat-card-title>
