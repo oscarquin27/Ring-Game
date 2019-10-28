@@ -857,6 +857,7 @@ export class AppComponent {
         callValue: 0,
         shouldPollResponse : false
       })
+      this.sendMessage = ""
       }catch(e){}
     }
 
