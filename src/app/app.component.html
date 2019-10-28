@@ -60,6 +60,7 @@
           <!-- <div> -->
             <img src="../assets/history.png" height="30px" width="30px" data-toggle="modal" data-target="#historialModal">
           <!-- </div> -->
+            <img src="../assets/play.png" height="30px" width="30px" data-toggle="modal" data-target="#myBetsModal">
         </div>
         <!-- Chat -->
         <div class="botones">
@@ -337,65 +338,77 @@
       </ng-template>
     </ngb-tab>
     <!-- second tab content -->
-    <ngb-tab title="My Bets">
-      <ng-template ngbTabContent>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Player</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Multiplier</th>
-              <th scope="col">Winner</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
-              <div *ngIf = "history.winner == 2; then winnerg"></div>
-              <div *ngIf = "history.winner == 3; then winnerb"></div>
-              <div *ngIf = "history.winner == 5; then winnerp"></div>
-              <div *ngIf = "history.winner == 5; then winnery"></div>
-              <div *ngIf="history.betType == 2; then grey"></div>
-              <ng-template #grey>
-                <th class="grey" scope="row">{{address2}}...{{address3}}</th>
-                <td class="grey">{{history.value}} TRX</td>
-                <td class="grey">{{history.betType}}X</td>
-                <td>{{history.winner}}X</td>
-              </ng-template>
-              <div *ngIf="history.betType == 3; then blue"></div>
-              <ng-template #blue>
-                <th class="red" scope="row">{{address2}}...{{address3}}</th>
-                <td class="red">{{history.value}} TRX</td>
-                <td class="red">{{history.betType}}X</td>
-                <td>{{history.winner}}X</td>
-              </ng-template>
-              <div *ngIf="history.betType == 5; then purple"></div>
-              <ng-template #purple>
-                <th class="green" scope="row">{{address2}}...{{address3}}</th>
-                <td class="green">{{history.value}} TRX</td>
-                <td class="green">{{history.betType}}X</td>
-                <td>{{history.winner}}X</td>
-              </ng-template>
-              <div *ngIf="history.betType == 50; then yellow"></div>
-              <ng-template #yellow>
-                  <th class="yellow" scope="row">{{address2}}...{{address3}}</th>
-                  <td class="yellow">{{history.value}} TRX</td>
-                  <td class="yellow">{{history.betType}}X</td>
-                  <td>{{history.winner}}X</td>
-              </ng-template>
-            </tr>
-          </tbody>
-        </table>
-        <div class="paginacion">
-          <ngb-pagination class="d-flex justify-content-center"
-          [(page)]="page"
-          [pageSize] ="pageSize"
-          [collectionSize]="myBetHistory.length"></ngb-pagination>
-          <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
-        </div>
-      </ng-template>
-    </ngb-tab>
+    
     <!--GENERAL HISTORY-->
   </ngb-tabset>
+  <!--MY BETS MODAL-->
+  <div class="modal fade" id="myBetsModal" tabindex="-1" role="dialog" aria-labelledby="myBetsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-table" role="document">
+      <div class="modal-content modal-content-table">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Round Information</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="resetDetailed()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body modal-body-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Player</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Multiplier</th>
+          <th scope="col">Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let history of myBetHistory | slice : (page-1) * pageSize : (page-1) * pageSize + pageSize">
+          <div *ngIf = "history.winner == 2; then winnerg"></div>
+          <div *ngIf = "history.winner == 3; then winnerb"></div>
+          <div *ngIf = "history.winner == 5; then winnerp"></div>
+          <div *ngIf = "history.winner == 5; then winnery"></div>
+          <div *ngIf="history.betType == 2; then grey"></div>
+          <ng-template #grey>
+            <th class="grey" scope="row">{{address2}}...{{address3}}</th>
+            <td class="grey">{{history.value}} TRX</td>
+            <td class="grey">{{history.betType}}X</td>
+            <td>{{history.winner}}X</td>
+          </ng-template>
+          <div *ngIf="history.betType == 3; then blue"></div>
+          <ng-template #blue>
+            <th class="red" scope="row">{{address2}}...{{address3}}</th>
+            <td class="red">{{history.value}} TRX</td>
+            <td class="red">{{history.betType}}X</td>
+            <td>{{history.winner}}X</td>
+          </ng-template>
+          <div *ngIf="history.betType == 5; then purple"></div>
+          <ng-template #purple>
+            <th class="green" scope="row">{{address2}}...{{address3}}</th>
+            <td class="green">{{history.value}} TRX</td>
+            <td class="green">{{history.betType}}X</td>
+            <td>{{history.winner}}X</td>
+          </ng-template>
+          <div *ngIf="history.betType == 50; then yellow"></div>
+          <ng-template #yellow>
+              <th class="yellow" scope="row">{{address2}}...{{address3}}</th>
+              <td class="yellow">{{history.value}} TRX</td>
+              <td class="yellow">{{history.betType}}X</td>
+              <td>{{history.winner}}X</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+    <div class="paginacion">
+      <ngb-pagination class="d-flex justify-content-center"
+      [(page)]="page"
+      [pageSize] ="pageSize"
+      [collectionSize]="myBetHistory.length"></ngb-pagination>
+      <button class="btn btn-outline-secondary" (click)="myBets()">Refresh</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
   <!--MODAL HISTORY-->
   <div class="modal fade" id="historialModal" tabindex="-1" role="dialog" aria-labelledby="historialModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-table" role="document">
