@@ -879,6 +879,22 @@ ngb-tabset a:hover {
     color: #FAAC17;
 }
 
+.color-yellow{
+    filter: invert(64%) sepia(87%) saturate(491%) hue-rotate(348deg) brightness(101%) contrast(96%);
+}
+
+.color-grey{
+    filter: invert(36%) sepia(0%) saturate(2439%) hue-rotate(313deg) brightness(88%) contrast(97%);
+}
+
+.color-red{
+    filter: invert(27%) sepia(40%) saturate(3272%) hue-rotate(325deg) brightness(94%) contrast(88%);
+}
+
+.color-green{
+    filter: invert(47%) sepia(71%) saturate(526%) hue-rotate(94deg) brightness(86%) contrast(97%); 
+}
+
 .hash {
     max-width: 140px;
     word-wrap: break-word; 

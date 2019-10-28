@@ -633,8 +633,75 @@ export class AppComponent {
       ((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;
     }
 
-    half(){
-      let val = Math.floor(this.trx/2);
+    ten(){
+      if(!isNaN(this.trx)){
+      let val = Math.floor(this.trx + 10);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+      }
+      else{
+        this.trx = 10;
+      }
+    }
+
+    fifty(){
+      if(!isNaN(this.trx)){
+      let val = Math.floor(this.trx + 50);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+      }
+      else{
+        this.trx = 50;
+      }
+    }
+
+    hundred(){
+      if(!isNaN(this.trx)){
+      let val = Math.floor(this.trx + 100);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+      }
+      else{
+        this.trx = 100;
+      }
+    }
+
+    fiveh(){
+      if(!isNaN(this.trx)){
+      let val = Math.floor(this.trx + 500);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+      }
+      else{
+        this.trx = 500;
+      }
+    }
+
+    thousand(){
+      if(!isNaN(this.trx)){
+      let val = Math.floor(this.trx + 1000);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+      }
+      else{
+        this.trx = 1000;
+      }
+    }
+
+    tenpercent(){
+      let val = Math.floor(this.balance * 0.1);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+    }
+
+    twentypercent(){
+      let val = Math.floor(this.balance * 0.2);
+      if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
+      else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
+    }
+
+    fiftypercent(){
+      let val = Math.floor(this.balance * 0.5);
       if(val < 10) {((<HTMLInputElement>document.getElementById("bet")).value) = "10";}
       else {this.trx = val;((<HTMLInputElement>document.getElementById("bet")).value) = this.trx;}
     }
@@ -654,61 +721,6 @@ export class AppComponent {
 
     max(){
       this.trx = this.balance;
-    }
-
-    openPreviousGrey(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-grey"));
-      x.showModal();
-      this.dialogOpenGrey = true;
-      console.log("open");
-    }
-
-    closePreviousGrey(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-grey"));
-      x.close(); 
-      this.dialogOpenGrey = false;
-      console.log("close");
-    }
-
-    openPreviousBlue(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-blue"));
-      x.showModal();
-      this.dialogOpenBlue = true;
-      console.log("open");
-    }
-
-    closePreviousBlue(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-blue"));
-      x.close(); 
-      this.dialogOpenBlue = false;
-      console.log("close");
-    }
-
-    openPreviousPurple(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-purple"));
-      x.showModal();
-      this.dialogOpenPurple = true;
-      console.log("open");
-    }
-
-    closePreviousPurple(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-purple"));
-      x.close(); 
-      this.dialogOpenPurple = false;
-      console.log("close");
-    }
-
-    openPreviousYellow(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-yellow"));
-      x.showModal();
-      this.dialogOpenYellow = true;
-      console.log("open");
-    }
-
-    closePreviousYellow(){
-      let x = (<HTMLDialogElement>document.getElementById("previous-yellow"));
-      x.close(); 
-      this.dialogOpenYellow = false;
     }
 
     async myBets() : Promise<any>{
