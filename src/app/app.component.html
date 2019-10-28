@@ -133,7 +133,7 @@
                   </div>
                  </div>
                 <div class="down">
-                  <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating"></textarea>
+                  <textarea class="text" [(ngModel)]="sendMessage" placeholder="Start Chating" (keydown.enter)="send(sendMessage)"></textarea>
                   <button class="btn btn-outline-secondary send" (click)="send(sendMessage)">
                       <i class="material-icons">send</i>
                   </button>
