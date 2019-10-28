@@ -416,7 +416,7 @@ h3 div:last-child {
 }
 .input-top {
     display: grid;
-    grid-template-columns: max-content auto auto auto;
+    grid-template-columns: max-content auto auto auto auto;
     padding: 10px 0px;
 }
 .balance .input-top p {
@@ -432,9 +432,16 @@ h3 div:last-child {
 }
 .input-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     padding: 15px 0px;
+}
+.input-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    width: 100%;
+    padding: 15px 0px;
+    margin: 0px 25px;
 }
 .segundo {
     margin: 0px 6%;
@@ -708,6 +715,7 @@ textarea {
     color: white;
     caret-color: white;
     padding: 7px;
+    outline: none;
 }
 .send {
     position: relative;
@@ -799,8 +807,9 @@ mat-card-content input {
     vertical-align: middle;
 }
 #button-addon4 button {
-    width: 60px;
-    margin: auto;
+    /* width: 60px; */
+    padding: 5px;
+    border: none;
 }
 .auto {
     padding-top: 10px;
@@ -914,6 +923,11 @@ ngb-tabset a:hover {
 .modal-dialog-table .table {
     margin: 0px;
 }
+.modal-dialog .btn-outline-secondary {
+    color: white;
+    border-color: white;
+}
+
 /* Version media */
 @media only screen and (min-width: 650px) {
     .contains {
@@ -993,6 +1007,7 @@ ngb-tabset a:hover {
     }
     .input-grid {
         padding: 10px 0px;
+        margin: 0px 25px;
     }
     .mute img {
         width: 55px;
@@ -1028,7 +1043,7 @@ ngb-tabset a:hover {
     }
     .first-div {
         /* grid-template-columns:  minmax(100px, max-content) 1fr; */
-        grid-template-columns: 350px 1fr;
+        grid-template-columns: 370px 1fr;
         /* margin-bottom: 120px */
     }
     .b {
@@ -1112,6 +1127,9 @@ ngb-tabset a:hover {
     }
 }
 @media screen and (max-width: 499px) {
+    .container {
+        padding: 0px;
+    }
     .modal-dialog-table {
         width: 360px;
         margin: auto;
