@@ -471,6 +471,9 @@ h3 div:last-child {
     border-radius: 7px;
     display: grid
 }
+.cartas svg {
+    margin: -3px 5px 2px 2px;
+}
 .card {
     background-color: #191821;
     flex: 1 1 auto;
@@ -906,6 +909,9 @@ ngb-tabset a:hover {
 
 .forward{
     filter: invert(15%) sepia(33%) saturate(6034%) hue-rotate(271deg) brightness(113%) contrast(100%);
+    margin-top: 5px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .hash {
