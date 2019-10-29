@@ -904,6 +904,10 @@ ngb-tabset a:hover {
     filter: invert(47%) sepia(71%) saturate(526%) hue-rotate(94deg) brightness(86%) contrast(97%); 
 }
 
+.forward{
+    filter: invert(15%) sepia(33%) saturate(6034%) hue-rotate(271deg) brightness(113%) contrast(100%);
+}
+
 .hash {
     max-width: 140px;
     word-wrap: break-word; 
