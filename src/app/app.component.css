@@ -62,7 +62,7 @@
     color: white;
     font-size: 2rem;
     font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
-    top: -212px;
+    top: -225px;
     margin-left: 80px;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content
@@ -120,7 +120,7 @@ h3 div:last-child {
     color: white;
     font-size: 1rem;
     font-family: 'Orbitron', sans-serif;
-    top: -230px;
+    top: -250px;
     left: -36px;
 }
 /* Botones del historial */
@@ -953,7 +953,7 @@ ngb-tabset a:hover {
         /* margin-left: 70px */
     }
     #indication {
-        top: -270px;
+        top: -275px;
         left: -6px;
         font-size: 1.25rem
     }
@@ -1086,7 +1086,7 @@ ngb-tabset a:hover {
     }
     #indication {
         top: -310px;
-        left: 10px;
+        left: -17px;
         font-size: 1.5rem
     }
     h3 div {
