@@ -475,7 +475,7 @@ h3 div:last-child {
     margin: -3px 5px 2px 2px;
 }
 .card {
-    background-color: #191821;
+    background-color: #232426;
     flex: 1 1 auto;
     padding: 1.25rem;
 }
@@ -484,9 +484,8 @@ h3 div:last-child {
     margin-left:30%;
 } */
 .btn2x {
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgb(65,67,69);
+background: linear-gradient(90deg, rgba(65,67,69,1) 6%, rgba(35,37,38,1) 67%, rgba(22,22,23,1) 95%);
     border-color: #414345;
 }
 
@@ -570,7 +569,7 @@ button{
     color: white;
 }
 .b {
-    background-color: #303134;
+    background-color: #232426;
     border-radius: 5%;
     margin-bottom: 30px;
     margin-top: 20px;
