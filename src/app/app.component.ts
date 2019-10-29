@@ -24,7 +24,7 @@ export class AppComponent {
   wheel;
   stopAt;
   segmentNumber;
-  contractAddress = "TPnTqzWWFKJTH3iHnV9L8ts4HQbn7YBXyF";
+  contractAddress = "TEzHgyfomWXjY7KiuWj9Qj2ZtE2ha4y1ST";
   address;
   seconds;
   decenas;

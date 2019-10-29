@@ -79,6 +79,12 @@ contract RingGame {
         _;
     }
     
+    modifier notOwner(){
+        require(msg.sender != owner);
+        _;
+    }
+    
+    
     constructor() public {
         time = now;
         owner = msg.sender;
@@ -92,7 +98,10 @@ contract RingGame {
         users[msg.sender].image = avatar;
     }
     
-    function betTwo() public payable {
+    function changeOwner(address newOwner) public OnlyOwner{
+         owner = newOwner;
+    }
+    function betTwo() public payable notOwner {
         require(msg.value >= 10 trx);
         bets.push(Bet({
             betType : 2,
@@ -109,7 +118,7 @@ contract RingGame {
         }));
     }
     
-     function betThree() public payable {
+     function betThree() public payable notOwner {
         require(msg.value >= 10 trx);
         bets.push(Bet({
             betType : 3,
@@ -127,7 +136,7 @@ contract RingGame {
  
     }
     
-     function betFive() public payable {
+     function betFive() public payable notOwner {
         require(msg.value >= 10 trx);
         bets.push(Bet({
             betType : 5,
@@ -145,7 +154,7 @@ contract RingGame {
         
     }
     
-     function betFifty() public payable {
+     function betFifty() public payable notOwner {
         require(msg.value >= 10 trx);
         bets.push(Bet({
             betType : 50,

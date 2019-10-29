@@ -17,7 +17,7 @@ export interface Request {
 })
 export class UtilsService {
   private tronweb : TronWeb | any;
-  contractAddress = "TPnTqzWWFKJTH3iHnV9L8ts4HQbn7YBXyF";
+  contractAddress = "TEzHgyfomWXjY7KiuWj9Qj2ZtE2ha4y1ST";
   FOUNDATION_ADDRESS = 'TGCtEoQ4TVMCSQv8rzAWCCXn8qpHEBxNsB';
   public loggedIn: boolean = false;
   balance;
